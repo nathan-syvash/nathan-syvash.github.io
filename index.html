@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Cube</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            height: 300vh; /* Make the body taller to enable scrolling */
+            overflow: auto; /* Enable scrolling */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-direction: column; /* Stack elements vertically */
+            text-align: center; /* Center text */
+        }
+
+        .section:nth-child(1) {
+            background-color: #f0f0f0;
+        }
+
+        .section:nth-child(2) {
+            background-color: #ffffff;
+        }
+
+        .section:nth-child(3) {
+            background-color: #f0f0f0;
+        }
+
+        .scene {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 10%; /* Position near the top */
+            transform-style: preserve-3d;
+        }
+
+        .cube {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transition: transform 0.2s; /* Smooth transition for mouse movement */
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.8); /* Default color for faces */
+            border: 1px solid #333333; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            color: #333333;
+            font-weight: bold;
+            transition: background-color 0.5s ease; /* Smooth transition for background color */
+        }
+
+        .face.front  { background-color: #f0f0f0; transform: translateZ(100px); }
+        .face.back   { background-color: #f0f0f0; transform: rotateY(180deg) translateZ(100px); }
+        .face.right  { background-color: #f0f0f0; transform: rotateY(90deg) translateZ(100px); }
+        .face.left   { background-color: #f0f0f0; transform: rotateY(-90deg) translateZ(100px); }
+        .face.top    { background-color: #f0f0f0; transform: rotateX(90deg) translateZ(100px); }
+        .face.bottom { background-color: #f0f0f0; transform: rotateX(-90deg) translateZ(100px); }
+
+        .title {
+            font-size: 28px; /* Title font size */
+            color: #333333; /* Title color */
+            font-weight: 700; /* Bold title */
+        }
+
+        .subtitle {
+            position: absolute;
+            transform: translateY(-50%); /* Center subtitle */
+            font-size: 18px; /* Subtitle font size */
+            color: #333; /* Subtitle color */
+            font-weight: 500; 
+        }
+
+        .highlight {
+            color: #009966;
+            font-weight: 800;
+        }
+
+        /* Flash effect */
+        .flash {
+            background-color: #66CC99 !important; /* Minty green color */
+        }
+
+        .arrow-container {
+            position: absolute;
+            width: 50px; /* Square size */
+            height: 50px; /* Square size */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Background color of the square */
+            cursor: pointer;
+            border-radius: 10px;
+            border: 1px solid #333333;
+            transition: height 0.3s ease; /* Smooth transition for height */
+        }
+
+        .arrow-container.expand {
+            height: 150px; /* 3x the original height */
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #333333; /* Arrow color */
+            transition: transform 0.3s ease; /* Smooth transition for arrow stretching */
+        }
+
+        .arrow-container.expand .arrow {
+            transform: scaleY(3); /* Stretch arrow vertically */
+        }
+
+        /* Signature styles */
+        .signature {
+            position: fixed; /* Fixed position */
+            top: 20px; /* 20px from the bottom */
+            right: 20px; /* 20px from the right */
+            font-family: 'Caveat', cursive; /* Font family */
+            font-size: 12px; /* Font size */
+            font-weight: bold; /* Bold font */
+            color: #333; /* Signature color */
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 20px; /* Space between boxes */
+            width: 80%; /* Width of the gallery */
+            max-width: 1200px; /* Maximum width of the gallery */ 
+            margin: 20px auto;
+        }
+
+        .gallery-title {
+            display: flex;
+            align-items: left; /* Align emoji and title horizontally */
+            font-size: 24px; /* Title font size */
+            font-weight: bold;
+            margin-bottom: 10px; /* Space between title and image */
+        }
+
+        /* Gallery item hover effect */
+        .gallery-item {
+            background-color: #ffffff;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: left;
+            font-size: 18px;
+            height: 350px;
+            transition: transform 0.2s ease-in-out; /* Smooth transition for hover */
+        }
+
+        .gallery-item:hover {
+            animation: pulse 1s infinite; /* Apply the pulse animation on hover */
+        }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1); /* Normal size */
+            }
+            50% {
+                transform: scale(1.01); /* Slightly larger */
+            }
+            100% {
+                transform: scale(1); /* Back to normal size */
+            }
+        }
+
+        .placeholder {
+            width: 100%; /* Make the image fill the width of the container */
+            height: 300px; /* Fixed height for the placeholder image */
+            background-color: #e0e0e0; /* Light grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .item__about_text {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column; /* Ensure it aligns children vertically */
+            align-items: flex-start; /* Align items to the start (left) */
+            text-align: left; /* Align text to the left */
+        }
+
+        /* Styles for the pop-up and overlay */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Dim background */
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it overlays other content */
+        }
+
+        .popup-content {
+            background-color: #ffffff;
+            width: 70%;
+            height: 85%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Scroll if content overflows */
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Close button inside the pop-up */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        /* Show the pop-up content */
+        .popup-overlay.active .popup-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Enable the overlay */
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .skills {
+            display: flex;
+            flex-direction: row; /* Align skills horizontally */
+            margin-top: 10px; /* Space between about text and skills */
+        }
+
+        .skill {
+            border-radius: 7px; /* Border radius for skill boxes */
+            padding: 5px; /* Padding inside skill boxes */
+            margin-right: 10px; /* Space between skill boxes */
+            color: #333; /* Text color */
+            font-size: 12px; /* Font size for skill text */
+            font-weight: 500; /* Font weight for skill text */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="section" style="position: relative;">
+        <div class="scene" style="position: absolute; top: 35%; left: 65%; transform: translateX(-50%);">
+            <div class="cube">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face right"></div>
+                <div class="face left"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+        </div>
+        <h1 class="title" style="position: absolute; top: 30%; left: 75px;">
+            Nathan's [ <u>projects</u> ]
+        </h1>
+        <h3 class="subtitle" style="position: absolute; top: 45%; left: 75px; text-align: left;">
+            Hey there! I'm a 4th year <span class="highlight">Mechanical Engineering</span> student<br>at 
+            <span class="highlight">Dartmouth College</span>.<br><br>I'm passionate about <span class="highlight">CAD
+            </span>, <span class="highlight">robotics</span>, and <span class="highlight">product design</span>.
+        </h3>
+        <div class="arrow-container" id="arrowContainer" style="position: absolute; top: 60%; left: 75px;">
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="section">
+        
+        <h1 style="font-size: 20px; color: #bfbfbf; font-weight: 800;">[ <u>featured</u> ]</h1>
+        <div class="gallery">
+            
+            <div class="gallery-item">
+                <div class="gallery-title">&#128191 Optical Encoder</div>
+                 <div class="placeholder">Placeholder Image</div>
+                <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
+                <div class="skills">
+                    <div class="skill" style="background-color: #ffcccb;">CAD</div>
+                    <div class="skill" style="background-color: #add8e6;">CFD</div>
+                    <div class="skill" style="background-color: #90ee90;">Research</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-title">&#128760 Drone Model</div>
+                 <div class="placeholder">Placeholder Image</div>
+                <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
+                <div class="skills">
+                    <div class="skill" style="background-color: #ffcccb;">CAD</div>
+                    <div class="skill" style="background-color: #add8e6;">CFD</div>
+                    <div class="skill" style="background-color: #90ee90;">Research</div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-title">&#127744 Fluid Flow</div>
+                 <div class="placeholder">Placeholder Image</div>
+                <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
+                <div class="skills">
+                    <div class="skill" style="background-color: #ffcccb;">CAD</div>
+                    <div class="skill" style="background-color: #add8e6;">CFD</div>
+                    <div class="skill" style="background-color: #90ee90;">Research</div>
+                </div>
+            </div>
+           
+            
+            <!-- Add more projects as needed -->
+        </div>
+
+        <!-- Pop-up overlay -->
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="popup-content">
+                <span class="close-btn" id="closePopup">&times;</span>
+                <!-- Pop-up content goes here -->
+                <h2>Project Details</h2>
+                <p>More information about the selected project will be displayed here.</p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="section">
+        <h1>Coursework</h1>
+        <p>Content for Section 3.</p>
+    </div>
+
+    <div class="section">
+        <h1>About me</h1>
+        <p>Content for Section 4.</p>
+    </div>
+
+    <div class="signature">by Nathan Syvash</div>
+
+    <script>
+        const cube = document.querySelector('.cube');
+        const faces = document.querySelectorAll('.face'); // Select all faces
+        let isMouseOver = false;
+
+        // Variables to store rotation values
+        let xRotation = 0;
+        let yRotation = 0;
+
+        // Function to rotate the cube continuously
+        function rotateCube() {
+            if (!isMouseOver) {
+                xRotation += 0.5; // Increment rotation on X axis
+                yRotation += 0.5; // Increment rotation on Y axis
+                cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+            }
+            requestAnimationFrame(rotateCube); // Continue the animation
+        }
+
+        // Start the continuous rotation
+        rotateCube();
+
+        // Event listener for mouse enter
+        cube.addEventListener('mouseenter', () => {
+            isMouseOver = true;
+        });
+
+        // Event listener for mouse leave
+        cube.addEventListener('mouseleave', () => {
+            isMouseOver = false;
+        });
+
+        // Event listener for mouse move
+        cube.addEventListener('mousemove', (event) => {
+            const rect = cube.getBoundingClientRect();
+            const x = event.clientX - rect.left; // x position within the cube
+            const y = event.clientY - rect.top;  // y position within the cube
+            xRotation = ((y / rect.height) - 0.5) * 60; // Calculate X rotation
+            yRotation = ((x / rect.width) - 0.5) * -60; // Calculate Y rotation
+            cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`; // Set cube rotation
+        });
+
+        // Event listener for click to flash all faces
+        cube.addEventListener('click', () => {
+            // Add flash class to each face
+            faces.forEach(face => {
+                face.classList.add('flash');
+            });
+
+            // Remove flash class after 500ms to allow fading effect
+            setTimeout(() => {
+                faces.forEach(face => {
+                    face.classList.remove('flash');
+                });
+            }, 300); // Duration for the flash effect
+        });
+
+        // Function to scroll to the next section
+        function scrollToNextSection() {
+            const currentSection = document.querySelector('.section');
+            const nextSection = currentSection.nextElementSibling;
+            if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Event listener for arrow click
+        document.getElementById('arrowContainer').addEventListener('click', scrollToNextSection);
+
+        // Event listener for expanding the arrow container on hover
+        document.getElementById('arrowContainer').addEventListener('mouseenter', () => {
+            document.getElementById('arrowContainer').classList.add('expand');
+        });
+
+        // Event listener for collapsing the arrow container when not hovering
+        document.getElementById('arrowContainer').addEventListener('mouseleave', () => {
+            document.getElementById('arrowContainer').classList.remove('expand');
+        });
+
+
+        // JavaScript to handle pop-up functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const closePopup = document.getElementById('closePopup');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                popupOverlay.classList.add('active');
+            });
+        });
+
+        closePopup.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+        });
+
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.classList.remove('active');
+            }
+        });
+        
+    </script>
+</body>
+</html>
