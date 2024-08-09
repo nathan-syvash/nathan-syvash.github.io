@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotating Cube</title>
+    <title>Nathan Syvash</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
@@ -46,6 +46,7 @@
             transform-style: preserve-3d;
         }
 
+
         .cube {
             position: absolute;
             width: 200px;
@@ -53,6 +54,7 @@
             transform-style: preserve-3d;
             transition: transform 0.2s; /* Smooth transition for mouse movement */
         }
+
 
         .face {
             position: absolute;
@@ -295,15 +297,15 @@
                 <div class="face bottom"></div>
             </div>
         </div>
-        <h1 class="title" style="position: absolute; top: 30%; left: 75px;">
+        <h1 class="title" style="position: absolute; top: 25%; left: 150px;">
             Nathan's [ <u>projects</u> ]
         </h1>
-        <h3 class="subtitle" style="position: absolute; top: 45%; left: 75px; text-align: left;">
+        <h3 class="subtitle" style="position: absolute; top: 45%; left: 150px; text-align: left;">
             Hey there! I'm a 4th year <span class="highlight">Mechanical Engineering</span> student<br>at 
             <span class="highlight">Dartmouth College</span>.<br><br>I'm passionate about <span class="highlight">CAD
             </span>, <span class="highlight">robotics</span>, and <span class="highlight">product design</span>.
         </h3>
-        <div class="arrow-container" id="arrowContainer" style="position: absolute; top: 60%; left: 75px;">
+        <div class="arrow-container" id="arrowContainer" style="position: absolute; top: 60%; left: 150px;">
             <div class="arrow"></div>
         </div>
     </div>
@@ -374,6 +376,7 @@
     <div class="signature">by Nathan Syvash</div>
 
     <script>
+        
         const cube = document.querySelector('.cube');
         const faces = document.querySelectorAll('.face'); // Select all faces
         let isMouseOver = false;
