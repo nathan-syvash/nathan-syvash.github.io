@@ -13,30 +13,39 @@
             height: 300vh; /* Make the body taller to enable scrolling */
             overflow: auto; /* Enable scrolling */
             font-family: 'Roboto', sans-serif;
+            background-color: none; /* Fallback for older browsers */
         }
 
         .section {
-            width: 100vw;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            flex-direction: column; /* Stack elements vertically */
-            text-align: center; /* Center text */
+            height: 100vh;
         }
 
         .section:nth-child(1) {
-            background-color: #f0f0f0;
+            background-color: none;
         }
 
         .section:nth-child(2) {
-            background-color: #ffffff;
+            background-color: none;
         }
 
         .section:nth-child(3) {
-            background-color: #f0f0f0;
+            background-color: none;
         }
+
+        .background {
+            position: absolute;
+            width: 90%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            flex-direction: column; /* Stack items in a column */
+        }
+
 
         .scene {
             width: 200px;
@@ -72,25 +81,83 @@
             transition: background-color 0.5s ease; /* Smooth transition for background color */
         }
 
-        .face.front  { background-color: #f0f0f0; transform: translateZ(100px); }
-        .face.back   { background-color: #f0f0f0; transform: rotateY(180deg) translateZ(100px); }
-        .face.right  { background-color: #f0f0f0; transform: rotateY(90deg) translateZ(100px); }
-        .face.left   { background-color: #f0f0f0; transform: rotateY(-90deg) translateZ(100px); }
-        .face.top    { background-color: #f0f0f0; transform: rotateX(90deg) translateZ(100px); }
-        .face.bottom { background-color: #f0f0f0; transform: rotateX(-90deg) translateZ(100px); }
+        .face.front  { background-color: #ffffff; transform: translateZ(100px); }
+        .face.back   { background-color: #ffffff; transform: rotateY(180deg) translateZ(100px); }
+        .face.right  { background-color: #ffffff; transform: rotateY(90deg) translateZ(100px); }
+        .face.left   { background-color: #ffffff; transform: rotateY(-90deg) translateZ(100px); }
+        .face.top    { background-color: #ffffff; transform: rotateX(90deg) translateZ(100px); }
+        .face.bottom { background-color: #ffffff; transform: rotateX(-90deg) translateZ(100px); }
+
+        .intro_text {
+            position: absolute; 
+            top: 30%; 
+            left: 350px;
+            display: flex;
+            flex-direction: column; /* Stack items in a column */
+            justify-content: flex-start;
+            align-items: flex-start; /* Align items to the left */
+            text-align: left;
+        }
 
         .title {
-            font-size: 28px; /* Title font size */
+            margin-bottom: 25px;
+            font-size: 40px; /* Title font size */
             color: #333333; /* Title color */
             font-weight: 700; /* Bold title */
         }
 
+        .status{
+            margin-bottom: 25px;
+            font-size: 20px; /* Title font size */
+            color: #808080; /* status color */
+            font-weight: 700; /* Bold title */
+        }
+
         .subtitle {
-            position: absolute;
-            transform: translateY(-50%); /* Center subtitle */
             font-size: 18px; /* Subtitle font size */
             color: #333; /* Subtitle color */
             font-weight: 500; 
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+
+        .contact_link {
+            text-decoration: none; /* Remove underline from link */
+            display: block; /* Ensure the link behaves like a block element */
+            width: 100%;
+        }
+
+        .contact_me {
+            display: flex; /* Enable flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-size: 18px; 
+            color: #333; 
+            font-weight: 500; 
+            margin-bottom: 25px;
+            border: 1px solid #808080;
+            border-radius: 10px;
+            height: 30px;
+
+            color: #808080;
+        }
+
+        .contact_me:hover {
+            animation: pulse 1s infinite; /* Apply the pulse animation on hover */
+        }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1); /* Normal size */
+            }
+            50% {
+                transform: scale(1.02); /* Slightly larger */
+            }
+            100% {
+                transform: scale(1); /* Back to normal size */
+            }
         }
 
         .highlight {
@@ -104,17 +171,33 @@
         }
 
         .arrow-container {
-            position: absolute;
             width: 50px; /* Square size */
             height: 50px; /* Square size */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* Background color of the square */
+            background-color: #ffffff; /* Background color of the square */
             cursor: pointer;
             border-radius: 10px;
             border: 1px solid #333333;
             transition: height 0.3s ease; /* Smooth transition for height */
+        }
+
+        .arrow-container:hover {
+            animation: pulse 1s infinite; /* Apply the pulse animation on hover */
+        }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1); /* Normal size */
+            }
+            50% {
+                transform: scale(1.05); /* Slightly larger */
+            }
+            100% {
+                transform: scale(1); /* Back to normal size */
+            }
         }
 
         .arrow-container.expand {
@@ -134,24 +217,47 @@
             transform: scaleY(3); /* Stretch arrow vertically */
         }
 
-        /* Signature styles */
-        .signature {
-            position: fixed; /* Fixed position */
-            top: 20px; /* 20px from the bottom */
-            right: 20px; /* 20px from the right */
-            font-family: 'Caveat', cursive; /* Font family */
-            font-size: 12px; /* Font size */
-            font-weight: bold; /* Bold font */
-            color: #333; /* Signature color */
+        .social-media-icons{
+            position: absolute; 
+            top: 40%; 
+            left: 250px;
+            display: flex;
+            flex-direction: column; /* Stack items in a column */
+            justify-content: flex-start;
+            align-items: flex-start; /* Align items to the left */
+            text-align: left;
+        }
+
+        .linkedin_link {
+            text-decoration: none; /* Remove underline from link */
+            display: block; /* Ensure the link behaves like a block element */
+            width: 100%;
+        }
+
+        .social_media_icon_block {
+            display: flex; /* Enable flexbox */
+            margin-bottom: 10px;
+            height: 20px;
+            width: 20px; 
+        }
+
+        .featured{
+            position: relative;
+            margin: 0 auto; /* Center horizontally */
+            font-size: 20px; 
+            color: #bfbfbf; 
+            font-weight: 800;
         }
 
         .gallery {
+            padding-top: 25px;
+            position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr); /* 3 columns */
             gap: 20px; /* Space between boxes */
             width: 80%; /* Width of the gallery */
-            max-width: 1200px; /* Maximum width of the gallery */ 
-            margin: 20px auto;
+            max-width: 1200px; /* Maximum width of the gallery */
+            margin: 0 auto; /* Center horizontally */
         }
 
         .gallery-title {
@@ -282,101 +388,190 @@
             font-size: 12px; /* Font size for skill text */
             font-weight: 500; /* Font weight for skill text */
         }
+
+        .fade-section {
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-section.visible {
+          opacity: 1;
+        }
+
+        .border-container {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 30%, #66CC99, transparent 60%), 
+              radial-gradient(circle at 80% 70%, #66CC99, transparent 25%), 
+              radial-gradient(circle at 50% 50%, #B2E4D0, transparent 20%), 
+              radial-gradient(circle at 20% 70%, #99D6B7, transparent 30%),
+            radial-gradient(circle at 90% 5%, #99D6B7, transparent 30%);
+            background-color: #ffffff; /* Fallback for older browsers */
+        }
+
+        .menu {
+            position: fixed; /* Fixed position at the top */
+            top: 48%; /* Align to the top */
+            left: 8%; /* Align to the left */
+            width: 100%; /* Full width */
+            display: flex; /* Flexbox for horizontal layout */
+            flex-direction: column;
+            z-index: 1000; /* Ensure it is above other content */
+            padding: 10px 0; /* Padding for top and bottom */
+            gap: 10px;
+        }
+
+        .menu-item {
+            font-size: 18px; /* Font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: font-weight 0.3s, color 0.3s; /* Smooth transition for hover effects */
+            display: flex; /* Flexbox for horizontal layout */
+            border: 1px solid #C0C0C0;
+            background: none;
+            border-radius: 10px;
+            height: 10px;
+            width: 10px;
+        }
+
+        .menu-item.active {
+            border: 1px solid #C0C0C0;
+            background: #C0C0C0;
+        }
+
+
+
         
     </style>
 </head>
 <body>
-    <div class="section" style="position: relative;">
-        <div class="scene" style="position: absolute; top: 35%; left: 65%; transform: translateX(-50%);">
-            <div class="cube">
-                <div class="face front"></div>
-                <div class="face back"></div>
-                <div class="face right"></div>
-                <div class="face left"></div>
-                <div class="face top"></div>
-                <div class="face bottom"></div>
-            </div>
-        </div>
-        <h1 class="title" style="position: absolute; top: 25%; left: 150px;">
-            Nathan's [ <u>projects</u> ]
-        </h1>
-        <h3 class="subtitle" style="position: absolute; top: 45%; left: 150px; text-align: left;">
-            Hey there! I'm a 4th year <span class="highlight">Mechanical Engineering</span> student<br>at 
-            <span class="highlight">Dartmouth College</span>.<br><br>I'm passionate about <span class="highlight">CAD
-            </span>, <span class="highlight">robotics</span>, and <span class="highlight">product design</span>.
-        </h3>
-        <div class="arrow-container" id="arrowContainer" style="position: absolute; top: 60%; left: 150px;">
-            <div class="arrow"></div>
-        </div>
-    </div>
-    <div class="section">
-        
-        <h1 style="font-size: 20px; color: #bfbfbf; font-weight: 800;">[ <u>featured</u> ]</h1>
-        <div class="gallery">
-            
-            <div class="gallery-item">
-                <div class="gallery-title">&#128191 Optical Encoder</div>
-                 <div class="placeholder">Placeholder Image</div>
-                <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
-                <div class="skills">
-                    <div class="skill" style="background-color: #ffcccb;">CAD</div>
-                    <div class="skill" style="background-color: #add8e6;">CFD</div>
-                    <div class="skill" style="background-color: #90ee90;">Research</div>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <div class="gallery-title">&#128760 Drone Model</div>
-                 <div class="placeholder">Placeholder Image</div>
-                <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
-                <div class="skills">
-                    <div class="skill" style="background-color: #ffcccb;">CAD</div>
-                    <div class="skill" style="background-color: #add8e6;">CFD</div>
-                    <div class="skill" style="background-color: #90ee90;">Research</div>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <div class="gallery-title">&#127744 Fluid Flow</div>
-                 <div class="placeholder">Placeholder Image</div>
-                <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
-                <div class="skills">
-                    <div class="skill" style="background-color: #ffcccb;">CAD</div>
-                    <div class="skill" style="background-color: #add8e6;">CFD</div>
-                    <div class="skill" style="background-color: #90ee90;">Research</div>
-                </div>
-            </div>
-           
-            
-            <!-- Add more projects as needed -->
-        </div>
-
-        <!-- Pop-up overlay -->
-        <div class="popup-overlay" id="popupOverlay">
-            <div class="popup-content">
-                <span class="close-btn" id="closePopup">&times;</span>
-                <!-- Pop-up content goes here -->
-                <h2>Project Details</h2>
-                <p>More information about the selected project will be displayed here.</p>
-            </div>
-        </div>
-        
-    </div>
     
-    <div class="section">
-        <h1>Coursework</h1>
-        <p>Content for Section 3.</p>
+    <div class="section" style="position: relative; id="section2"">
+        <div class ="background" style="border-top-left-radius: 15px; border-top-right-radius: 15px; top: 10%">
+            <div class="scene fade-section" style="position: absolute; top: 35%; left: 70%; transform: translateX(-50%);">
+                <div class="cube">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                </div>
+            </div>
+            <div class="intro_text fade-section">
+                <div class="title">Nathan's [ <u>projects</u> ]</div>
+                <div class="status">Mechanical Engineer</div>
+                <div class="subtitle">
+                    I'm a senior at 
+                    <span class="highlight">Thayer School of Engineering</span>,<span class="highlight"><br>Dartmouth College</span>.
+                    My background lies in <span class="highlight">CAD</span>,<br>
+                    <span class="highlight">robotics</span>, and
+                    <span class="highlight">product design</span>.
+                </div>
+                <a href="mailto:nathan.syvash.25@dartmouth.edu" class="contact_link">
+                    <div class="contact_me">shoot me an email</div>
+                </a>
+                <div class="arrow-container" id="arrowContainer">
+                    <div class="arrow"></div>
+                </div>
+            </div>
+
+            <div class="social-media-icons fade-section">
+                <a href="https://www.linkedin.com/in/nsyvash/" target="_blank" class="social_media_icon_block"">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Font_Awesome_5_brands_linkedin.svg" 
+                        alt="LinkedIn" class="social_media_icon_block">
+                </a>
+                <a href="https://strava.app.link/SvHtSDDBVLb" target="_blank" class="social_media_icon_block"">
+                    <img src="strava_logo.svg" 
+                        alt="Strava" class="social_media_icon_block">
+                </a>
+                <!-- Add other social media icons as needed -->
+            </div>
+
+        </div>
+    </div>
+    <div class="section" id="section2">
+        <div class ="background">
+            <div class="featured fade-section">[<u>featured</u>]</div>
+            <div class="gallery fade-section">
+                <div class="gallery-item">
+                    <div class="gallery-title">&#128191 Optical Encoder</div>
+                     <div class="placeholder">Placeholder Image</div>
+                    <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
+                    <div class="skills">
+                        <div class="skill" style="background-color: #ffcccb;">CAD</div>
+                        <div class="skill" style="background-color: #add8e6;">CFD</div>
+                        <div class="skill" style="background-color: #90ee90;">Research</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-title">&#128760 Drone Model</div>
+                     <div class="placeholder">Placeholder Image</div>
+                    <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
+                    <div class="skills">
+                        <div class="skill" style="background-color: #ffcccb;">CAD</div>
+                        <div class="skill" style="background-color: #add8e6;">CFD</div>
+                        <div class="skill" style="background-color: #90ee90;">Research</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-title">&#127744 Fluid Flow</div>
+                     <div class="placeholder">Placeholder Image</div>
+                    <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
+                    <div class="skills">
+                        <div class="skill" style="background-color: #ffcccb;">CAD</div>
+                        <div class="skill" style="background-color: #add8e6;">CFD</div>
+                        <div class="skill" style="background-color: #90ee90;">Research</div>
+                    </div>
+                </div>
+
+
+                <!-- Add more projects as needed -->
+            </div>
+        
+
+            <!-- Pop-up overlay -->
+            <div class="popup-overlay" id="popupOverlay">
+                <div class="popup-content">
+                    <span class="close-btn" id="closePopup">&times;</span>
+                    <!-- Pop-up content goes here -->
+                    <h2>Project Details</h2>
+                    <p>More information about the selected project will be displayed here.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="section" id="section3">
+        <div class ="background">
+            <h1>Coursework</h1>
+            <p>Content for Section 3.</p>
+        </div>
     </div>
 
-    <div class="section">
-        <h1>About me</h1>
-        <p>Content for Section 4.</p>
+    <div class="section" id="section4">
+        <div class ="background">
+            <h1>About me</h1>
+            <p>Content for Section 4.</p>
+        </div>
     </div>
 
-    <div class="signature">by Nathan Syvash</div>
+    <div class="menu fade-section" id="menu">
+        <div class="menu-item" data-section="1"></div>
+        <div class="menu-item" data-section="2"></div>
+        <div class="menu-item" data-section="3"></div>
+        <div class="menu-item" data-section="4"></div>
+    </div>
+
+    <div class="border-container"></div>
 
     <script>
-        
+
         const cube = document.querySelector('.cube');
         const faces = document.querySelectorAll('.face'); // Select all faces
         let isMouseOver = false;
@@ -476,7 +671,54 @@
                 popupOverlay.classList.remove('active');
             }
         });
-        
+
+
+        const fadeSections = document.querySelectorAll('.fade-section');
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            } else {
+              entry.target.classList.remove('visible');
+            }
+          });
+        }, {
+          threshold: 0.5 // Adjust based on when you want the fade to occur (0 = fade starts as soon as any part is visible, 1 = fade starts when fully visible)
+        });
+
+        fadeSections.forEach(section => {
+          observer.observe(section);
+        });
+
+
+        const menuItems = document.querySelectorAll('.menu-item');
+        const sections = document.querySelectorAll('.section');
+
+        function changeActiveSection() {
+            const scrollPosition = window.scrollY + 50; // Adjust for fixed menu height
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    menuItems.forEach(item => item.classList.remove('active'));
+                    menuItems[index].classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', changeActiveSection);
+
+        // Add click event to menu items for smooth scrolling
+        menuItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+
     </script>
 </body>
 </html>
