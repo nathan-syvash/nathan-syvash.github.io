@@ -16,6 +16,15 @@
             background-color: none; /* Fallback for older browsers */
         }
 
+        a {
+            color: black;
+            text-decoration: none; /* Optional: Removes the underline */
+        }
+
+        a:hover {
+            color: grey; /* Optional: Change color on hover */
+        }
+
         .section {
             display: flex;
             justify-content: center;
@@ -53,6 +62,7 @@
             position: absolute;
             top: 10%; /* Position near the top */
             transform-style: preserve-3d;
+            background: none;
         }
 
 
@@ -62,6 +72,7 @@
             height: 200px;
             transform-style: preserve-3d;
             transition: transform 0.2s; /* Smooth transition for mouse movement */
+            z-index: 1000;
         }
 
 
@@ -69,7 +80,7 @@
             position: absolute;
             width: 200px;
             height: 200px;
-            background: rgba(255, 255, 255, 0.8); /* Default color for faces */
+            background: none; /* Default color for faces */
             border: 1px solid #333333; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
@@ -81,12 +92,12 @@
             transition: background-color 0.5s ease; /* Smooth transition for background color */
         }
 
-        .face.front  { background-color: #ffffff; transform: translateZ(100px); }
-        .face.back   { background-color: #ffffff; transform: rotateY(180deg) translateZ(100px); }
-        .face.right  { background-color: #ffffff; transform: rotateY(90deg) translateZ(100px); }
-        .face.left   { background-color: #ffffff; transform: rotateY(-90deg) translateZ(100px); }
-        .face.top    { background-color: #ffffff; transform: rotateX(90deg) translateZ(100px); }
-        .face.bottom { background-color: #ffffff; transform: rotateX(-90deg) translateZ(100px); }
+        .face.front  { background-color: none; transform: translateZ(100px); }
+        .face.back   { background-color: none; transform: rotateY(180deg) translateZ(100px); }
+        .face.right  { background-color: none; transform: rotateY(90deg) translateZ(100px); }
+        .face.left   { background-color: none; transform: rotateY(-90deg) translateZ(100px); }
+        .face.top    { background-color: none; transform: rotateX(90deg) translateZ(100px); }
+        .face.bottom { background-color: none; transform: rotateX(-90deg) translateZ(100px); }
 
         .intro_text {
             position: absolute; 
@@ -415,7 +426,7 @@
 
         .menu {
             position: fixed; /* Fixed position at the top */
-            top: 48%; /* Align to the top */
+            top: 35%; /* Align to the top */
             left: 8%; /* Align to the left */
             width: 100%; /* Full width */
             display: flex; /* Flexbox for horizontal layout */
@@ -442,7 +453,38 @@
             background: #C0C0C0;
         }
 
-
+        .coursework{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 18px;
+            gap: 0px;
+            padding-top: 50px;
+        }
+        .course_item{
+            width:330px;
+            border: none;
+            border-bottom: 4px solid #333;
+            height: 450px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: left;
+            gap: 25px;
+        }
+        .course_title{
+            font-size: 35px; 
+            color: #C0C0C0; 
+            font-weight: 800; 
+            border: 1px solid #000000;
+            width: 50px;
+            border: none;
+            border-right: 1px solid #c0c0c0;
+        }
+        .course_about{
+            width: 255px;
+        }
 
         
     </style>
@@ -549,15 +591,77 @@
     </div>
     <div class="section" id="section3">
         <div class ="background">
-            <h1>Coursework</h1>
-            <p>Content for Section 3.</p>
+            <div class="featured fade-section">[ <u>coursework</u> ]</div>
+            <div class="coursework fade-section" style= "font-size: 16px;">
+                <div class="course_item">
+                    <div class="course_title">22<br>23</div>
+                    <div class="course_about">
+                        <span style="font-size: 24px; font-weight: bold; color: #c0c0c0">System Core</span>
+                        <br>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs22" class="contact_link">ENGS 22 - Systems</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs25" class="contact_link">ENGS 25 - Thermodynamics</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs21" class="contact_link">ENGS 21 - Introduction to Engineering</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs20" class="contact_link">ENGS 20 - Introduction to Scientific Computing</a>
+                        <br>
+                        <a href="https://dartmouth.smartcatalogiq.com/en/2022/orc/departments-programs-undergraduate/mathematics/math-mathematics-undergraduate/math-22/" 
+                            class="contact_link">MATH 22 - Linear Algebra</a>
+                        <br>
+                    </div>
+                </div>
+                <div class="course_item">
+                    <div class="course_title">23<br>23</div>
+                    <div class="course_about">
+                        <span style="font-size: 24px; font-weight: bold; color: #c0c0c0">Distributed Core</span>
+                        <br>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs23" class="contact_link">ENGS 23 - Distributed Systems</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs33" class="contact_link">ENGS 33 - Solid Mechanics</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs33" class="contact_link">ENGS 93 - Statistical Methods in Engineering</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs37" class="contact_link">ENGS 37 - Environmental Engineering</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs45" class="contact_link">ENGS 45 - Sustainable Urban Systems</a>
+                        <br>
+                    </div>
+                </div>
+                <div class="course_item">
+                    <div class="course_title">24<br>25</div>
+                    <div class="course_about">
+                        <span style="font-size: 24px; font-weight: bold; color: #c0c0c0">This year: 
+                            Capstone & Concentration</span>
+                        <br>
+                        <br>
+                     
+                        <a href="https://engineering.dartmouth.edu/courses/engs45" class="contact_link">ENGS 89/90 - Engineering Design Methodology: Initiation & Completion</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs76" class="contact_link">ENGS 76 - Machine Engineering</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs26" class="contact_link">ENGS 26 - Control Systems</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs72" class="contact_link">ENGS 72 - Applied Dynamics</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs34" class="contact_link">ENGS 34 - Fluid Dynamics</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs147" class="contact_link">ENGS 147 - Mechatronics</a>
+                        <br>
+                        <a href="https://engineering.dartmouth.edu/courses/engs71" class="contact_link">ENGS 71 - Structural Analysis</a>
+                        <br>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="section" id="section4">
         <div class ="background">
             <h1>About me</h1>
-            <p>Content for Section 4.</p>
+            <p>a silly guy</p>
         </div>
     </div>
 
@@ -718,7 +822,8 @@
             });
         });
 
-
     </script>
 </body>
 </html>
+
+
