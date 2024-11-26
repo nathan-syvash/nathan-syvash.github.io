@@ -755,72 +755,7 @@
         });
 
 
-        // JavaScript to handle pop-up functionality
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const popupOverlay = document.getElementById('popupOverlay');
-        const closePopup = document.getElementById('closePopup');
 
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                popupOverlay.classList.add('active');
-            });
-        });
-
-        closePopup.addEventListener('click', () => {
-            popupOverlay.classList.remove('active');
-        });
-
-        popupOverlay.addEventListener('click', (e) => {
-            if (e.target === popupOverlay) {
-                popupOverlay.classList.remove('active');
-            }
-        });
-
-
-        const fadeSections = document.querySelectorAll('.fade-section');
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            } else {
-              entry.target.classList.remove('visible');
-            }
-          });
-        }, {
-          threshold: 0.5 // Adjust based on when you want the fade to occur (0 = fade starts as soon as any part is visible, 1 = fade starts when fully visible)
-        });
-
-        fadeSections.forEach(section => {
-          observer.observe(section);
-        });
-
-
-        const menuItems = document.querySelectorAll('.menu-item');
-        const sections = document.querySelectorAll('.section');
-
-        function changeActiveSection() {
-            const scrollPosition = window.scrollY + 50; // Adjust for fixed menu height
-
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    menuItems.forEach(item => item.classList.remove('active'));
-                    menuItems[index].classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', changeActiveSection);
-
-        // Add click event to menu items for smooth scrolling
-        menuItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                sections[index].scrollIntoView({ behavior: 'smooth' });
-            });
-        });
         
     </script>
 </body>
