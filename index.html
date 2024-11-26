@@ -676,88 +676,108 @@
 
     <script>
 
-        const cube = document.querySelector('.cube');
-        const faces = document.querySelectorAll('.face'); // Select all faces
-        let isMouseOver = false;
+    const cube = document.querySelector('.cube');
+    const faces = document.querySelectorAll('.face'); // Select all faces
+    let isMouseOver = false;
 
-        // Variables to store rotation values
-        let xRotation = 0;
-        let yRotation = 0;
+    // Variables to store rotation values
+    let xRotation = 0;
+    let yRotation = 0;
 
-        // Function to rotate the cube continuously
-        function rotateCube() {
-            if (!isMouseOver) {
-                xRotation += 0.5; // Increment rotation on X axis
-                yRotation += 0.5; // Increment rotation on Y axis
-                cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-            }
-            requestAnimationFrame(rotateCube); // Continue the animation
+    // Function to rotate the cube continuously
+    function rotateCube() {
+        if (!isMouseOver) {
+            xRotation += 0.5; // Increment rotation on X axis
+            yRotation += 0.5; // Increment rotation on Y axis
+            cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
         }
+        requestAnimationFrame(rotateCube); // Continue the animation
+    }
 
-        // Start the continuous rotation
-        rotateCube();
+    // Start the continuous rotation
+    rotateCube();
 
-        // Event listener for mouse enter
-        cube.addEventListener('mouseenter', () => {
-            isMouseOver = true;
+    // Event listener for mouse enter
+    cube.addEventListener('mouseenter', () => {
+        isMouseOver = true;
+    });
+
+    // Event listener for mouse leave
+    cube.addEventListener('mouseleave', () => {
+        isMouseOver = false;
+    });
+
+    // Event listener for mouse move
+    cube.addEventListener('mousemove', (event) => {
+        const rect = cube.getBoundingClientRect();
+        const x = event.clientX - rect.left; // x position within the cube
+        const y = event.clientY - rect.top;  // y position within the cube
+        xRotation = ((y / rect.height) - 0.5) * 60; // Calculate X rotation
+        yRotation = ((x / rect.width) - 0.5) * -60; // Calculate Y rotation
+        cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`; // Set cube rotation
+    });
+
+    // Event listener for click to flash all faces
+    cube.addEventListener('click', () => {
+        // Add flash class to each face
+        faces.forEach(face => {
+            face.classList.add('flash');
         });
 
-        // Event listener for mouse leave
-        cube.addEventListener('mouseleave', () => {
-            isMouseOver = false;
-        });
-
-        // Event listener for mouse move
-        cube.addEventListener('mousemove', (event) => {
-            const rect = cube.getBoundingClientRect();
-            const x = event.clientX - rect.left; // x position within the cube
-            const y = event.clientY - rect.top;  // y position within the cube
-            xRotation = ((y / rect.height) - 0.5) * 60; // Calculate X rotation
-            yRotation = ((x / rect.width) - 0.5) * -60; // Calculate Y rotation
-            cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`; // Set cube rotation
-        });
-
-        // Event listener for click to flash all faces
-        cube.addEventListener('click', () => {
-            // Add flash class to each face
+        // Remove flash class after 500ms to allow fading effect
+        setTimeout(() => {
             faces.forEach(face => {
-                face.classList.add('flash');
+                face.classList.remove('flash');
             });
+        }, 300); // Duration for the flash effect
+    });
 
-            // Remove flash class after 500ms to allow fading effect
-            setTimeout(() => {
-                faces.forEach(face => {
-                    face.classList.remove('flash');
-                });
-            }, 300); // Duration for the flash effect
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const popupOverlay = document.getElementById('popupOverlay');
+    const closePopup = document.getElementById('closePopup');
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            popupOverlay.classList.add('active');
         });
+    });
 
-        // Function to scroll to the next section
-        function scrollToNextSection() {
-            const currentSection = document.querySelector('.section');
-            const nextSection = currentSection.nextElementSibling;
-            if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' });
-            }
+    closePopup.addEventListener('click', () => {
+        popupOverlay.classList.remove('active');
+    });
+
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            popupOverlay.classList.remove('active');
         }
+    });
 
-        // Event listener for arrow click
-        document.getElementById('arrowContainer').addEventListener('click', scrollToNextSection);
+    const menuItems = document.querySelectorAll('.menu-item');
+    const sections = document.querySelectorAll('.section');
 
-        // Event listener for expanding the arrow container on hover
-        document.getElementById('arrowContainer').addEventListener('mouseenter', () => {
-            document.getElementById('arrowContainer').classList.add('expand');
+    function changeActiveSection() {
+        const scrollPosition = window.scrollY + 50; // Adjust for fixed menu height
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                menuItems.forEach(item => item.classList.remove('active'));
+                menuItems[index].classList.add('active');
+            }
         });
+    }
 
-        // Event listener for collapsing the arrow container when not hovering
-        document.getElementById('arrowContainer').addEventListener('mouseleave', () => {
-            document.getElementById('arrowContainer').classList.remove('expand');
+    window.addEventListener('scroll', changeActiveSection);
+
+    // Add click event to menu items for smooth scrolling
+    menuItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            sections[index].scrollIntoView({ behavior: 'smooth' });
         });
+    });
 
-
-
-        
-    </script>
+</script>
+    
 </body>
 </html>
 
