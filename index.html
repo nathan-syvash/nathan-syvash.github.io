@@ -17,6 +17,8 @@
       --header-left-padding: 58px;
       --header-right-padding: 180px;
       --header-height: 104px;
+      --content-max-width: 1160px;
+      --content-left-offset: 250px;
     }
 
     html {
@@ -33,12 +35,6 @@
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    button,
-    input,
-    textarea {
-      font: inherit;
     }
 
     .page {
@@ -137,13 +133,19 @@
       border-color: #9a9a9a;
     }
 
+    /* Shared centered desktop container */
+    .content-shell {
+      width: min(var(--content-max-width), calc(100vw - var(--content-left-offset) - 140px));
+      margin-left: var(--content-left-offset);
+      margin-right: 70px;
+    }
+
     /* Section 1 */
     .hero-content {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1.15fr 0.95fr;
       align-items: center;
-      padding: 0 140px 0 250px;
       gap: 80px;
     }
 
@@ -174,6 +176,13 @@
     .about p {
       font-size: 24px;
       line-height: 1.25;
+    }
+
+    #home .content-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 0;
     }
 
     /* Arrows */
@@ -241,7 +250,8 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: calc(var(--header-height) + 12px) 140px 96px;
+      padding-top: calc(var(--header-height) + 12px);
+      padding-bottom: 96px;
     }
 
     .projects-title {
@@ -349,76 +359,117 @@
       flex-shrink: 0;
     }
 
-    /* Section 3: Work */
+    /* Section 3: Work Timeline */
     #work {
+      height: 100vh;
       min-height: 100vh;
     }
 
     .work-section {
-      min-height: 100vh;
-      padding: calc(var(--header-height) + 24px) 140px 100px 250px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding-top: calc(var(--header-height) + 12px);
+      padding-bottom: 96px;
     }
 
     .work-title {
       font-size: 38px;
       line-height: 1;
       font-weight: 700;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
-    .work-grid {
+    .timeline {
+      position: relative;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
+      gap: 20px;
+      padding-left: 42px;
+      max-width: 900px;
     }
 
-    .work-card {
-      background: rgba(255, 255, 255, 0.55);
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 12px;
+      width: 2px;
+      background: #cfcfcf;
+    }
+
+    .timeline-item {
+      position: relative;
+      background: rgba(255, 255, 255, 0.62);
       border: 1px solid #d9d9d9;
       border-radius: 14px;
-      padding: 28px;
+      padding: 22px 24px 22px 26px;
     }
 
-    .work-card h3 {
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      top: 26px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #9a9a9a;
+      border: 3px solid var(--page-bg);
+      box-shadow: 0 0 0 1px #cfcfcf;
+    }
+
+    .timeline-year {
+      font-size: 14px;
+      line-height: 1;
+      color: #8a8a8a;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .timeline-role {
       font-size: 22px;
       line-height: 1.2;
-      margin-bottom: 8px;
       font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .work-card .work-meta {
-      font-size: 15px;
-      color: #7f7f7f;
-      margin-bottom: 16px;
+    .timeline-org {
+      font-size: 17px;
+      line-height: 1.25;
+      color: #555;
+      margin-bottom: 10px;
     }
 
-    .work-card p {
-      font-size: 18px;
-      line-height: 1.45;
+    .timeline-text {
+      font-size: 17px;
+      line-height: 1.42;
       color: #333;
+      max-width: 760px;
     }
 
-    /* Section 4: Contact */
+    /* Section 4: Contact Info Only */
     #contact {
+      height: 100vh;
       min-height: 100vh;
     }
 
     .contact-section {
-      min-height: 100vh;
-      padding: calc(var(--header-height) + 24px) 140px 90px 250px;
+      height: 100vh;
       display: flex;
       align-items: center;
+      padding-top: calc(var(--header-height) + 12px);
+      padding-bottom: 96px;
     }
 
     .contact-layout {
       width: 100%;
+      max-width: 920px;
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 48px;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
       align-items: start;
     }
 
@@ -434,18 +485,20 @@
       line-height: 1.45;
       color: #444;
       max-width: 420px;
-      margin-bottom: 28px;
     }
 
-    .contact-details {
+    .contact-card {
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid #d9d9d9;
+      border-radius: 16px;
+      padding: 26px;
       display: grid;
-      gap: 14px;
+      gap: 18px;
     }
 
     .contact-detail {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      display: grid;
+      gap: 5px;
     }
 
     .contact-detail-label {
@@ -456,117 +509,31 @@
     }
 
     .contact-detail-value {
-      font-size: 18px;
+      font-size: 19px;
       color: #222;
-    }
-
-    .contact-form-card {
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid #d9d9d9;
-      border-radius: 16px;
-      padding: 28px;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 18px;
-    }
-
-    .form-row {
-      display: grid;
-      gap: 8px;
-    }
-
-    .form-row label {
-      font-size: 15px;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .form-row input,
-    .form-row textarea {
-      width: 100%;
-      border: 1px solid #cfcfcf;
-      border-radius: 10px;
-      padding: 14px 16px;
-      background: #fafafa;
-      color: #111;
-      outline: none;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
-    }
-
-    .form-row input:focus,
-    .form-row textarea:focus {
-      border-color: #9a9a9a;
-      background: #fff;
-    }
-
-    .form-row textarea {
-      min-height: 180px;
-      resize: vertical;
-    }
-
-    .contact-submit {
-      justify-self: start;
-      border: 1px solid #bdbdbd;
-      background: #fff;
-      color: #111;
-      border-radius: 999px;
-      padding: 12px 22px;
-      cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-
-    .contact-submit:hover {
-      transform: translateY(-1px);
-      background: #f7f7f7;
-    }
-
-    .contact-note {
-      font-size: 14px;
-      color: #777;
-      line-height: 1.4;
+      line-height: 1.35;
+      word-break: break-word;
     }
 
     /* Responsive */
     @media (max-width: 1280px) {
-      .projects-section {
-        padding-right: 110px;
-      }
-
       .projects-grid {
         column-gap: 24px;
-      }
-
-      .work-grid,
-      .contact-layout {
-        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 1100px) {
       :root {
         --header-right-padding: 100px;
+        --content-left-offset: 180px;
       }
 
       .hero-content {
-        padding: 0 80px 0 180px;
         gap: 56px;
       }
 
       .about p {
         font-size: 21px;
-      }
-
-      .projects-section {
-        padding-left: 180px;
-        padding-right: 80px;
-      }
-
-      .work-section,
-      .contact-section {
-        padding-left: 180px;
-        padding-right: 80px;
       }
 
       .menu {
@@ -579,6 +546,7 @@
         --header-left-padding: 28px;
         --header-right-padding: 28px;
         --header-height: 88px;
+        --content-left-offset: 28px;
       }
 
       .menu {
@@ -595,9 +563,18 @@
         font-size: 15px;
       }
 
+      .content-shell {
+        width: auto;
+        margin-left: 28px;
+        margin-right: 28px;
+      }
+
+      #home .content-shell {
+        padding-top: 0;
+      }
+
       .hero-content {
         grid-template-columns: 1fr;
-        padding: 150px 34px 80px;
         gap: 40px;
       }
 
@@ -614,13 +591,20 @@
       }
 
       #projects,
-      .projects-section {
+      #work,
+      #contact,
+      .projects-section,
+      .work-section,
+      .contact-section {
         height: auto;
         min-height: 100vh;
       }
 
-      .projects-section {
-        padding: calc(var(--header-height) + 16px) 28px 90px;
+      .projects-section,
+      .work-section,
+      .contact-section {
+        padding-top: calc(var(--header-height) + 16px);
+        padding-bottom: 90px;
       }
 
       .projects-title,
@@ -651,14 +635,16 @@
         font-size: 13px;
       }
 
-      .work-section,
-      .contact-section {
-        padding: calc(var(--header-height) + 16px) 28px 90px;
+      .timeline {
+        padding-left: 34px;
       }
 
-      .work-card,
-      .contact-form-card {
-        padding: 22px;
+      .timeline-item::before {
+        left: -30px;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
       }
 
       .scroll-indicator {
@@ -703,18 +689,20 @@
 
   <main class="page">
     <section class="section" id="home">
-      <div class="hero-content">
-        <div class="hero-left">
-          <h1>Nathan<br />Syvash</h1>
-          <p>Mechanical Engineer</p>
-        </div>
+      <div class="content-shell">
+        <div class="hero-content">
+          <div class="hero-left">
+            <h1>Nathan<br />Syvash</h1>
+            <p>Mechanical Engineer</p>
+          </div>
 
-        <div class="about">
-          <h2>About me</h2>
-          <p>
-            I’m a recent Bachelor of Engineering graduate from Dartmouth College.
-            My main focus is designing and deploying mechatronic systems and IoT networks.
-          </p>
+          <div class="about">
+            <h2>About me</h2>
+            <p>
+              I’m a recent Bachelor of Engineering graduate from Dartmouth College.
+              My main focus is designing and deploying mechatronic systems and IoT networks.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -722,87 +710,103 @@
     </section>
 
     <section class="section" id="projects">
-      <div class="projects-section">
-        <h2 class="projects-title">Projects</h2>
+      <div class="content-shell">
+        <div class="projects-section">
+          <h2 class="projects-title">Projects</h2>
 
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-thumb thumb-lattice"></div>
-            <div class="project-meta">
-              <h3 class="project-name">Lattice Design Compression Study</h3>
-              <span class="project-year">2025</span>
-            </div>
-          </article>
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-thumb thumb-lattice"></div>
+              <div class="project-meta">
+                <h3 class="project-name">Lattice Design Compression Study</h3>
+                <span class="project-year">2025</span>
+              </div>
+            </article>
 
-          <article class="project-card">
-            <div class="project-thumb thumb-lorawan"></div>
-            <div class="project-meta">
-              <h3 class="project-name">LoRaWAN Monitoring System</h3>
-              <span class="project-year">2025</span>
-            </div>
-          </article>
+            <article class="project-card">
+              <div class="project-thumb thumb-lorawan"></div>
+              <div class="project-meta">
+                <h3 class="project-name">LoRaWAN Monitoring System</h3>
+                <span class="project-year">2025</span>
+              </div>
+            </article>
 
-          <article class="project-card">
-            <div class="project-thumb thumb-dentist"></div>
-            <div class="project-meta">
-              <h3 class="project-name">Dentist Office Device Enclosure</h3>
-              <span class="project-year">2025</span>
-            </div>
-          </article>
+            <article class="project-card">
+              <div class="project-thumb thumb-dentist"></div>
+              <div class="project-meta">
+                <h3 class="project-name">Dentist Office Device Enclosure</h3>
+                <span class="project-year">2025</span>
+              </div>
+            </article>
 
-          <article class="project-card">
-            <div class="project-thumb thumb-rover"></div>
-            <div class="project-meta">
-              <h3 class="project-name">Remote Complex Terrain Rover</h3>
-              <span class="project-year">2024</span>
-            </div>
-          </article>
+            <article class="project-card">
+              <div class="project-thumb thumb-rover"></div>
+              <div class="project-meta">
+                <h3 class="project-name">Remote Complex Terrain Rover</h3>
+                <span class="project-year">2024</span>
+              </div>
+            </article>
 
-          <article class="project-card">
-            <div class="project-thumb thumb-encoder"></div>
-            <div class="project-meta">
-              <h3 class="project-name">3D Printable Optical Encoder</h3>
-              <span class="project-year">2025</span>
-            </div>
-          </article>
+            <article class="project-card">
+              <div class="project-thumb thumb-encoder"></div>
+              <div class="project-meta">
+                <h3 class="project-name">3D Printable Optical Encoder</h3>
+                <span class="project-year">2025</span>
+              </div>
+            </article>
 
-          <article class="project-card">
-            <div class="project-thumb thumb-pd"></div>
-            <div class="project-meta">
-              <h3 class="project-name">PD Controller for Autonomous Car</h3>
-              <span class="project-year">2024</span>
-            </div>
-          </article>
+            <article class="project-card">
+              <div class="project-thumb thumb-pd"></div>
+              <div class="project-meta">
+                <h3 class="project-name">PD Controller for Autonomous Car</h3>
+                <span class="project-year">2024</span>
+              </div>
+            </article>
+          </div>
+
+          <hr class="projects-divider" />
         </div>
-
-        <hr class="projects-divider" />
       </div>
 
       <a href="#work" class="scroll-indicator" aria-label="Scroll to next section"></a>
     </section>
 
     <section class="section" id="work">
-      <div class="work-section">
-        <h2 class="work-title">Work</h2>
+      <div class="content-shell">
+        <div class="work-section">
+          <h2 class="work-title">Work</h2>
 
-        <div class="work-grid">
-          <article class="work-card">
-            <h3>Ithaca Clean Energy</h3>
-            <div class="work-meta">Mechanical Engineer • 2025 - Present</div>
-            <p>
-              Built and commissioned LoRaWAN monitoring infrastructure, developed field-ready hardware layouts,
-              and supported deployment planning across industrial and maritime environments.
-            </p>
-          </article>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-year">2024</div>
+              <h3 class="timeline-role">Research Intern</h3>
+              <div class="timeline-org">MIT CSAIL</div>
+              <p class="timeline-text">
+                Designed, built, and validated a precision optical encoder, combining mechanical design,
+                fabrication, embedded data acquisition, and repeatable bench testing.
+              </p>
+            </article>
 
-          <article class="work-card">
-            <h3>MIT CSAIL</h3>
-            <div class="work-meta">Research Intern • 2024</div>
-            <p>
-              Designed and tested a precision optical encoder, combining mechanical design, fabrication,
-              embedded code, and validation workflows for repeatable experimental use.
-            </p>
-          </article>
+            <article class="timeline-item">
+              <div class="timeline-year">2025</div>
+              <h3 class="timeline-role">Mechanical Engineering Intern</h3>
+              <div class="timeline-org">Ithaca Clean Energy</div>
+              <p class="timeline-text">
+                Built and commissioned LoRaWAN monitoring infrastructure, created field-ready hardware layouts,
+                and supported real deployment planning for industrial and maritime environments.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-year">2026</div>
+              <h3 class="timeline-role">Mechanical Engineer</h3>
+              <div class="timeline-org">Ithaca Clean Energy</div>
+              <p class="timeline-text">
+                Continued deployment and design work, supporting system expansion, field troubleshooting,
+                installation planning, and hardware documentation for reliable monitoring systems.
+              </p>
+            </article>
+          </div>
         </div>
       </div>
 
@@ -810,53 +814,32 @@
     </section>
 
     <section class="section" id="contact">
-      <div class="contact-section">
-        <div class="contact-layout">
-          <div class="contact-copy">
-            <h2>Contact me</h2>
-            <p>
-              Reach out for roles, collaborations, or project questions. You can use the form to draft an email directly to me.
-            </p>
+      <div class="content-shell">
+        <div class="contact-section">
+          <div class="contact-layout">
+            <div class="contact-copy">
+              <h2>Contact</h2>
+              <p>
+                Feel free to reach out about roles, collaborations, or project questions.
+              </p>
+            </div>
 
-            <div class="contact-details">
+            <div class="contact-card">
               <div class="contact-detail">
                 <span class="contact-detail-label">Email</span>
                 <span class="contact-detail-value">nathan.syvash.th@dartmouth.edu</span>
               </div>
+
               <div class="contact-detail">
                 <span class="contact-detail-label">LinkedIn</span>
                 <span class="contact-detail-value">linkedin.com/in/nsyvash</span>
               </div>
+
               <div class="contact-detail">
                 <span class="contact-detail-label">Location</span>
                 <span class="contact-detail-value">Boston, MA</span>
               </div>
             </div>
-          </div>
-
-          <div class="contact-form-card">
-            <form class="contact-form" id="contactForm">
-              <div class="form-row">
-                <label for="senderName">Your name</label>
-                <input type="text" id="senderName" name="senderName" required />
-              </div>
-
-              <div class="form-row">
-                <label for="senderEmail">Your email</label>
-                <input type="email" id="senderEmail" name="senderEmail" required />
-              </div>
-
-              <div class="form-row">
-                <label for="messageBody">Message</label>
-                <textarea id="messageBody" name="messageBody" required></textarea>
-              </div>
-
-              <button type="submit" class="contact-submit">Send email</button>
-
-              <p class="contact-note">
-                This opens your email app with the message prefilled.
-              </p>
-            </form>
           </div>
         </div>
       </div>
@@ -868,7 +851,6 @@
     const sections = document.querySelectorAll(".section");
     const scrollIndicators = document.querySelectorAll(".scroll-indicator");
     const desktopMediaQuery = window.matchMedia("(min-width: 821px)");
-    const contactForm = document.getElementById("contactForm");
 
     let currentSectionId = "";
     let arrowFadeTimer = null;
@@ -938,22 +920,6 @@
       item.addEventListener("click", () => {
         scrollToTarget(item.dataset.target);
       });
-    });
-
-    contactForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const senderName = document.getElementById("senderName").value.trim();
-      const senderEmail = document.getElementById("senderEmail").value.trim();
-      const messageBody = document.getElementById("messageBody").value.trim();
-
-      const to = "nathan.syvash.th@dartmouth.edu";
-      const subject = encodeURIComponent(`Portfolio inquiry from ${senderName}`);
-      const body = encodeURIComponent(
-        `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${messageBody}`
-      );
-
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     });
 
     window.addEventListener("scroll", setActiveDot);
