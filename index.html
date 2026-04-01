@@ -49,7 +49,6 @@
       overflow: hidden;
     }
 
-    /* Fixed site header */
     .site-header {
       position: fixed;
       top: 0;
@@ -102,7 +101,6 @@
       display: block;
     }
 
-    /* Fixed left navigation dots */
     .menu {
       position: fixed;
       top: 50%;
@@ -133,16 +131,21 @@
       border-color: #9a9a9a;
     }
 
-    /* Shared centered desktop container */
     .content-shell {
       width: min(var(--content-max-width), calc(100vw - var(--content-left-offset) - 140px));
       margin-left: var(--content-left-offset);
       margin-right: 70px;
     }
 
-    /* Section 1 */
-    .hero-content {
+    /* Home */
+    #home .content-shell {
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      width: 100%;
       display: grid;
       grid-template-columns: 1.15fr 0.95fr;
       align-items: center;
@@ -178,18 +181,11 @@
       line-height: 1.25;
     }
 
-    #home .content-shell {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 0;
-    }
-
-    /* Arrows */
+    /* Shared arrow */
     .scroll-indicator {
       position: absolute;
       left: 50%;
-      bottom: 28px;
+      bottom: 24px;
       width: 88px;
       height: 42px;
       z-index: 5;
@@ -240,7 +236,7 @@
       }
     }
 
-    /* Section 2: Projects */
+    /* Projects */
     #projects {
       height: 100vh;
       min-height: 100vh;
@@ -251,7 +247,7 @@
       display: flex;
       flex-direction: column;
       padding-top: calc(var(--header-height) + 12px);
-      padding-bottom: 96px;
+      padding-bottom: 92px;
     }
 
     .projects-title {
@@ -359,7 +355,7 @@
       flex-shrink: 0;
     }
 
-    /* Section 3: Work Timeline */
+    /* Work */
     #work {
       height: 100vh;
       min-height: 100vh;
@@ -369,55 +365,65 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding-top: calc(var(--header-height) + 12px);
-      padding-bottom: 96px;
+      padding-top: calc(var(--header-height) + 18px);
+      padding-bottom: 120px;
     }
 
     .work-title {
       font-size: 38px;
       line-height: 1;
       font-weight: 700;
-      margin-bottom: 32px;
+      margin-bottom: 22px;
+      flex-shrink: 0;
     }
 
-    .timeline {
+    .work-timeline {
       position: relative;
+      flex: 1;
+      min-height: 0;
       display: grid;
-      gap: 20px;
-      padding-left: 42px;
-      max-width: 900px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      align-items: start;
+      padding-top: 26px;
     }
 
-    .timeline::before {
+    .work-timeline::before {
       content: "";
       position: absolute;
-      top: 10px;
-      bottom: 10px;
-      left: 12px;
-      width: 2px;
+      left: 0;
+      right: 0;
+      top: 9px;
+      height: 2px;
       background: #cfcfcf;
     }
 
-    .timeline-item {
+    .work-item {
       position: relative;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid #d9d9d9;
-      border-radius: 14px;
-      padding: 22px 24px 22px 26px;
+      min-width: 0;
     }
 
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -38px;
-      top: 26px;
+    .work-point {
       width: 18px;
       height: 18px;
       border-radius: 50%;
       background: #9a9a9a;
       border: 3px solid var(--page-bg);
       box-shadow: 0 0 0 1px #cfcfcf;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .work-card {
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid #d9d9d9;
+      border-radius: 14px;
+      padding: 18px 20px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .timeline-year {
@@ -430,7 +436,7 @@
     }
 
     .timeline-role {
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.2;
       font-weight: 700;
       margin-bottom: 6px;
@@ -444,20 +450,18 @@
     }
 
     .timeline-text {
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.42;
       color: #333;
-      max-width: 760px;
     }
 
-    /* Section 4: Contact Info Only */
+    /* Contact */
     #contact {
-      height: 100vh;
       min-height: 100vh;
     }
 
     .contact-section {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       padding-top: calc(var(--header-height) + 12px);
@@ -466,7 +470,6 @@
 
     .contact-layout {
       width: 100%;
-      max-width: 920px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 34px;
@@ -515,10 +518,13 @@
       word-break: break-word;
     }
 
-    /* Responsive */
     @media (max-width: 1280px) {
       .projects-grid {
         column-gap: 24px;
+      }
+
+      .work-card {
+        min-height: 230px;
       }
     }
 
@@ -538,6 +544,10 @@
 
       .menu {
         left: 28px;
+      }
+
+      .work-card {
+        min-height: 250px;
       }
     }
 
@@ -592,10 +602,8 @@
 
       #projects,
       #work,
-      #contact,
       .projects-section,
-      .work-section,
-      .contact-section {
+      .work-section {
         height: auto;
         min-height: 100vh;
       }
@@ -635,12 +643,22 @@
         font-size: 13px;
       }
 
-      .timeline {
-        padding-left: 34px;
+      .work-timeline {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding-top: 0;
       }
 
-      .timeline-item::before {
-        left: -30px;
+      .work-timeline::before {
+        display: none;
+      }
+
+      .work-point {
+        margin-bottom: 10px;
+      }
+
+      .work-card {
+        min-height: auto;
       }
 
       .contact-layout {
@@ -776,35 +794,44 @@
         <div class="work-section">
           <h2 class="work-title">Work</h2>
 
-          <div class="timeline">
-            <article class="timeline-item">
-              <div class="timeline-year">2024</div>
-              <h3 class="timeline-role">Research Intern</h3>
-              <div class="timeline-org">MIT CSAIL</div>
-              <p class="timeline-text">
-                Designed, built, and validated a precision optical encoder, combining mechanical design,
-                fabrication, embedded data acquisition, and repeatable bench testing.
-              </p>
+          <div class="work-timeline">
+            <article class="work-item">
+              <div class="work-point"></div>
+              <div class="work-card">
+                <div class="timeline-year">2024</div>
+                <h3 class="timeline-role">Research Intern</h3>
+                <div class="timeline-org">MIT CSAIL</div>
+                <p class="timeline-text">
+                  Designed, built, and validated a precision optical encoder, combining mechanical design,
+                  fabrication, embedded data acquisition, and repeatable bench testing.
+                </p>
+              </div>
             </article>
 
-            <article class="timeline-item">
-              <div class="timeline-year">2025</div>
-              <h3 class="timeline-role">Mechanical Engineering Intern</h3>
-              <div class="timeline-org">Ithaca Clean Energy</div>
-              <p class="timeline-text">
-                Built and commissioned LoRaWAN monitoring infrastructure, created field-ready hardware layouts,
-                and supported real deployment planning for industrial and maritime environments.
-              </p>
+            <article class="work-item">
+              <div class="work-point"></div>
+              <div class="work-card">
+                <div class="timeline-year">2025</div>
+                <h3 class="timeline-role">Mechanical Engineering Intern</h3>
+                <div class="timeline-org">Ithaca Clean Energy</div>
+                <p class="timeline-text">
+                  Built and commissioned LoRaWAN monitoring infrastructure, created field-ready hardware layouts,
+                  and supported real deployment planning for industrial and maritime environments.
+                </p>
+              </div>
             </article>
 
-            <article class="timeline-item">
-              <div class="timeline-year">2026</div>
-              <h3 class="timeline-role">Mechanical Engineer</h3>
-              <div class="timeline-org">Ithaca Clean Energy</div>
-              <p class="timeline-text">
-                Continued deployment and design work, supporting system expansion, field troubleshooting,
-                installation planning, and hardware documentation for reliable monitoring systems.
-              </p>
+            <article class="work-item">
+              <div class="work-point"></div>
+              <div class="work-card">
+                <div class="timeline-year">2026</div>
+                <h3 class="timeline-role">Mechanical Engineer</h3>
+                <div class="timeline-org">Ithaca Clean Energy</div>
+                <p class="timeline-text">
+                  Continued deployment and design work, supporting system expansion, field troubleshooting,
+                  installation planning, and hardware documentation for reliable monitoring systems.
+                </p>
+              </div>
             </article>
           </div>
         </div>
