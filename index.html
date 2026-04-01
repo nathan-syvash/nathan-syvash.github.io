@@ -371,12 +371,11 @@
 
     /* Work */
     #work {
-      height: 100vh;
       min-height: 100vh;
     }
 
     .work-section {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       padding-top: calc(var(--header-height) + 18px);
@@ -387,7 +386,7 @@
       font-size: 38px;
       line-height: 1;
       font-weight: 700;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       flex-shrink: 0;
     }
 
@@ -397,9 +396,9 @@
       min-height: 0;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      gap: 20px;
       align-items: start;
-      padding-top: 26px;
+      padding-top: 22px;
     }
 
     .work-timeline::before {
@@ -424,7 +423,7 @@
       background: #9a9a9a;
       border: 3px solid var(--page-bg);
       box-shadow: 0 0 0 1px #cfcfcf;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       position: relative;
       z-index: 2;
     }
@@ -433,39 +432,46 @@
       background: rgba(255, 255, 255, 0.62);
       border: 1px solid #d9d9d9;
       border-radius: 14px;
-      padding: 18px 20px;
-      min-height: 210px;
+      padding: 16px 18px;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
     }
 
     .timeline-year {
-      font-size: 14px;
-      line-height: 1;
+      font-size: 13px;
+      line-height: 1.1;
       color: #8a8a8a;
       font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
     }
 
     .timeline-role {
-      font-size: 20px;
+      font-size: 19px;
       line-height: 1.2;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .timeline-org {
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.25;
       color: #555;
       margin-bottom: 10px;
     }
 
-    .timeline-text {
-      font-size: 16px;
-      line-height: 1.42;
+    .timeline-bullets {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .timeline-bullets li {
+      font-size: 14px;
+      line-height: 1.35;
       color: #333;
     }
 
@@ -536,10 +542,6 @@
       .projects-grid {
         column-gap: 24px;
       }
-
-      .work-card {
-        min-height: 230px;
-      }
     }
 
     @media (max-width: 1100px) {
@@ -551,10 +553,6 @@
 
       .menu {
         left: 28px;
-      }
-
-      .work-card {
-        min-height: 250px;
       }
     }
 
@@ -821,39 +819,43 @@
             <article class="work-item">
               <div class="work-point"></div>
               <div class="work-card">
-                <div class="timeline-year">2024</div>
+                <div class="timeline-year">Summer 2024</div>
                 <h3 class="timeline-role">Research Intern</h3>
                 <div class="timeline-org">MIT CSAIL</div>
-                <p class="timeline-text">
-                  Designed, built, and validated a precision optical encoder, combining mechanical design,
-                  fabrication, embedded data acquisition, and repeatable bench testing.
-                </p>
+                <ul class="timeline-bullets">
+                  <li>Designed, fabricated, and tested a precision optical encoder by combining CAD, CNC machining, 3D printing, and laser engraving into a working research prototype.</li>
+                  <li>Eliminated dropped samples during live acquisition by optimizing Arduino C firmware with ring-buffered DMA for real-time data collection.</li>
+                  <li>Established a practical resolution limit of 3.2 mm with &gt;90% repeatability by running controlled tests across 0.4-12.4 mm feature sizes and binary/gradient patterns.</li>
+                  <li>Authored bench procedures and MATLAB/Python analysis workflows to keep experiments reproducible and hand off clean data packages.</li>
+                </ul>
               </div>
             </article>
 
             <article class="work-item">
               <div class="work-point"></div>
               <div class="work-card">
-                <div class="timeline-year">2025</div>
+                <div class="timeline-year">Summer 2025</div>
                 <h3 class="timeline-role">Mechanical Engineering Intern</h3>
                 <div class="timeline-org">Ithaca Clean Energy</div>
-                <p class="timeline-text">
-                  Built and commissioned LoRaWAN monitoring infrastructure, created field-ready hardware layouts,
-                  and supported real deployment planning for industrial and maritime environments.
-                </p>
+                <ul class="timeline-bullets">
+                  <li>Built a local-first LoRaWAN monitoring stack with gateway, sensors, Raspberry Pi, and ChirpStack, reducing manual logging from 4-5 checks per day to automated monitoring by integrating hardware, server setup, and dashboard workflows.</li>
+                  <li>Supported field validation for 2 industrial partners by using test logs, troubleshooting hardware and data-path issues, and implementing corrective actions to improve reliability and repeatability.</li>
+                  <li>Produced supplier-ready CAD packages with GD&amp;T, BOMs, and wiring-clearance details for sensor mounts and assemblies to support repeatable installation and external fabrication.</li>
+                </ul>
               </div>
             </article>
 
             <article class="work-item">
               <div class="work-point"></div>
               <div class="work-card">
-                <div class="timeline-year">2026</div>
+                <div class="timeline-year">Jan. 2026 – June 2026</div>
                 <h3 class="timeline-role">Mechanical Engineer</h3>
                 <div class="timeline-org">Ithaca Clean Energy</div>
-                <p class="timeline-text">
-                  Continued deployment and design work, supporting system expansion, field troubleshooting,
-                  installation planning, and hardware documentation for reliable monitoring systems.
-                </p>
+                <ul class="timeline-bullets">
+                  <li>Delivered a coastal vessel-monitoring trade study across 5 LiDAR platforms and multiple fixed/PTZ camera options for a 200-400 m tracking application by scoring coverage, IP rating, integration risk, and cost.</li>
+                  <li>Recommended a field-deployable monitoring architecture in the $50K-$60K range for the City of Alameda by comparing sensor configurations, system layouts, and procurement risk.</li>
+                  <li>Authored installation requirements for a 200-400 m coastal deployment by defining mounting, power, corrosion, vibration, and commissioning requirements for marine-exposed hardware.</li>
+                </ul>
               </div>
             </article>
           </div>
