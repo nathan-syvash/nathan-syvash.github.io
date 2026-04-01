@@ -150,6 +150,7 @@
       width: 88px;
       height: 42px;
       opacity: 0.75;
+      z-index: 5;
     }
 
     .scroll-indicator::before,
@@ -170,6 +171,29 @@
 
     .scroll-indicator::after {
       top: 10px;
+    }
+
+    .scroll-indicator.twinkle {
+      animation: arrowTwinkle 1.6s ease-in-out infinite;
+    }
+
+    @keyframes arrowTwinkle {
+      0%, 100% {
+        opacity: 0.45;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      25% {
+        opacity: 0.95;
+        transform: translateX(-50%) translateY(2px) scale(1.03);
+      }
+      50% {
+        opacity: 0.65;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      75% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(3px) scale(1.05);
+      }
     }
 
     /* Placeholder sections for now */
@@ -213,7 +237,7 @@
       }
     }
 
-    /* Hide desktop layout on smaller screens for now */
+    /* Hide desktop layout details on smaller screens for now */
     @media (max-width: 820px) {
       .menu {
         display: none;
@@ -245,6 +269,16 @@
       .nav {
         gap: 18px;
         font-size: 15px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-indicator.twinkle {
+        animation: none;
       }
     }
   </style>
@@ -296,6 +330,8 @@
           <p>Second desktop section placeholder</p>
         </div>
       </div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to next section"></a>
     </section>
 
     <section class="section" id="about">
@@ -311,6 +347,8 @@
   <script>
     const menuItems = document.querySelectorAll(".menu-item");
     const sections = document.querySelectorAll(".section");
+    const scrollIndicators = document.querySelectorAll(".scroll-indicator");
+    const desktopMediaQuery = window.matchMedia("(min-width: 821px)");
 
     function setActiveDot() {
       let currentSectionId = sections[0].id;
@@ -340,8 +378,23 @@
       });
     });
 
+    function startArrowTwinkle() {
+      if (!desktopMediaQuery.matches) return;
+
+      setTimeout(() => {
+        if (desktopMediaQuery.matches) {
+          scrollIndicators.forEach((indicator) => {
+            indicator.classList.add("twinkle");
+          });
+        }
+      }, 5000);
+    }
+
     window.addEventListener("scroll", setActiveDot);
-    window.addEventListener("load", setActiveDot);
+    window.addEventListener("load", () => {
+      setActiveDot();
+      startArrowTwinkle();
+    });
     window.addEventListener("resize", setActiveDot);
   </script>
 </body>
