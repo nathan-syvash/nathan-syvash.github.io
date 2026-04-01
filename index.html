@@ -40,23 +40,68 @@
       overflow: hidden;
     }
 
+    /* Fixed site header */
+    .site-header {
+      position: fixed;
+      top: 52px;
+      left: 58px;
+      right: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      z-index: 1100;
+      pointer-events: none;
+    }
+
+    .site-logo-link,
+    .site-nav {
+      pointer-events: auto;
+    }
+
+    .site-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      font-size: 18px;
+      font-weight: 400;
+      margin-right: 180px;
+    }
+
+    .site-nav a {
+      white-space: nowrap;
+    }
+
+    .linkedin-icon {
+      width: 21px;
+      height: 21px;
+      object-fit: contain;
+      display: block;
+    }
+
     /* Fixed left navigation dots */
     .menu {
       position: fixed;
       top: 50%;
-      left: 48px;
+      left: 45px;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 34px;
+      gap: 40px;
       z-index: 1000;
     }
 
     .menu-item {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      border: 1px solid #c9c9c9;
+      border: 1px solid #cfcfcf;
       background: #d7d7d7;
       cursor: pointer;
       transition: background-color 0.25s ease, transform 0.25s ease;
@@ -67,43 +112,11 @@
     }
 
     .menu-item.active {
-      background: #8e8e8e;
-      border-color: #8e8e8e;
+      background: #9a9a9a;
+      border-color: #9a9a9a;
     }
 
     /* Section 1 */
-    .hero-header {
-      position: absolute;
-      top: 52px;
-      left: 58px;
-      right: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 42px;
-      font-size: 18px;
-      font-weight: 400;
-    }
-
-    .linkedin-icon {
-      width: 21px;
-      height: 21px;
-      object-fit: contain;
-      display: block;
-    }
-
     .hero-content {
       min-height: 100vh;
       display: grid;
@@ -142,6 +155,7 @@
       line-height: 1.25;
     }
 
+    /* Arrows */
     .scroll-indicator {
       position: absolute;
       left: 50%;
@@ -196,14 +210,116 @@
       }
     }
 
-    /* Placeholder sections for now */
+    /* Section 2: Projects */
+    .projects-section {
+      padding: 140px 140px 90px;
+    }
+
+    .projects-title {
+      font-size: 52px;
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 34px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 36px;
+      row-gap: 42px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 1.38 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .thumb-lattice {
+      background:
+        radial-gradient(circle at 50% 45%, rgba(196, 225, 224, 0.95) 0 34%, rgba(196, 225, 224, 0.65) 35%, transparent 58%),
+        repeating-conic-gradient(from 0deg, rgba(31, 110, 255, 0.95) 0deg 10deg, rgba(190, 228, 223, 0.9) 10deg 20deg),
+        linear-gradient(180deg, #1b8eff 0%, #bfe0d7 72%, #c9f099 100%);
+      filter: blur(0.2px) saturate(1.05);
+    }
+
+    .thumb-lorawan,
+    .thumb-dentist {
+      background:
+        radial-gradient(circle at 0% 100%, rgba(255, 207, 124, 0.95), transparent 34%),
+        radial-gradient(circle at 100% 0%, rgba(245, 208, 120, 0.9), transparent 24%),
+        linear-gradient(35deg, rgba(228, 239, 204, 0.98) 15%, rgba(170, 218, 208, 0.92) 40%, rgba(17, 186, 172, 1) 72%, rgba(18, 187, 175, 1) 100%);
+      filter: blur(0.2px) saturate(1.05);
+    }
+
+    .thumb-rover {
+      background:
+        radial-gradient(circle at 28% 30%, rgba(230, 219, 244, 0.95), transparent 28%),
+        linear-gradient(90deg, rgba(168, 162, 206, 0.92) 0%, rgba(190, 182, 223, 0.8) 28%, rgba(67, 126, 240, 0.95) 72%, rgba(155, 166, 34, 0.85) 100%);
+      filter: blur(0.2px) saturate(1.05);
+    }
+
+    .thumb-encoder,
+    .thumb-pd {
+      background:
+        radial-gradient(circle at 15% 28%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        radial-gradient(circle at 44% 8%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        radial-gradient(circle at 74% 28%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        radial-gradient(circle at 29% 56%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        radial-gradient(circle at 92% 56%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        radial-gradient(circle at 0% 84%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        radial-gradient(circle at 79% 84%, rgba(0, 208, 203, 0.9) 0 9%, transparent 10%),
+        linear-gradient(180deg, rgba(219, 229, 225, 1) 0%, rgba(214, 226, 219, 1) 100%);
+      filter: blur(0.2px) saturate(1.05);
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-name {
+      font-size: 19px;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .project-year {
+      flex-shrink: 0;
+      font-size: 14px;
+      line-height: 1;
+      color: #8a8a8a;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .projects-divider {
+      margin-top: 54px;
+      border: none;
+      border-top: 1px solid #dcdcdc;
+    }
+
+    /* Section 3 placeholder */
     .section-inner {
       width: 100%;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 120px 100px;
+      padding: 140px 100px 120px;
     }
 
     .placeholder-block {
@@ -222,6 +338,20 @@
     }
 
     /* Desktop tuning */
+    @media (max-width: 1280px) {
+      .projects-section {
+        padding-right: 110px;
+      }
+
+      .projects-grid {
+        column-gap: 28px;
+      }
+
+      .project-name {
+        font-size: 17px;
+      }
+    }
+
     @media (max-width: 1100px) {
       .hero-content {
         padding: 0 80px 0 180px;
@@ -232,20 +362,40 @@
         font-size: 21px;
       }
 
+      .projects-section {
+        padding: 140px 80px 90px 180px;
+      }
+
       .menu {
         left: 28px;
       }
+
+      .site-nav {
+        margin-right: 100px;
+      }
     }
 
-    /* Hide desktop layout details on smaller screens for now */
+    /* Mobile */
     @media (max-width: 820px) {
       .menu {
         display: none;
       }
 
-      .hero-header {
+      .site-header {
+        top: 28px;
         left: 28px;
         right: 28px;
+      }
+
+      .site-logo {
+        width: 52px;
+        height: 52px;
+      }
+
+      .site-nav {
+        gap: 18px;
+        font-size: 15px;
+        margin-right: 0;
       }
 
       .hero-content {
@@ -266,9 +416,22 @@
         max-width: 420px;
       }
 
-      .nav {
-        gap: 18px;
-        font-size: 15px;
+      .projects-section {
+        padding: 110px 28px 90px;
+      }
+
+      .projects-title {
+        font-size: 42px;
+        margin-bottom: 28px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .project-name {
+        font-size: 18px;
       }
 
       .scroll-indicator {
@@ -284,6 +447,21 @@
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <a href="#home" class="site-logo-link" aria-label="Go to home section">
+      <img src="nathan_portfolio_logo.svg" alt="Portfolio logo" class="site-logo" />
+    </a>
+
+    <nav class="site-nav">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">Contact me</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <img src="linkedin.png" alt="LinkedIn" class="linkedin-icon" />
+      </a>
+    </nav>
+  </header>
+
   <div class="menu" id="menu">
     <button class="menu-item active" data-target="home" aria-label="Go to home section"></button>
     <button class="menu-item" data-target="projects" aria-label="Go to projects section"></button>
@@ -292,19 +470,6 @@
 
   <main class="page">
     <section class="section" id="home">
-      <header class="hero-header">
-        <img src="nathan_portfolio_logo.svg" alt="Portfolio logo" class="logo" />
-
-        <nav class="nav">
-          <a href="#home">Home</a>
-          <a href="#projects">Projects</a>
-          <a href="#about">Contact me</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <img src="linkedin.png" alt="LinkedIn" class="linkedin-icon" />
-          </a>
-        </nav>
-      </header>
-
       <div class="hero-content">
         <div class="hero-left">
           <h1>Nathan<br />Syvash</h1>
@@ -324,11 +489,60 @@
     </section>
 
     <section class="section" id="projects">
-      <div class="section-inner">
-        <div class="placeholder-block">
-          <h2>Projects</h2>
-          <p>Second desktop section placeholder</p>
+      <div class="projects-section">
+        <h2 class="projects-title">Projects</h2>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-thumb thumb-lattice"></div>
+            <div class="project-meta">
+              <h3 class="project-name">Lattice Design Compression Study</h3>
+              <span class="project-year">2025</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-lorawan"></div>
+            <div class="project-meta">
+              <h3 class="project-name">LoRaWAN Monitoring System</h3>
+              <span class="project-year">2025</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-dentist"></div>
+            <div class="project-meta">
+              <h3 class="project-name">Dentist Office Device Enclosure</h3>
+              <span class="project-year">2025</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-rover"></div>
+            <div class="project-meta">
+              <h3 class="project-name">Remote Complex Terrain Rover</h3>
+              <span class="project-year">2024</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-encoder"></div>
+            <div class="project-meta">
+              <h3 class="project-name">3D Printable Optical Encoder</h3>
+              <span class="project-year">2025</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-pd"></div>
+            <div class="project-meta">
+              <h3 class="project-name">PD Controller for Autonomous Car</h3>
+              <span class="project-year">2024</span>
+            </div>
+          </article>
         </div>
+
+        <hr class="projects-divider" />
       </div>
 
       <a href="#about" class="scroll-indicator" aria-label="Scroll to next section"></a>
