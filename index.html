@@ -14,11 +14,9 @@
 
     :root {
       --page-bg: #efefef;
-      --header-top-padding: 52px;
       --header-left-padding: 58px;
       --header-right-padding: 180px;
-      --header-bottom-padding: 16px;
-      --header-height: 132px;
+      --header-height: 104px;
     }
 
     html {
@@ -49,7 +47,7 @@
       overflow: hidden;
     }
 
-    /* Fixed site header with explicit background */
+    /* Fixed site header */
     .site-header {
       position: fixed;
       top: 0;
@@ -57,17 +55,23 @@
       right: 0;
       height: var(--header-height);
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      padding: var(--header-top-padding) var(--header-right-padding) var(--header-bottom-padding) var(--header-left-padding);
+      padding: 0 var(--header-right-padding) 0 var(--header-left-padding);
       background: var(--page-bg);
-      z-index: 1100;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      z-index: 1100;
+    }
+
+    .site-logo-link {
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
 
     .site-logo {
-      width: 64px;
-      height: 64px;
+      width: 46px;
+      height: 46px;
       object-fit: contain;
       display: block;
       flex-shrink: 0;
@@ -79,11 +83,14 @@
       gap: 42px;
       font-size: 18px;
       font-weight: 400;
-      padding-top: 5px;
+      height: 100%;
     }
 
     .site-nav a {
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
 
     .linkedin-icon {
@@ -167,12 +174,20 @@
     .scroll-indicator {
       position: absolute;
       left: 50%;
-      bottom: 42px;
-      transform: translateX(-50%);
+      bottom: 28px;
       width: 88px;
       height: 42px;
-      opacity: 0.75;
       z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(10px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .scroll-indicator.visible {
+      opacity: 0.75;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
     }
 
     .scroll-indicator::before,
@@ -195,30 +210,22 @@
       top: 10px;
     }
 
-    .scroll-indicator.twinkle {
-      animation: arrowTwinkle 1.6s ease-in-out infinite;
+    .scroll-indicator.visible.twinkle {
+      animation: arrowTwinkle 1.9s ease-in-out infinite 1.2s;
     }
 
     @keyframes arrowTwinkle {
       0%, 100% {
-        opacity: 0.45;
+        opacity: 0.75;
         transform: translateX(-50%) translateY(0) scale(1);
-      }
-      25% {
-        opacity: 0.95;
-        transform: translateX(-50%) translateY(2px) scale(1.03);
       }
       50% {
-        opacity: 0.65;
-        transform: translateX(-50%) translateY(0) scale(1);
-      }
-      75% {
         opacity: 1;
-        transform: translateX(-50%) translateY(3px) scale(1.05);
+        transform: translateX(-50%) translateY(3px) scale(1.04);
       }
     }
 
-    /* Section 2: Projects - forced to fit viewport */
+    /* Section 2: Projects */
     #projects {
       height: 100vh;
       min-height: 100vh;
@@ -228,14 +235,14 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: calc(var(--header-height) + 8px) 140px 26px;
+      padding: calc(var(--header-height) + 12px) 140px 96px;
     }
 
     .projects-title {
-      font-size: 52px;
+      font-size: 38px;
       line-height: 1;
       font-weight: 700;
-      margin-bottom: 28px;
+      margin-bottom: 18px;
       flex-shrink: 0;
     }
 
@@ -245,8 +252,8 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       grid-template-rows: repeat(2, minmax(0, 1fr));
-      column-gap: 36px;
-      row-gap: 24px;
+      column-gap: 30px;
+      row-gap: 18px;
       align-content: stretch;
     }
 
@@ -261,7 +268,7 @@
       min-height: 0;
       border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -314,15 +321,15 @@
     }
 
     .project-name {
-      font-size: 19px;
-      line-height: 1.2;
+      font-size: 17px;
+      line-height: 1.18;
       font-weight: 700;
       letter-spacing: -0.2px;
     }
 
     .project-year {
       flex-shrink: 0;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1;
       color: #8a8a8a;
       font-weight: 600;
@@ -330,7 +337,7 @@
     }
 
     .projects-divider {
-      margin-top: 18px;
+      margin-top: 14px;
       border: none;
       border-top: 1px solid #dcdcdc;
       flex-shrink: 0;
@@ -361,18 +368,13 @@
       color: #555;
     }
 
-    /* Desktop tuning */
     @media (max-width: 1280px) {
       .projects-section {
         padding-right: 110px;
       }
 
       .projects-grid {
-        column-gap: 28px;
-      }
-
-      .project-name {
-        font-size: 17px;
+        column-gap: 24px;
       }
     }
 
@@ -400,14 +402,11 @@
       }
     }
 
-    /* Mobile */
     @media (max-width: 820px) {
       :root {
-        --header-top-padding: 28px;
         --header-left-padding: 28px;
         --header-right-padding: 28px;
-        --header-bottom-padding: 14px;
-        --header-height: 94px;
+        --header-height: 88px;
       }
 
       .menu {
@@ -415,14 +414,13 @@
       }
 
       .site-logo {
-        width: 52px;
-        height: 52px;
+        width: 40px;
+        height: 40px;
       }
 
       .site-nav {
         gap: 18px;
         font-size: 15px;
-        padding-top: 2px;
       }
 
       .hero-content {
@@ -454,8 +452,8 @@
       }
 
       .projects-title {
-        font-size: 42px;
-        margin-bottom: 28px;
+        font-size: 34px;
+        margin-bottom: 24px;
       }
 
       .projects-grid {
@@ -466,18 +464,17 @@
         gap: 28px;
       }
 
-      .project-card {
-        min-height: auto;
-      }
-
       .project-thumb {
         aspect-ratio: 1.38 / 1;
         flex: none;
-        min-height: 0;
       }
 
       .project-name {
         font-size: 18px;
+      }
+
+      .project-year {
+        font-size: 13px;
       }
 
       .scroll-indicator {
@@ -486,7 +483,11 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .scroll-indicator.twinkle {
+      .scroll-indicator {
+        transition: none;
+      }
+
+      .scroll-indicator.visible.twinkle {
         animation: none;
       }
     }
@@ -610,23 +611,61 @@
     const scrollIndicators = document.querySelectorAll(".scroll-indicator");
     const desktopMediaQuery = window.matchMedia("(min-width: 821px)");
 
+    let currentSectionId = "";
+    let arrowFadeTimer = null;
+    let arrowTwinkleTimer = null;
+
+    function clearArrowState() {
+      clearTimeout(arrowFadeTimer);
+      clearTimeout(arrowTwinkleTimer);
+
+      scrollIndicators.forEach((indicator) => {
+        indicator.classList.remove("visible", "twinkle");
+      });
+    }
+
+    function showArrowForSection(sectionId) {
+      if (!desktopMediaQuery.matches) return;
+
+      clearArrowState();
+
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const arrow = section.querySelector(".scroll-indicator");
+      if (!arrow) return;
+
+      arrowFadeTimer = setTimeout(() => {
+        arrow.classList.add("visible");
+
+        arrowTwinkleTimer = setTimeout(() => {
+          arrow.classList.add("twinkle");
+        }, 500);
+      }, 250);
+    }
+
     function setActiveDot() {
-      let currentSectionId = sections[0].id;
+      let activeSectionId = sections[0].id;
       const triggerPoint = window.innerHeight * 0.45;
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
-          currentSectionId = section.id;
+          activeSectionId = section.id;
         }
       });
 
       menuItems.forEach((item) => {
         item.classList.toggle(
           "active",
-          item.dataset.target === currentSectionId
+          item.dataset.target === activeSectionId
         );
       });
+
+      if (activeSectionId !== currentSectionId) {
+        currentSectionId = activeSectionId;
+        showArrowForSection(activeSectionId);
+      }
     }
 
     menuItems.forEach((item) => {
@@ -638,24 +677,12 @@
       });
     });
 
-    function startArrowTwinkle() {
-      if (!desktopMediaQuery.matches) return;
-
-      setTimeout(() => {
-        if (desktopMediaQuery.matches) {
-          scrollIndicators.forEach((indicator) => {
-            indicator.classList.add("twinkle");
-          });
-        }
-      }, 5000);
-    }
-
     window.addEventListener("scroll", setActiveDot);
-    window.addEventListener("load", () => {
+    window.addEventListener("load", setActiveDot);
+    window.addEventListener("resize", () => {
+      clearArrowState();
       setActiveDot();
-      startArrowTwinkle();
     });
-    window.addEventListener("resize", setActiveDot);
   </script>
 </body>
 </html>
