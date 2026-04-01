@@ -147,9 +147,14 @@
     .hero-content {
       width: 100%;
       display: grid;
-      grid-template-columns: 1.15fr 0.95fr;
+      grid-template-columns: minmax(430px, 520px) minmax(320px, 380px);
+      justify-content: center;
       align-items: center;
-      gap: 80px;
+      gap: 96px;
+    }
+
+    .hero-left {
+      justify-self: end;
     }
 
     .hero-left h1 {
@@ -157,23 +162,26 @@
       line-height: 0.98;
       font-weight: 400;
       letter-spacing: -2px;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     .hero-left p {
-      font-size: 28px;
+      font-size: 24px;
       line-height: 1.2;
+      font-weight: 400;
+      color: #4a4a4a;
     }
 
     .about {
-      max-width: 360px;
+      max-width: 380px;
+      justify-self: start;
     }
 
     .about h2 {
       font-size: 28px;
       line-height: 1.1;
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .about p {
@@ -185,7 +193,7 @@
     .scroll-indicator {
       position: absolute;
       left: 50%;
-      bottom: 24px;
+      bottom: 42px;
       width: 88px;
       height: 42px;
       z-index: 5;
@@ -534,14 +542,6 @@
         --content-left-offset: 180px;
       }
 
-      .hero-content {
-        gap: 56px;
-      }
-
-      .about p {
-        font-size: 21px;
-      }
-
       .menu {
         left: 28px;
       }
@@ -579,21 +579,27 @@
         margin-right: 28px;
       }
 
-      #home .content-shell {
-        padding-top: 0;
-      }
-
       .hero-content {
         grid-template-columns: 1fr;
+        justify-content: start;
         gap: 40px;
+      }
+
+      .hero-left {
+        justify-self: start;
       }
 
       .hero-left h1 {
         font-size: 72px;
       }
 
+      .hero-left p {
+        font-size: 22px;
+      }
+
       .about {
         max-width: 100%;
+        justify-self: start;
       }
 
       .about p {
