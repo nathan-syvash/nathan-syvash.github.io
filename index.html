@@ -19,6 +19,7 @@
       --header-height: 104px;
       --content-max-width: 1160px;
       --content-left-offset: 250px;
+      --nav-block-width: 470px;
     }
 
     html {
@@ -79,9 +80,10 @@
     }
 
     .site-nav {
+      width: var(--nav-block-width);
       display: flex;
       align-items: center;
-      gap: 42px;
+      justify-content: space-between;
       font-size: 18px;
       font-weight: 400;
       height: 100%;
@@ -139,6 +141,9 @@
 
     /* Home */
     #home .content-shell {
+      width: calc(100vw - var(--content-left-offset) - var(--header-right-padding));
+      margin-left: var(--content-left-offset);
+      margin-right: var(--header-right-padding);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -147,7 +152,7 @@
     .hero-content {
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(420px, 460px) minmax(300px, 340px);
+      grid-template-columns: minmax(420px, 520px) var(--nav-block-width);
       justify-content: space-between;
       align-items: center;
     }
@@ -172,7 +177,8 @@
     }
 
     .about {
-      max-width: 340px;
+      width: 100%;
+      max-width: 100%;
       justify-self: start;
     }
 
@@ -184,6 +190,7 @@
     }
 
     .about p {
+      max-width: 340px;
       font-size: 24px;
       line-height: 1.25;
     }
@@ -539,6 +546,7 @@
       :root {
         --header-right-padding: 100px;
         --content-left-offset: 180px;
+        --nav-block-width: 430px;
       }
 
       .menu {
@@ -556,6 +564,7 @@
         --header-right-padding: 28px;
         --header-height: 88px;
         --content-left-offset: 28px;
+        --nav-block-width: auto;
       }
 
       .menu {
@@ -568,11 +577,19 @@
       }
 
       .site-nav {
+        width: auto;
         gap: 18px;
+        justify-content: flex-start;
         font-size: 15px;
       }
 
       .content-shell {
+        width: auto;
+        margin-left: 28px;
+        margin-right: 28px;
+      }
+
+      #home .content-shell {
         width: auto;
         margin-left: 28px;
         margin-right: 28px;
@@ -597,7 +614,8 @@
       }
 
       .about {
-        max-width: 100%;
+        width: auto;
+        max-width: 420px;
         justify-self: start;
       }
 
