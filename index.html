@@ -1,775 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nathan Syvash</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathan Syvash Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            margin: 0;
-            height: 300vh; /* Make the body taller to enable scrolling */
-            overflow: auto; /* Enable scrolling */
-            font-family: 'Roboto', sans-serif;
-            background-color: none; /* Fallback for older browsers */
-        }
+    body {
+      min-height: 100vh;
+      background: #1f1f1f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+    }
 
-        a {
-            color: black;
-            text-decoration: none; /* Optional: Removes the underline */
-        }
+    .desktop-frame {
+      position: relative;
+      width: 1045px;
+      height: 765px;
+      background: #efefef;
+      overflow: hidden;
+    }
 
-        a:hover {
-            color: grey; /* Optional: Change color on hover */
-        }
+    .logo {
+      position: absolute;
+      top: 82px;
+      left: 102px;
+      width: 58px;
+      height: auto;
+      object-fit: contain;
+    }
 
-        .section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    .nav {
+      position: absolute;
+      top: 94px;
+      right: 120px;
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      font-size: 18px;
+      font-weight: 400;
+    }
 
-        .section:nth-child(1) {
-            background-color: none;
-        }
+    .nav a {
+      text-decoration: none;
+      color: #111;
+    }
 
-        .section:nth-child(2) {
-            background-color: none;
-        }
+    .linkedin-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display: block;
+    }
 
-        .section:nth-child(3) {
-            background-color: none;
-        }
+    .side-dots {
+      position: absolute;
+      left: 120px;
+      top: 345px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
 
-        .background {
-            position: absolute;
-            width: 90%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
-            flex-direction: column; /* Stack items in a column */
-        }
+    .side-dots span {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #b8b8b8;
+      display: block;
+    }
 
+    .hero {
+      position: absolute;
+      left: 268px;
+      top: 360px;
+      display: flex;
+      gap: 110px;
+      align-items: flex-start;
+    }
 
-        .scene {
-            width: 200px;
-            height: 200px;
-            position: absolute;
-            top: 10%; /* Position near the top */
-            transform-style: preserve-3d;
-            background: none;
-        }
+    .hero-left h1 {
+      font-size: 78px;
+      line-height: 1.02;
+      font-weight: 400;
+      letter-spacing: -1.8px;
+      margin-bottom: 26px;
+    }
 
+    .hero-left p {
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
 
-        .cube {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            transform-style: preserve-3d;
-            transition: transform 0.2s; /* Smooth transition for mouse movement */
-            z-index: 1000;
-        }
+    .about {
+      max-width: 295px;
+      margin-top: 6px;
+    }
 
+    .about h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 26px;
+    }
 
-        .face {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: none; /* Default color for faces */
-            border: 1px solid #333333; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 11px;
-            color: #333333;
-            font-weight: bold;
-            transition: background-color 0.5s ease; /* Smooth transition for background color */
-        }
+    .about p {
+      font-size: 24px;
+      line-height: 1.18;
+      font-weight: 400;
+    }
 
-        .face.front  { background-color: none; transform: translateZ(100px); }
-        .face.back   { background-color: none; transform: rotateY(180deg) translateZ(100px); }
-        .face.right  { background-color: none; transform: rotateY(90deg) translateZ(100px); }
-        .face.left   { background-color: none; transform: rotateY(-90deg) translateZ(100px); }
-        .face.top    { background-color: none; transform: rotateX(90deg) translateZ(100px); }
-        .face.bottom { background-color: none; transform: rotateX(-90deg) translateZ(100px); }
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 74px;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 40px;
+    }
 
-        .intro_text {
-            position: absolute; 
-            top: 30%; 
-            left: 350px;
-            display: flex;
-            flex-direction: column; /* Stack items in a column */
-            justify-content: flex-start;
-            align-items: flex-start; /* Align items to the left */
-            text-align: left;
-        }
+    .scroll-indicator::before,
+    .scroll-indicator::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 54px;
+      height: 54px;
+      border-right: 5px solid #d0d0d0;
+      border-bottom: 5px solid #d0d0d0;
+      transform: translateX(-50%) rotate(45deg);
+    }
 
-        .title {
-            margin-bottom: 25px;
-            font-size: 40px; /* Title font size */
-            color: #333333; /* Title color */
-            font-weight: 700; /* Bold title */
-        }
+    .scroll-indicator::before {
+      top: -8px;
+      opacity: 0.9;
+    }
 
-        .status{
-            margin-bottom: 25px;
-            font-size: 20px; /* Title font size */
-            color: #808080; /* status color */
-            font-weight: 700; /* Bold title */
-        }
-
-        .subtitle {
-            font-size: 18px; /* Subtitle font size */
-            color: #333; /* Subtitle color */
-            font-weight: 500; 
-            margin-bottom: 25px;
-            line-height: 1.3;
-        }
-
-
-        .contact_link {
-            text-decoration: none; /* Remove underline from link */
-            display: block; /* Ensure the link behaves like a block element */
-            width: 100%;
-        }
-
-        .contact_me {
-            display: flex; /* Enable flexbox */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            font-size: 18px; 
-            color: #333; 
-            font-weight: 500; 
-            margin-bottom: 25px;
-            border: 1px solid #808080;
-            border-radius: 10px;
-            height: 30px;
-
-            color: #808080;
-        }
-
-        .contact_me:hover {
-            animation: pulse 1s infinite; /* Apply the pulse animation on hover */
-        }
-
-        /* Pulse animation */
-        @keyframes pulse {
-            0% {
-                transform: scale(1); /* Normal size */
-            }
-            50% {
-                transform: scale(1.02); /* Slightly larger */
-            }
-            100% {
-                transform: scale(1); /* Back to normal size */
-            }
-        }
-
-        .highlight {
-            color: #009966;
-            font-weight: 800;
-        }
-
-        /* Flash effect */
-        .flash {
-            background-color: #66CC99 !important; /* Minty green color */
-        }
-
-        .arrow-container {
-            width: 50px; /* Square size */
-            height: 50px; /* Square size */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff; /* Background color of the square */
-            cursor: pointer;
-            border-radius: 10px;
-            border: 1px solid #333333;
-            transition: height 0.3s ease; /* Smooth transition for height */
-        }
-
-        .arrow-container:hover {
-            animation: pulse 1s infinite; /* Apply the pulse animation on hover */
-        }
-
-        /* Pulse animation */
-        @keyframes pulse {
-            0% {
-                transform: scale(1); /* Normal size */
-            }
-            50% {
-                transform: scale(1.05); /* Slightly larger */
-            }
-            100% {
-                transform: scale(1); /* Back to normal size */
-            }
-        }
-
-        .arrow-container.expand {
-            height: 150px; /* 3x the original height */
-        }
-
-        .arrow {
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 15px solid #333333; /* Arrow color */
-            transition: transform 0.3s ease; /* Smooth transition for arrow stretching */
-        }
-
-        .arrow-container.expand .arrow {
-            transform: scaleY(3); /* Stretch arrow vertically */
-        }
-
-        .social-media-icons{
-            position: absolute; 
-            top: 40%; 
-            left: 250px;
-            display: flex;
-            flex-direction: column; /* Stack items in a column */
-            justify-content: flex-start;
-            align-items: flex-start; /* Align items to the left */
-            text-align: left;
-        }
-
-        .linkedin_link {
-            text-decoration: none; /* Remove underline from link */
-            display: block; /* Ensure the link behaves like a block element */
-            width: 100%;
-        }
-
-        .social_media_icon_block {
-            display: flex; /* Enable flexbox */
-            margin-bottom: 10px;
-            height: 20px;
-            width: 20px; 
-        }
-
-        .featured{
-            position: relative;
-            margin: 0 auto; /* Center horizontally */
-            font-size: 20px; 
-            color: #bfbfbf; 
-            font-weight: 800;
-        }
-
-        .gallery {
-            padding-top: 25px;
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns */
-            gap: 20px; /* Space between boxes */
-            width: 80%; /* Width of the gallery */
-            max-width: 1200px; /* Maximum width of the gallery */
-            margin: 0 auto; /* Center horizontally */
-        }
-
-        .gallery-title {
-            display: flex;
-            align-items: left; /* Align emoji and title horizontally */
-            font-size: 24px; /* Title font size */
-            font-weight: bold;
-            margin-bottom: 10px; /* Space between title and image */
-        }
-
-        /* Gallery item hover effect */
-        .gallery-item {
-            background-color: #ffffff;
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: left;
-            font-size: 18px;
-            height: 350px;
-            transition: transform 0.2s ease-in-out; /* Smooth transition for hover */
-        }
-
-        .gallery-item:hover {
-            animation: pulse 1s infinite; /* Apply the pulse animation on hover */
-        }
-
-        /* Pulse animation */
-        @keyframes pulse {
-            0% {
-                transform: scale(1); /* Normal size */
-            }
-            50% {
-                transform: scale(1.01); /* Slightly larger */
-            }
-            100% {
-                transform: scale(1); /* Back to normal size */
-            }
-        }
-
-        .placeholder {
-            width: 100%; /* Make the image fill the width of the container */
-            height: 300px; /* Fixed height for the placeholder image */
-            background-color: #e0e0e0; /* Light grey background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #999;
-            font-size: 16px;
-        }
-
-        .item__about_text {
-            font-size: 14px;
-            color: #333;
-            font-weight: 500;
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column; /* Ensure it aligns children vertically */
-            align-items: flex-start; /* Align items to the start (left) */
-            text-align: left; /* Align text to the left */
-        }
-
-        /* Styles for the pop-up and overlay */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dim background */
-            display: none; /* Initially hidden */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* Ensure it overlays other content */
-        }
-
-        .popup-content {
-            background-color: #ffffff;
-            width: 70%;
-            height: 85%;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto; /* Scroll if content overflows */
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        /* Close button inside the pop-up */
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #999;
-        }
-
-        /* Show the pop-up content */
-        .popup-overlay.active .popup-content {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Enable the overlay */
-        .popup-overlay.active {
-            display: flex;
-        }
-
-        .skills {
-            display: flex;
-            flex-direction: row; /* Align skills horizontally */
-            margin-top: 10px; /* Space between about text and skills */
-        }
-
-        .skill {
-            border-radius: 7px; /* Border radius for skill boxes */
-            padding: 5px; /* Padding inside skill boxes */
-            margin-right: 10px; /* Space between skill boxes */
-            color: #333; /* Text color */
-            font-size: 12px; /* Font size for skill text */
-            font-weight: 500; /* Font weight for skill text */
-        }
-
-        .border-container {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at 20% 30%, #66CC99, transparent 60%), 
-              radial-gradient(circle at 80% 70%, #66CC99, transparent 25%), 
-              radial-gradient(circle at 50% 50%, #B2E4D0, transparent 20%), 
-              radial-gradient(circle at 20% 70%, #99D6B7, transparent 30%),
-            radial-gradient(circle at 90% 5%, #99D6B7, transparent 30%);
-            background-color: #ffffff; /* Fallback for older browsers */
-        }
-
-        .menu {
-            position: fixed; /* Fixed position at the top */
-            top: 35%; /* Align to the top */
-            left: 8%; /* Align to the left */
-            width: 100%; /* Full width */
-            display: flex; /* Flexbox for horizontal layout */
-            flex-direction: column;
-            z-index: 1000; /* Ensure it is above other content */
-            padding: 10px 0; /* Padding for top and bottom */
-            gap: 10px;
-        }
-
-        .menu-item {
-            font-size: 18px; /* Font size */
-            cursor: pointer; /* Pointer cursor on hover */
-            transition: font-weight 0.3s, color 0.3s; /* Smooth transition for hover effects */
-            display: flex; /* Flexbox for horizontal layout */
-            border: 1px solid #C0C0C0;
-            background: none;
-            border-radius: 10px;
-            height: 10px;
-            width: 10px;
-        }
-
-        .menu-item.active {
-            border: 1px solid #C0C0C0;
-            background: #C0C0C0;
-        }
-
-        .coursework{
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            font-size: 18px;
-            gap: 0px;
-            padding-top: 50px;
-        }
-        .course_item{
-            width:330px;
-            border: none;
-            border-bottom: 4px solid #333;
-            height: 450px;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: left;
-            gap: 25px;
-        }
-        .course_title{
-            font-size: 35px; 
-            color: #C0C0C0; 
-            font-weight: 800; 
-            border: 1px solid #000000;
-            width: 50px;
-            border: none;
-            border-right: 1px solid #c0c0c0;
-        }
-        .course_about{
-            width: 255px;
-        }
-
-        
-    </style>
+    .scroll-indicator::after {
+      top: 6px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
-    
-    <div class="section" style="position: relative; id="section2"">
-        <div class ="background" style="border-top-left-radius: 15px; border-top-right-radius: 15px; top: 10%">
-            <div class="scene " style="position: absolute; top: 35%; left: 70%; transform: translateX(-50%);">
-                <div class="cube">
-                    <div class="face front"></div>
-                    <div class="face back"></div>
-                    <div class="face right"></div>
-                    <div class="face left"></div>
-                    <div class="face top"></div>
-                    <div class="face bottom"></div>
-                </div>
-            </div>
-            <div class="intro_text ">
-                <div class="title">Nathan's [ <u>projects</u> ]</div>
-                <div class="status">Mechanical Engineering</div>
-                <div class="subtitle">
-                    I'm a senior pursuing Bachelor of Engineering at
-                    <span class="highlight">Thayer School of Engineering</span>,<span class="highlight"><br>Dartmouth College</span>.
-                    My background lies in <span class="highlight">CAD</span>,<br>
-                    <span class="highlight">robotics</span>, and
-                    <span class="highlight">product design</span>.
-                </div>
-                <a href="mailto:nathan.syvash.25@dartmouth.edu" class="contact_link">
-                    <div class="contact_me">shoot me an email</div>
-                </a>
-                <a href="#section2" class="arrow-container">
-                    <div class="arrow"></div>
-                </a>
-            </div>
+  <section class="desktop-frame">
+    <!-- Logo -->
+    <img src="portfolio_logo.png" alt="Portfolio logo" class="logo" />
 
-            <div class="social-media-icons ">
-                <a href="https://www.linkedin.com/in/nsyvash/" target="_blank" class="social_media_icon_block"">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Font_Awesome_5_brands_linkedin.svg" 
-                        alt="LinkedIn" class="social_media_icon_block">
-                </a>
-                <a href="https://strava.app.link/SvHtSDDBVLb" target="_blank" class="social_media_icon_block"">
-                    <img src="strava_logo.svg" 
-                        alt="Strava" class="social_media_icon_block">
-                </a>
-                <!-- Add other social media icons as needed -->
-            </div>
+    <!-- Navigation -->
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact me</a>
+      <a href="#" aria-label="LinkedIn">
+        <img src="linkedin.png" alt="LinkedIn" class="linkedin-icon" />
+      </a>
+    </nav>
 
-        </div>
-    </div>
-    <div class="section" id="section2">
-        <div class ="background">
-            <div class="featured ">[<u>featured</u>]</div>
-            <div class="gallery ">
-                <div class="gallery-item">
-                    <div class="gallery-title">&#128191 Optical Encoder</div>
-                     <div class="placeholder">Placeholder Image</div>
-                    <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
-                    <div class="skills">
-                        <div class="skill" style="background-color: #ffcccb;">CAD</div>
-                        <div class="skill" style="background-color: #add8e6;">CFD</div>
-                        <div class="skill" style="background-color: #90ee90;">Research</div>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-title">&#128760 Drone Model</div>
-                     <div class="placeholder">Placeholder Image</div>
-                    <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
-                    <div class="skills">
-                        <div class="skill" style="background-color: #ffcccb;">CAD</div>
-                        <div class="skill" style="background-color: #add8e6;">CFD</div>
-                        <div class="skill" style="background-color: #90ee90;">Research</div>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-title">&#127744 Fluid Flow</div>
-                     <div class="placeholder">Placeholder Image</div>
-                    <div class="item__about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id ...</div>
-                    <div class="skills">
-                        <div class="skill" style="background-color: #ffcccb;">CAD</div>
-                        <div class="skill" style="background-color: #add8e6;">CFD</div>
-                        <div class="skill" style="background-color: #90ee90;">Research</div>
-                    </div>
-                </div>
-
-
-                <!-- Add more projects as needed -->
-            </div>
-        
-
-            <!-- Pop-up overlay -->
-            <div class="popup-overlay" id="popupOverlay">
-                <div class="popup-content">
-                    <span class="close-btn" id="closePopup">&times;</span>
-                    <!-- Pop-up content goes here -->
-                    <h2>Project Details</h2>
-                    <p>More information about the selected project will be displayed here.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="section" id="section3">
-        <div class ="background">
-            <div class="featured ">[ <u>coursework</u> ]</div>
-            <div class="coursework" style= "font-size: 16px;">
-                <div class="course_item">
-                    <div class="course_title">22<br>23</div>
-                    <div class="course_about">
-                        <span style="font-size: 24px; font-weight: bold; color: #c0c0c0">System Core</span>
-                        <br>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs22" class="contact_link">ENGS 22 - Systems</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs25" class="contact_link">ENGS 25 - Thermodynamics</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs21" class="contact_link">ENGS 21 - Introduction to Engineering</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs20" class="contact_link">ENGS 20 - Introduction to Scientific Computing</a>
-                        <br>
-                        <a href="https://dartmouth.smartcatalogiq.com/en/2022/orc/departments-programs-undergraduate/mathematics/math-mathematics-undergraduate/math-22/" 
-                            class="contact_link">MATH 22 - Linear Algebra</a>
-                        <br>
-                    </div>
-                </div>
-                <div class="course_item">
-                    <div class="course_title">23<br>23</div>
-                    <div class="course_about">
-                        <span style="font-size: 24px; font-weight: bold; color: #c0c0c0">Distributed Core</span>
-                        <br>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs23" class="contact_link">ENGS 23 - Distributed Systems</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs33" class="contact_link">ENGS 33 - Solid Mechanics</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs33" class="contact_link">ENGS 93 - Statistical Methods in Engineering</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs37" class="contact_link">ENGS 37 - Environmental Engineering</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs45" class="contact_link">ENGS 45 - Sustainable Urban Systems</a>
-                        <br>
-                    </div>
-                </div>
-                <div class="course_item">
-                    <div class="course_title">24<br>25</div>
-                    <div class="course_about">
-                        <span style="font-size: 24px; font-weight: bold; color: #c0c0c0">This year: 
-                            Capstone & Concentration</span>
-                        <br>
-                        <br>
-                     
-                        <a href="https://engineering.dartmouth.edu/courses/engs45" class="contact_link">ENGS 89/90 - Engineering Design Methodology: Initiation & Completion</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs76" class="contact_link">ENGS 76 - Machine Engineering</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs26" class="contact_link">ENGS 26 - Control Systems</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs72" class="contact_link">ENGS 72 - Applied Dynamics</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs34" class="contact_link">ENGS 34 - Fluid Dynamics</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs147" class="contact_link">ENGS 147 - Mechatronics</a>
-                        <br>
-                        <a href="https://engineering.dartmouth.edu/courses/engs71" class="contact_link">ENGS 71 - Structural Analysis</a>
-                        <br>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Side dots -->
+    <div class="side-dots" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="section" id="section4">
-        <div class ="background">
-            <h1>About me</h1>
-            <p>a silly guy</p>
-        </div>
+    <!-- Main hero content -->
+    <div class="hero">
+      <div class="hero-left">
+        <h1>Nathan<br />Syvash</h1>
+        <p>Mechanical Engineer</p>
+      </div>
+
+      <div class="about">
+        <h2>About me</h2>
+        <p>
+          I’m a recent Bachelor of Engineering graduate from Dartmouth College.
+          My main focus is designing and deploying mechatronic systems and IoT networks.
+        </p>
+      </div>
     </div>
 
-    <div class="menu " id="menu">
-        <div class="menu-item" data-section="1"></div>
-        <div class="menu-item" data-section="2"></div>
-        <div class="menu-item" data-section="3"></div>
-        <div class="menu-item" data-section="4"></div>
-    </div>
-
-    <div class="border-container"></div>
-
-    <script>
-
-    const cube = document.querySelector('.cube');
-    const faces = document.querySelectorAll('.face'); // Select all faces
-    let isMouseOver = false;
-
-    // Variables to store rotation values
-    let xRotation = 0;
-    let yRotation = 0;
-
-    // Function to rotate the cube continuously
-    function rotateCube() {
-        if (!isMouseOver) {
-            xRotation += 0.5; // Increment rotation on X axis
-            yRotation += 0.5; // Increment rotation on Y axis
-            cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-        }
-        requestAnimationFrame(rotateCube); // Continue the animation
-    }
-
-    // Start the continuous rotation
-    rotateCube();
-
-    // Event listener for mouse enter
-    cube.addEventListener('mouseenter', () => {
-        isMouseOver = true;
-    });
-
-    // Event listener for mouse leave
-    cube.addEventListener('mouseleave', () => {
-        isMouseOver = false;
-    });
-
-    // Event listener for mouse move
-    cube.addEventListener('mousemove', (event) => {
-        const rect = cube.getBoundingClientRect();
-        const x = event.clientX - rect.left; // x position within the cube
-        const y = event.clientY - rect.top;  // y position within the cube
-        xRotation = ((y / rect.height) - 0.5) * 60; // Calculate X rotation
-        yRotation = ((x / rect.width) - 0.5) * -60; // Calculate Y rotation
-        cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`; // Set cube rotation
-    });
-
-    // Event listener for click to flash all faces
-    cube.addEventListener('click', () => {
-        // Add flash class to each face
-        faces.forEach(face => {
-            face.classList.add('flash');
-        });
-
-        // Remove flash class after 500ms to allow fading effect
-        setTimeout(() => {
-            faces.forEach(face => {
-                face.classList.remove('flash');
-            });
-        }, 300); // Duration for the flash effect
-    });
-
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const popupOverlay = document.getElementById('popupOverlay');
-    const closePopup = document.getElementById('closePopup');
-
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            popupOverlay.classList.add('active');
-        });
-    });
-
-    closePopup.addEventListener('click', () => {
-        popupOverlay.classList.remove('active');
-    });
-
-    popupOverlay.addEventListener('click', (e) => {
-        if (e.target === popupOverlay) {
-            popupOverlay.classList.remove('active');
-        }
-    });
-
-    const menuItems = document.querySelectorAll('.menu-item');
-    const sections = document.querySelectorAll('.section');
-
-    function changeActiveSection() {
-        const scrollPosition = window.scrollY + 50; // Adjust for fixed menu height
-        sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                menuItems.forEach(item => item.classList.remove('active'));
-                menuItems[index].classList.add('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', changeActiveSection);
-
-    // Add click event to menu items for smooth scrolling
-    menuItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            sections[index].scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-</script>
-    
+    <!-- Bottom chevron -->
+    <div class="scroll-indicator" aria-hidden="true"></div>
+  </section>
 </body>
 </html>
-
-
