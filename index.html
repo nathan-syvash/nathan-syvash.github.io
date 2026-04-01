@@ -35,6 +35,12 @@
       text-decoration: none;
     }
 
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
     .page {
       width: 100%;
     }
@@ -108,13 +114,13 @@
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 18px;
       z-index: 1000;
     }
 
     .menu-item {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       border: 1px solid #cfcfcf;
       background: #d7d7d7;
@@ -397,30 +403,132 @@
     }
 
     /* Section 4: Contact */
-    .section-inner {
-      width: 100%;
+    #contact {
       min-height: 100vh;
+    }
+
+    .contact-section {
+      min-height: 100vh;
+      padding: calc(var(--header-height) + 24px) 140px 90px 250px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 140px 100px 120px;
     }
 
-    .placeholder-block {
-      text-align: center;
+    .contact-layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      align-items: start;
     }
 
-    .placeholder-block h2 {
-      font-size: 54px;
-      font-weight: 400;
-      margin-bottom: 18px;
+    .contact-copy h2 {
+      font-size: 38px;
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 20px;
     }
 
-    .placeholder-block p {
-      font-size: 22px;
-      color: #555;
+    .contact-copy p {
+      font-size: 20px;
+      line-height: 1.45;
+      color: #444;
+      max-width: 420px;
+      margin-bottom: 28px;
     }
 
+    .contact-details {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-detail-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8a8a8a;
+    }
+
+    .contact-detail-value {
+      font-size: 18px;
+      color: #222;
+    }
+
+    .contact-form-card {
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid #d9d9d9;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-row label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-row input,
+    .form-row textarea {
+      width: 100%;
+      border: 1px solid #cfcfcf;
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: #fafafa;
+      color: #111;
+      outline: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus {
+      border-color: #9a9a9a;
+      background: #fff;
+    }
+
+    .form-row textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .contact-submit {
+      justify-self: start;
+      border: 1px solid #bdbdbd;
+      background: #fff;
+      color: #111;
+      border-radius: 999px;
+      padding: 12px 22px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .contact-submit:hover {
+      transform: translateY(-1px);
+      background: #f7f7f7;
+    }
+
+    .contact-note {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.4;
+    }
+
+    /* Responsive */
     @media (max-width: 1280px) {
       .projects-section {
         padding-right: 110px;
@@ -430,7 +538,8 @@
         column-gap: 24px;
       }
 
-      .work-grid {
+      .work-grid,
+      .contact-layout {
         grid-template-columns: 1fr;
       }
     }
@@ -454,7 +563,8 @@
         padding-right: 80px;
       }
 
-      .work-section {
+      .work-section,
+      .contact-section {
         padding-left: 180px;
         padding-right: 80px;
       }
@@ -514,7 +624,8 @@
       }
 
       .projects-title,
-      .work-title {
+      .work-title,
+      .contact-copy h2 {
         font-size: 34px;
         margin-bottom: 24px;
       }
@@ -540,11 +651,13 @@
         font-size: 13px;
       }
 
-      .work-section {
+      .work-section,
+      .contact-section {
         padding: calc(var(--header-height) + 16px) 28px 90px;
       }
 
-      .work-card {
+      .work-card,
+      .contact-form-card {
         padding: 22px;
       }
 
@@ -697,10 +810,54 @@
     </section>
 
     <section class="section" id="contact">
-      <div class="section-inner">
-        <div class="placeholder-block">
-          <h2>Contact</h2>
-          <p>Fourth section placeholder</p>
+      <div class="contact-section">
+        <div class="contact-layout">
+          <div class="contact-copy">
+            <h2>Contact me</h2>
+            <p>
+              Reach out for roles, collaborations, or project questions. You can use the form to draft an email directly to me.
+            </p>
+
+            <div class="contact-details">
+              <div class="contact-detail">
+                <span class="contact-detail-label">Email</span>
+                <span class="contact-detail-value">nathan.syvash.th@dartmouth.edu</span>
+              </div>
+              <div class="contact-detail">
+                <span class="contact-detail-label">LinkedIn</span>
+                <span class="contact-detail-value">linkedin.com/in/nsyvash</span>
+              </div>
+              <div class="contact-detail">
+                <span class="contact-detail-label">Location</span>
+                <span class="contact-detail-value">Boston, MA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <form class="contact-form" id="contactForm">
+              <div class="form-row">
+                <label for="senderName">Your name</label>
+                <input type="text" id="senderName" name="senderName" required />
+              </div>
+
+              <div class="form-row">
+                <label for="senderEmail">Your email</label>
+                <input type="email" id="senderEmail" name="senderEmail" required />
+              </div>
+
+              <div class="form-row">
+                <label for="messageBody">Message</label>
+                <textarea id="messageBody" name="messageBody" required></textarea>
+              </div>
+
+              <button type="submit" class="contact-submit">Send email</button>
+
+              <p class="contact-note">
+                This opens your email app with the message prefilled.
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -711,6 +868,7 @@
     const sections = document.querySelectorAll(".section");
     const scrollIndicators = document.querySelectorAll(".scroll-indicator");
     const desktopMediaQuery = window.matchMedia("(min-width: 821px)");
+    const contactForm = document.getElementById("contactForm");
 
     let currentSectionId = "";
     let arrowFadeTimer = null;
@@ -780,6 +938,22 @@
       item.addEventListener("click", () => {
         scrollToTarget(item.dataset.target);
       });
+    });
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const senderName = document.getElementById("senderName").value.trim();
+      const senderEmail = document.getElementById("senderEmail").value.trim();
+      const messageBody = document.getElementById("messageBody").value.trim();
+
+      const to = "nathan.syvash.th@dartmouth.edu";
+      const subject = encodeURIComponent(`Portfolio inquiry from ${senderName}`);
+      const body = encodeURIComponent(
+        `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${messageBody}`
+      );
+
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     });
 
     window.addEventListener("scroll", setActiveDot);
