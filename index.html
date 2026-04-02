@@ -371,22 +371,23 @@
 
     /* Work */
     #work {
+      height: 100vh;
       min-height: 100vh;
     }
 
     .work-section {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-top: calc(var(--header-height) + 18px);
-      padding-bottom: 120px;
+      padding-top: calc(var(--header-height) + 8px);
+      padding-bottom: 108px;
     }
 
     .work-title {
       font-size: 38px;
       line-height: 1;
       font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
       flex-shrink: 0;
     }
 
@@ -397,8 +398,8 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
-      align-items: start;
-      padding-top: 22px;
+      align-items: stretch;
+      padding-top: 30px;
     }
 
     .work-timeline::before {
@@ -406,7 +407,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 9px;
+      top: 18px;
       height: 2px;
       background: #cfcfcf;
     }
@@ -414,17 +415,23 @@
     .work-item {
       position: relative;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-top: 28px;
     }
 
     .work-point {
+      position: absolute;
+      top: 18px;
+      left: 0;
+      transform: translateY(-50%);
       width: 18px;
       height: 18px;
       border-radius: 50%;
       background: #9a9a9a;
       border: 3px solid var(--page-bg);
       box-shadow: 0 0 0 1px #cfcfcf;
-      margin-bottom: 12px;
-      position: relative;
       z-index: 2;
     }
 
@@ -433,10 +440,11 @@
       border: 1px solid #d9d9d9;
       border-radius: 14px;
       padding: 16px 18px;
-      min-height: 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      flex: 1;
+      height: 100%;
     }
 
     .timeline-year {
@@ -542,6 +550,14 @@
       .projects-grid {
         column-gap: 24px;
       }
+
+      .timeline-bullets li {
+        font-size: 13px;
+      }
+
+      .timeline-role {
+        font-size: 18px;
+      }
     }
 
     @media (max-width: 1100px) {
@@ -553,6 +569,10 @@
 
       .menu {
         left: 28px;
+      }
+
+      .timeline-bullets li {
+        font-size: 12.5px;
       }
     }
 
@@ -674,7 +694,13 @@
         display: none;
       }
 
+      .work-item {
+        padding-top: 0;
+      }
+
       .work-point {
+        position: static;
+        transform: none;
         margin-bottom: 10px;
       }
 
