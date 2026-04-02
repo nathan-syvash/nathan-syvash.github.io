@@ -17,12 +17,10 @@
       --header-left-padding: 58px;
       --header-right-padding: 180px;
       --header-height: 104px;
-      --content-max-width: 1160px;
-      --content-left-offset: 250px;
       --nav-block-width: 470px;
-      --text-muted: #5a5a5a;
+      --paper-width: 960px;
       --line: #d8d8d8;
-      --card-bg: rgba(255, 255, 255, 0.62);
+      --text-muted: #5a5a5a;
     }
 
     html {
@@ -101,11 +99,19 @@
     }
 
     .content-shell {
-      width: min(var(--content-max-width), calc(100vw - var(--content-left-offset) - 140px));
-      margin-left: var(--content-left-offset);
-      margin-right: 70px;
+      width: 100%;
       padding-top: calc(var(--header-height) + 34px);
       padding-bottom: 72px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .project-paper {
+      width: min(var(--paper-width), calc(100vw - 56px));
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 34px 34px 40px;
     }
 
     .back-link {
@@ -114,19 +120,15 @@
       gap: 10px;
       font-size: 15px;
       color: var(--text-muted);
-      margin-bottom: 34px;
+      margin-bottom: 30px;
     }
 
     .project-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 320px);
-      gap: 34px;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 28px;
       align-items: start;
-      margin-bottom: 34px;
-    }
-
-    .project-main {
-      min-width: 0;
+      margin-bottom: 30px;
     }
 
     .project-year {
@@ -147,19 +149,19 @@
     }
 
     .project-subtitle {
-      max-width: 760px;
+      max-width: 620px;
       font-size: 22px;
       line-height: 1.35;
       color: #3e3e3e;
     }
 
     .project-meta-card {
-      background: var(--card-bg);
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 22px;
       display: grid;
       gap: 16px;
+      background: rgba(255, 255, 255, 0.6);
     }
 
     .meta-row {
@@ -180,15 +182,6 @@
       color: #222;
     }
 
-    .hero-placeholder {
-      width: 100%;
-      aspect-ratio: 1.55 / 1;
-      border-radius: 18px;
-      overflow: hidden;
-      margin-bottom: 40px;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
     .hero-image {
       display: block;
       width: auto;
@@ -196,6 +189,63 @@
       max-width: 100%;
       border-radius: 18px;
       border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 30px;
+    }
+
+    .project-sections {
+      display: grid;
+      gap: 26px;
+    }
+
+    .section-block h2 {
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .section-block p {
+      font-size: 17px;
+      line-height: 1.55;
+      color: #333;
+      max-width: 100%;
+    }
+
+    .section-block ul {
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .section-block li {
+      font-size: 16px;
+      line-height: 1.45;
+      color: #333;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-image,
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 1.22 / 1;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .gallery-image {
+      object-fit: cover;
+      display: block;
     }
 
     .placeholder-encoder {
@@ -216,61 +266,9 @@
         linear-gradient(90deg, rgba(168, 162, 206, 0.92) 0%, rgba(190, 182, 223, 0.8) 28%, rgba(67, 126, 240, 0.95) 72%, rgba(155, 166, 34, 0.85) 100%);
     }
 
-    .project-sections {
-      display: grid;
-      gap: 28px;
-    }
-
-    .section-card {
-      background: var(--card-bg);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px;
-    }
-
-    .section-card h2 {
-      font-size: 22px;
-      line-height: 1.2;
-      margin-bottom: 14px;
-      font-weight: 700;
-    }
-
-    .section-card p {
-      font-size: 17px;
-      line-height: 1.55;
-      color: #333;
-      max-width: 920px;
-    }
-
-    .section-card ul {
-      padding-left: 20px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .section-card li {
-      font-size: 16px;
-      line-height: 1.45;
-      color: #333;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .gallery-placeholder {
-      width: 100%;
-      aspect-ratio: 1.22 / 1;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
     @media (max-width: 1100px) {
       :root {
         --header-right-padding: 100px;
-        --content-left-offset: 180px;
         --nav-block-width: 430px;
       }
     }
@@ -280,7 +278,6 @@
         --header-left-padding: 28px;
         --header-right-padding: 28px;
         --header-height: 88px;
-        --content-left-offset: 28px;
         --nav-block-width: auto;
       }
 
@@ -297,11 +294,13 @@
       }
 
       .content-shell {
-        width: auto;
-        margin-left: 28px;
-        margin-right: 28px;
         padding-top: calc(var(--header-height) + 24px);
-        padding-bottom: 56px;
+        padding-bottom: 40px;
+      }
+
+      .project-paper {
+        width: calc(100vw - 32px);
+        padding: 24px 20px 28px;
       }
 
       .project-hero {
@@ -338,102 +337,116 @@
     </header>
 
     <div class="content-shell">
-      <a href="index.html#projects" class="back-link">← Back to projects</a>
+      <div class="project-paper">
+        <a href="index.html#projects" class="back-link">← Back to projects</a>
 
-      <section class="project-hero">
-        <div class="project-main">
-          <div class="project-year">2025</div>
-          <h1 class="project-title">Lattice Design Compression Study</h1>
-          <p class="project-subtitle">
-            Designed, simulated, and physically tested trigonometrically defined lattice structures to understand how geometry, wall thickness, and unit-cell size affect stiffness, yield behavior, and energy absorption under compression.
-          </p>
-        </div>
-
-        <aside class="project-meta-card">
-          <div class="meta-row">
-            <div class="meta-label">Collaborator</div>
-            <div class="meta-value">Tobias Weissman</div>
+        <section class="project-hero">
+          <div class="project-main">
+            <div class="project-year">2025</div>
+            <h1 class="project-title">Lattice Design Compression Study</h1>
+            <p class="project-subtitle">
+              Designed, simulated, and physically tested trigonometrically defined lattice structures to understand how geometry, wall thickness, and unit-cell size affect stiffness, yield behavior, and energy absorption under compression.
+            </p>
           </div>
 
-          <div class="meta-row">
-            <div class="meta-label">Focus</div>
-            <div class="meta-value">CAD, FEA, compression testing, performance per unit mass</div>
-          </div>
+          <aside class="project-meta-card">
+            <div class="meta-row">
+              <div class="meta-label">Collaborator</div>
+              <div class="meta-value">Tobias Weissman</div>
+            </div>
 
-          <div class="meta-row">
-            <div class="meta-label">Tools</div>
-            <div class="meta-value">SolidWorks, compression FEA, physical test data analysis, Formlabs Clear Resin v4</div>
-          </div>
-        </aside>
-      </section>
+            <div class="meta-row">
+              <div class="meta-label">Focus</div>
+              <div class="meta-value">CAD, FEA, compression testing, performance per unit mass</div>
+            </div>
 
-      <img src="gyroid_lattice.png" alt="Gyroid lattice" class="hero-image" />
+            <div class="meta-row">
+              <div class="meta-label">Tools</div>
+              <div class="meta-value">SolidWorks, compression FEA, physical test data analysis, Formlabs Clear Resin v4</div>
+            </div>
+          </aside>
+        </section>
 
-      <section class="project-sections">
-        <article class="section-card">
-          <h2>Overview</h2>
-          <p>
-            This project explored lattice structures as lightweight alternatives to solid fill for applications where stiffness, strength, and energy absorption matter. I focused on trigonometrically defined lattices because they offer high surface-area-to-mass ratios and appear in natural structures such as gyroid-like butterfly wing scales. We compared Gyroid and Schwarz lattice families through parametric CAD, compression-style FEA, and physical compression testing of 20 × 20 × 20 mm blocks. The goal was not just to find the strongest geometry, but to identify the most efficient one when normalized by mass. In the final comparison, the Gyroid delivered stronger specific performance than the Schwarz design. :contentReference[oaicite:1]{index=1}
-          </p>
-        </article>
+        <img src="gyroid_lattice.png" alt="Gyroid lattice" class="hero-image" />
 
-        <article class="section-card">
-          <h2>What I built</h2>
-          <ul>
-            <li>Modeled 20 × 20 × 20 mm lattice blocks with parametric variations in unit-cell size and wall thickness.</li>
-            <li>Created Gyroid variants in SolidWorks using surface-driven geometry and compared skeletal versus sheet-style construction approaches.</li>
-            <li>Set up compression FEA runs to extract von Mises stress, displacement, strain, stiffness, and energy-absorption-related metrics.</li>
-            <li>Ran physical compression tests up to 10 kN and converted the results into load-displacement curves, stress-strain curves, and modulus estimates.</li>
-          </ul>
-        </article>
+        <section class="project-sections">
+          <article class="section-block">
+            <h2>Overview</h2>
+            <p>
+              This project explored lattice structures as lightweight alternatives to solid fill for applications where stiffness, strength, and energy absorption matter. I focused on trigonometrically defined lattices because they offer high surface-area-to-mass ratios and appear in natural structures such as gyroid-like butterfly wing scales. We compared Gyroid and Schwarz lattice families through parametric CAD, compression-style FEA, and physical compression testing of 20 × 20 × 20 mm blocks. The goal was not just to find the strongest geometry, but to identify the most efficient one when normalized by mass. In the final comparison, the Gyroid delivered stronger specific performance than the Schwarz design.
+            </p>
+          </article>
 
-        <article class="section-card">
-          <h2>Engineering workflow</h2>
-          <ul>
-            <li>For the Gyroid study, varied unit-cell size at constant thickness and then varied thickness around a 10 mm unit cell, constrained by SolidWorks curvature and thickening limits.</li>
-            <li>For the Schwarz study, varied thickness while monitoring mass, stiffness, and deformation behavior.</li>
-            <li>Applied practical geometry-cleanup steps such as patterning extra periods and trimming to remove sharp corners caused by thickened periodic surfaces.</li>
-            <li>Normalized performance using specific stiffness, specific yield force, and specific energy absorption so design decisions reflected performance density rather than absolute strength alone.</li>
-          </ul>
-        </article>
+          <hr class="section-divider" />
 
-        <article class="section-card">
-          <h2>Validation and results</h2>
-          <ul>
-            <li>Measured a Gyroid peak load of about 7.44 kN compared with about 2.93 kN for the Schwarz sample.</li>
-            <li>Compared predicted versus measured yield forces and found large gaps: Gyroid predicted 16.9 kN vs actual 7.5 kN, Schwarz predicted 13.2 kN vs actual 3.0 kN.</li>
-            <li>Found printed samples heavier than CAD-based estimates, with Gyroid at 124% of predicted mass and Schwarz at 142%.</li>
-            <li>Observed that Gyroid was about 56% weaker than predicted and Schwarz about 77% weaker, showing how brittle resin behavior and print realities can break idealized simulation assumptions.</li>
-            <li>Identified a diagonal 45° failure band in both predicted deformation and crushed samples, linking the observed failure mode back to shear planes under compression.</li>
-            <li>Final comparison showed Gyroid specific yield force of 1.60 kN/g versus 0.88 kN/g for Schwarz.</li>
-          </ul>
-        </article>
+          <article class="section-block">
+            <h2>What I built</h2>
+            <ul>
+              <li>Modeled 20 × 20 × 20 mm lattice blocks with parametric variations in unit-cell size and wall thickness.</li>
+              <li>Created Gyroid variants in SolidWorks using surface-driven geometry and compared skeletal versus sheet-style construction approaches.</li>
+              <li>Set up compression FEA runs to extract von Mises stress, displacement, strain, stiffness, and energy-absorption-related metrics.</li>
+              <li>Ran physical compression tests up to 10 kN and converted the results into load-displacement curves, stress-strain curves, and modulus estimates.</li>
+            </ul>
+          </article>
 
-        <article class="section-card">
-          <h2>Outcome and takeaways</h2>
-          <p>
-            The project produced a repeatable pipeline from implicit geometry concept to CAD to FEA to compression testing. It also highlighted where real manufacturing behavior matters more than mathematical elegance: minimum feature size, curvature-thickness constraints, print-mass deviation, and brittle material response all affected the final result. A key takeaway was that performance normalized by mass changed the design decision. Some geometries that looked strong in absolute terms were not actually efficient once weight was included. The final outcome was a grounded comparison showing that the Gyroid provided the better specific structural performance in this study. :contentReference[oaicite:2]{index=2}
-          </p>
-        </article>
+          <hr class="section-divider" />
 
-        <article class="section-card">
-          <h2>Next steps</h2>
-          <ul>
-            <li>Print smaller unit cells and thinner features with higher-resolution manufacturing methods to push surface-area density while staying manufacturable.</li>
-            <li>Repeat the study with a less brittle material better suited for repeated energy absorption.</li>
-            <li>Expand the Schwarz study by varying hole diameter because stress concentrations localized around hole boundaries.</li>
-          </ul>
-        </article>
+          <article class="section-block">
+            <h2>Engineering workflow</h2>
+            <ul>
+              <li>For the Gyroid study, varied unit-cell size at constant thickness and then varied thickness around a 10 mm unit cell, constrained by SolidWorks curvature and thickening limits.</li>
+              <li>For the Schwarz study, varied thickness while monitoring mass, stiffness, and deformation behavior.</li>
+              <li>Applied practical geometry-cleanup steps such as patterning extra periods and trimming to remove sharp corners caused by thickened periodic surfaces.</li>
+              <li>Normalized performance using specific stiffness, specific yield force, and specific energy absorption so design decisions reflected performance density rather than absolute strength alone.</li>
+            </ul>
+          </article>
 
-        <article class="section-card">
-          <h2>Gallery</h2>
-          <div class="gallery-grid">
-            <div class="gallery-placeholder placeholder-lattice"></div>
-            <div class="gallery-placeholder placeholder-encoder"></div>
-            <div class="gallery-placeholder placeholder-schwarz"></div>
-          </div>
-        </article>
-      </section>
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Validation and results</h2>
+            <ul>
+              <li>Measured a Gyroid peak load of about 7.44 kN compared with about 2.93 kN for the Schwarz sample.</li>
+              <li>Compared predicted versus measured yield forces and found large gaps: Gyroid predicted 16.9 kN vs actual 7.5 kN, Schwarz predicted 13.2 kN vs actual 3.0 kN.</li>
+              <li>Found printed samples heavier than CAD-based estimates, with Gyroid at 124% of predicted mass and Schwarz at 142%.</li>
+              <li>Observed that Gyroid was about 56% weaker than predicted and Schwarz about 77% weaker, showing how brittle resin behavior and print realities can break idealized simulation assumptions.</li>
+              <li>Identified a diagonal 45° failure band in both predicted deformation and crushed samples, linking the observed failure mode back to shear planes under compression.</li>
+              <li>Final comparison showed Gyroid specific yield force of 1.60 kN/g versus 0.88 kN/g for Schwarz.</li>
+            </ul>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Outcome and takeaways</h2>
+            <p>
+              The project produced a repeatable pipeline from implicit geometry concept to CAD to FEA to compression testing. It also highlighted where real manufacturing behavior matters more than mathematical elegance: minimum feature size, curvature-thickness constraints, print-mass deviation, and brittle material response all affected the final result. A key takeaway was that performance normalized by mass changed the design decision. Some geometries that looked strong in absolute terms were not actually efficient once weight was included. The final outcome was a grounded comparison showing that the Gyroid provided the better specific structural performance in this study.
+            </p>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Next steps</h2>
+            <ul>
+              <li>Print smaller unit cells and thinner features with higher-resolution manufacturing methods to push surface-area density while staying manufacturable.</li>
+              <li>Repeat the study with a less brittle material better suited for repeated energy absorption.</li>
+              <li>Expand the Schwarz study by varying hole diameter because stress concentrations localized around hole boundaries.</li>
+            </ul>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+              <img src="gyroid_lattice.png" alt="Gyroid lattice detail" class="gallery-image" />
+              <div class="gallery-placeholder placeholder-encoder"></div>
+              <div class="gallery-placeholder placeholder-schwarz"></div>
+            </div>
+          </article>
+        </section>
+      </div>
     </div>
   </main>
 </body>
