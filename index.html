@@ -392,6 +392,7 @@
     }
 
     .work-timeline {
+      --timeline-y: 18px;
       position: relative;
       flex: 1;
       min-height: 0;
@@ -407,7 +408,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 18px;
+      top: calc(var(--timeline-y) - 1px);
       height: 2px;
       background: #cfcfcf;
     }
@@ -423,7 +424,7 @@
 
     .work-point {
       position: absolute;
-      top: 18px;
+      top: var(--timeline-y);
       left: 0;
       transform: translateY(-50%);
       width: 18px;
