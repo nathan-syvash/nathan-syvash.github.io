@@ -189,7 +189,25 @@
       max-width: 100%;
       border-radius: 18px;
       border: 1px solid rgba(0,0,0,0.06);
-      margin-bottom: 30px;
+    }
+
+    .project-figure {
+      margin: 0 0 30px 0;
+      display: grid;
+      gap: 10px;
+      justify-items: start;
+    }
+
+    .project-figure .hero-image {
+      margin-bottom: 0;
+    }
+
+    .project-caption {
+      font-size: 14px;
+      line-height: 1.45;
+      color: #666;
+      text-align: left;
+      max-width: 100%;
     }
 
     .project-sections {
@@ -350,7 +368,6 @@
           </div>
 
           <aside class="project-meta-card">
-
             <div class="meta-row">
               <div class="meta-label">Collaborator</div>
               <div class="meta-value">Tobias Weissman</div>
@@ -368,7 +385,12 @@
           </aside>
         </section>
 
-        <img src="gyroid_lattice.png" alt="Gyroid lattice" class="hero-image" />
+        <figure class="project-figure">
+          <img src="gyroid_lattice.png" alt="Parametrized, patterned, and thickened surface-driven lattice structure and 3D printed sample" class="hero-image" />
+          <figcaption class="project-caption">
+            Parametrized, patterned, and thickened surface-driven lattice structure and 3D printed sample (Formlabs Clear Resin v4).
+          </figcaption>
+        </figure>
 
         <section class="project-sections">
           <article class="section-block">
@@ -378,8 +400,12 @@
             </p>
           </article>
 
-           <img src="gyroid_and_schwarz.png" alt="Compression Instron testing of Gyroid lattice" class="hero-image" />
-
+          <figure class="project-figure">
+            <img src="gyroid_and_schwarz.png" alt="Schwarz and Gyroid unit lattice structures" class="hero-image" />
+            <figcaption class="project-caption">
+              Schwarz and Gyroid Unit Lattice Structures.
+            </figcaption>
+          </figure>
 
           <hr class="section-divider" />
 
@@ -405,7 +431,12 @@
             </ul>
           </article>
 
-          <img src="instron_testing.png" alt="Compression Instron testing of Gyroid lattice" class="hero-image" />
+          <figure class="project-figure">
+            <img src="instron_testing.png" alt="Gyroid failure mode" class="hero-image" />
+            <figcaption class="project-caption">
+              Gyroid Failure Mode.
+            </figcaption>
+          </figure>
 
           <hr class="section-divider" />
 
@@ -419,11 +450,14 @@
               <li>Identified a diagonal 45° failure band in both predicted deformation and crushed samples, linking the observed failure mode back to shear planes under compression.</li>
               <li>Final comparison showed Gyroid specific yield force of 1.60 kN/g versus 0.88 kN/g for Schwarz.</li>
             </ul>
-
           </article>
 
-          <img src="plots.png" alt="Compression Instron testing of Gyroid lattice" class="hero-image" />
-
+          <figure class="project-figure">
+            <img src="plots.png" alt="Gyroid load-displacement and stress strain plots" class="hero-image" />
+            <figcaption class="project-caption">
+              Gyroid Load-Displacement and Stress Strain Plots.
+            </figcaption>
+          </figure>
 
           <hr class="section-divider" />
 
@@ -434,7 +468,12 @@
             </p>
           </article>
 
-          <img src="table_lattice.png" alt="Compression Instron testing of Gyroid lattice" class="hero-image" />
+          <figure class="project-figure">
+            <img src="table_lattice.png" alt="Actual versus predicted measurements" class="hero-image" />
+            <figcaption class="project-caption">
+              Actual vs Predicted Measurements.
+            </figcaption>
+          </figure>
 
           <hr class="section-divider" />
 
@@ -446,7 +485,6 @@
               <li>Expand the Schwarz study by varying hole diameter because stress concentrations localized around hole boundaries.</li>
             </ul>
           </article>
-
         </section>
       </div>
     </div>
