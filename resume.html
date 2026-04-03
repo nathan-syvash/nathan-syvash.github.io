@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resume | Nathan Syvash</title>
+  <title>Resume | Oleh Nathan Syvash</title>
 
   <style>
     * {
@@ -37,6 +37,10 @@
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    button {
+      font: inherit;
     }
 
     .page {
@@ -297,7 +301,8 @@
       background: rgba(255, 255, 255, 0.7);
       font-size: 15px;
       color: #333;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
     }
 
     .resume-button:hover {
@@ -305,8 +310,25 @@
       opacity: 0.85;
     }
 
+    .resume-button.copied {
+      background: #ffffff;
+      border-color: #bcbcbc;
+    }
+
     .nav-target {
       scroll-margin-top: calc(var(--header-height) + 20px);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: pre-wrap;
+      border: 0;
     }
 
     .footer-wrap {
@@ -521,6 +543,14 @@
         height: 620px;
       }
 
+      .resume-actions {
+        flex-direction: column;
+      }
+
+      .resume-button {
+        width: 100%;
+      }
+
       .back-to-top {
         top: -50px;
       }
@@ -579,7 +609,7 @@
       <button class="section-nav-item active" data-target="page-top" aria-label="Go to top of page"></button>
       <button class="section-nav-item" data-target="resume-overview" aria-label="Go to resume overview"></button>
       <button class="section-nav-item" data-target="resume-pdf" aria-label="Go to embedded resume"></button>
-      <button class="section-nav-item" data-target="resume-download" aria-label="Go to resume download"></button>
+      <button class="section-nav-item" data-target="resume-download" aria-label="Go to resume actions"></button>
     </nav>
 
     <div class="content-shell">
@@ -591,22 +621,37 @@
         <section class="project-hero">
           <div class="project-main">
             <div class="project-year">Resume</div>
-            <h1 class="project-title">Nathan Syvash</h1>
+            <h1 class="project-title">Oleh Nathan Syvash</h1>
             <p class="project-subtitle">
               Ecosystem Mechanical Engineer - Connected Hardware - Prototyping
             </p>
           </div>
+
+          <aside class="project-meta-card">
+            <div class="meta-row">
+              <div class="meta-label">Email</div>
+              <div class="meta-value">nathanopentowork@gmail.com</div>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta-label">Location</div>
+              <div class="meta-value">Boston, MA (open to relocation)</div>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta-label">Portfolio</div>
+              <div class="meta-value">nathan-syvash.github.io</div>
+            </div>
+          </aside>
         </section>
 
         <section class="project-sections">
           <article class="section-block nav-target" id="resume-overview">
             <h2>Overview</h2>
             <div class="callout">
-                <p>
-                    Ecosystem-focused engineer with hands-on experience building connected hardware systems and turning technical work into clear,
-                    reusable documentation. Built IoT monitoring infrastructure, validation workflows, and bench-scale prototypes across industrial and
-                    research settings. Strong in CAD, testing, and technical communication for manufacturing-facing products and demos.              
-                </p>
+              <p>
+                Ecosystem-focused engineer with hands-on experience building connected hardware systems and turning technical work into clear, reusable documentation. Built IoT monitoring infrastructure, validation workflows, and bench-scale prototypes across industrial and research settings. Strong in CAD, testing, and technical communication for manufacturing-facing products and demos.
+              </p>
             </div>
           </article>
 
@@ -626,7 +671,7 @@
           <hr class="section-divider" />
 
           <article class="section-block nav-target" id="resume-download">
-            <h2>Download</h2>
+            <h2>Resume Actions</h2>
             <div class="resume-actions">
               <a
                 class="resume-button"
@@ -642,6 +687,13 @@
                 download>
                 Download PDF
               </a>
+
+              <button
+                class="resume-button"
+                id="copyResumeButton"
+                type="button">
+                Copy resume text
+              </button>
             </div>
           </article>
         </section>
@@ -689,6 +741,57 @@
         </div>
       </footer>
     </div>
+
+    <div id="resumeTextSource" class="visually-hidden" aria-hidden="true">Oleh Nathan Syvash
+Boston, MA (open to relocation) ● nathanopentowork@gmail.com ● nathan-syvash.github.io
+Ecosystem-focused engineer with hands-on experience building connected hardware systems and turning technical work into clear, reusable documentation. Built IoT monitoring infrastructure, validation workflows, and bench-scale prototypes across industrial and research settings. Strong in CAD, testing, and technical communication for manufacturing-facing products and demos.
+EDUCATION
+Dartmouth College, Thayer School of Engineering, Hanover, NH						            Dec. 2025
+B.E. in Mechanical Engineering; B.A. in Engineering Sciences
+Relevant Coursework: Machine Engineering, Control Theory (TA), Post-Modern and Non-Linear Control, Applied Dynamics, Structural Mechanics, Structural Analysis, Solid Mechanics, Statistical Methods, Fluid Dynamics, Thermodynamics
+
+WORK EXPERIENCE
+Ithaca Clean Energy, New Bedford, MA 		                                                           June 2025 – Aug. 2025, Jan. 2026 – Present
+Mechanical Engineer
+Build and commission a local-first LoRaWAN monitoring system for industrial storage environments.
+Create work instructions, installation models, and setup documentation that make deployments repeatable across sites.
+Translate customer privacy and compliance requirements into system architecture decisions and local data workflows.
+Run field validation with industrial partners, maintain test logs, and drive corrective actions to improve reliability.
+Design CAD housings and mounting hardware with GD&T and prepare documentation for vendor handoff.
+Build interactive dashboards and supporting materials that help users understand system status and compliance data.
+
+Siligent Cybersecurity, Hanover, NH	   				                                                 Sept. 2024 – Mar. 2025
+Mechanical Engineering Intern
+Led enclosure design for a manufacturable medical device from concept through supplier-ready release.
+Produced GD&T drawings and documentation packages structured for manufacturing handoff.
+Executed DVP&R-style validation, including drop, static load, and splash testing, and documented corrective actions.
+Iterated wall thickness, rib geometry, and sealing features based on test results.
+Delivered a validated design to the sponsoring company for future commercialization.
+
+Massachusetts Institute of Technology, Cambridge, MA 				                                  June 2024 – Sept. 2024
+Research Intern, Human-Computer Interaction (HCI) Group at MIT CSAIL
+Designed, built, and tested a precision optical encoder using CAD, CNC, 3D printing, and laser fabrication.
+Built MATLAB and Python pipelines for calibration, validation, and statistical analysis.
+Optimized C code to improve live data throughput during bench testing.
+Ran controlled experiments on resolution, illumination, and repeatability to define practical performance limits.
+Authored test plans and bench procedures and maintained reproducible data packages for handoff to researchers.
+
+ENGINEERING PROJECTS
+PD Controller for Autonomous Vehicle  									            Nov. 2024
+Modeled a DC motor plant and designed a PD controller in MATLAB for wall-following distance regulation.
+Tuned the controller using experimental step-response data and validated against target performance criteria.
+Reduced overshoot from 18% to under 5% and settling time from 4.5 s to 1.8 s.
+
+Remote Complex Terrain Rover	                                                                        			            		            Nov. 2024
+Designed and fabricated rover wheel concepts in SolidWorks, using FEA and DFMEA-style analysis to guide iteration.
+Reduced wheel deflection by 77% and peak stress by 76% through geometry changes driven by simulation.
+Documented design decisions, validation results, and final specs in a clean handoff format
+
+SKILLS AND CERTIFICATIONS
+Documentation: work instructions, technical documentation, dashboards, system integration, commissioning, troubleshooting
+Mechanical Design: SolidWorks (CSWA), GD&T, tolerance analysis, detailed drawings, DFM, FEA
+Validation & Test: test planning, DVP&R, DFMEA, root cause analysis, corrective actions, data analysis
+Programming & Tools: MATLAB, Python, C, C++, DAQ, Linux</div>
   </main>
 
   <script>
@@ -698,6 +801,8 @@
     const navTargets = document.querySelectorAll(".nav-target");
     const backToTop = document.getElementById("backToTop");
     const pageFooter = document.getElementById("pageFooter");
+    const copyResumeButton = document.getElementById("copyResumeButton");
+    const resumeTextSource = document.getElementById("resumeTextSource");
 
     let topArrowFadeTimer = null;
     let topArrowTwinkleTimer = null;
@@ -847,6 +952,37 @@
       } else {
         clearTopArrowState();
       }
+    }
+
+    async function copyResumeText() {
+      const resumeText = resumeTextSource.textContent.trim();
+      const originalLabel = copyResumeButton.textContent;
+
+      try {
+        await navigator.clipboard.writeText(resumeText);
+      } catch (error) {
+        const fallbackTextArea = document.createElement("textarea");
+        fallbackTextArea.value = resumeText;
+        fallbackTextArea.setAttribute("readonly", "");
+        fallbackTextArea.style.position = "absolute";
+        fallbackTextArea.style.left = "-9999px";
+        document.body.appendChild(fallbackTextArea);
+        fallbackTextArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(fallbackTextArea);
+      }
+
+      copyResumeButton.textContent = "Copied resume text";
+      copyResumeButton.classList.add("copied");
+
+      window.setTimeout(() => {
+        copyResumeButton.textContent = originalLabel;
+        copyResumeButton.classList.remove("copied");
+      }, 1800);
+    }
+
+    if (copyResumeButton) {
+      copyResumeButton.addEventListener("click", copyResumeText);
     }
 
     backToTop.addEventListener("click", () => {
