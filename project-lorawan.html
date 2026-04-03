@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2025 Internship at Ithaca Clean Energy | Nathan Syvash</title>
+  <title>Monitoring Systems Engineering | Nathan Syvash</title>
 
   <style>
     * {
@@ -260,6 +260,29 @@
       border-top: 1px solid var(--line);
     }
 
+    /* Chapter header — visually separates the two major projects */
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 10px 0 4px;
+    }
+
+    .chapter-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a8a8a;
+      white-space: nowrap;
+    }
+
+    .chapter-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
     @media (max-width: 1100px) {
       :root {
         --header-right-padding: 100px;
@@ -320,7 +343,7 @@
         <a href="index.html#projects">Projects</a>
         <a href="index.html#work">Work</a>
         <a href="index.html#contact">Contact me</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/nsyvash/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <img src="linkedin.png" alt="LinkedIn" class="linkedin-icon" />
         </a>
       </nav>
@@ -330,12 +353,13 @@
       <div class="project-paper">
         <a href="index.html#projects" class="back-link">← Back to projects</a>
 
+        <!-- PAGE HERO -->
         <section class="project-hero">
           <div class="project-main">
-            <div class="project-year">Summer 2025</div>
-            <h1 class="project-title">2025 Internship at Ithaca Clean Energy</h1>
+            <div class="project-year">2025 — Ithaca Clean Energy</div>
+            <h1 class="project-title">Monitoring Systems Engineering</h1>
             <p class="project-subtitle">
-              Built IoT-enabled environmental monitoring systems for industrial fishing and seafood storage, with a focus on a secure, local-first LoRaWAN infrastructure that could scale without relying on third-party data platforms.
+              Designed and deployed monitoring infrastructure across two applications: a local-first IoT sensor network for industrial seafood storage, and a coastal vessel-tracking system using LiDAR and camera hardware for the City.
             </p>
           </div>
 
@@ -344,59 +368,53 @@
               <div class="meta-label">Company</div>
               <div class="meta-value">Ithaca Clean Energy</div>
             </div>
-
             <div class="meta-row">
               <div class="meta-label">Focus</div>
-              <div class="meta-value">LoRaWAN, Raspberry Pi, ChirpStack, CAD, GD&amp;T, product development</div>
+              <div class="meta-value">LoRaWAN, LiDAR, sensor selection, hardware trade studies, RFQs, CAD, GD&amp;T</div>
             </div>
-
             <div class="meta-row">
-              <div class="meta-label">Outcome</div>
-              <div class="meta-value">Delivered a functioning local-first monitoring stack and supplier-ready design documentation for hardware handoff and scaling. </div>
+              <div class="meta-label">Outcomes</div>
+              <div class="meta-value">Deployed LoRaWAN stack from concept to handoff. Delivered a sensor architecture recommendation and installation requirements for a $50K–$60K coastal monitoring system.</div>
             </div>
           </aside>
         </section>
 
-        <div class="callout">
-          <p>
-            During my internship at Ithaca Clean Energy, I worked on developing IoT-enabled monitoring systems for industrial fishing and seafood storage. My focus was designing and deploying a LoRaWAN-based infrastructure that ensured secure, reliable, and scalable environmental monitoring without relying on external third-party systems. 
-          </p>
+        <!-- ═══════════════════════════════════════════
+             PROJECT 1: LoRaWAN
+        ════════════════════════════════════════════ -->
+        <div class="chapter-header">
+          <span class="chapter-label">Project 1 — Summer 2025</span>
+          <div class="chapter-rule"></div>
         </div>
 
-        <figure class="project-figure">
-          <img src="ithaca_hero.png" alt="Ithaca Clean Energy internship project overview" class="hero-image" />
-          <figcaption class="project-caption">
-            IoT-enabled monitoring systems for industrial fishing and seafood storage developed during the Summer 2025 internship.
-          </figcaption>
-        </figure>
-
         <section class="project-sections">
+
           <article class="section-block">
             <h2>IoT Infrastructure for Environmental Monitoring</h2>
             <p>
-              I designed and implemented a LoRaWAN sensor network to automate refrigeration monitoring and environmental compliance in seafood storage units. The system was built to be secure, reliable, and easy to extend, while also addressing vendor concerns about data ownership and third-party access. 
+              I designed and deployed a LoRaWAN sensor network to automate refrigeration monitoring and environmental compliance for industrial seafood storage. The system needed to be secure, reliable, and extensible, while keeping all data local to address client concerns about third-party access.
             </p>
           </article>
 
           <article class="section-block">
             <ul>
               <li>Selected and configured a Milesight UG63 gateway and EM320 temperature sensors to establish the core hardware network.</li>
-              <li>Deployed a Raspberry Pi as a local server, hardcoded ChirpStack, and manually integrated sensor-to-server connections.</li>
-              <li>Built a simple real-time data logging dashboard to support visualization, compliance tracking, and alerts.</li>
+              <li>Deployed a Raspberry Pi as a local server, configured ChirpStack, and manually integrated sensor-to-server connections.</li>
+              <li>Built a real-time data logging dashboard to support visualization, compliance tracking, and alerts.</li>
               <li>Designed the system with end-to-end encryption and local-first data ownership for privacy and security.</li>
             </ul>
           </article>
 
           <div class="callout">
             <p>
-              This infrastructure let storage facility managers keep their data locally, reduced manual logging from 4–5 checks per day to automated monitoring, and supported future scaling to additional chemical, environmental, and mechanical sensors. 
+              The deployed system reduced manual logging from 4–5 checks per day to automated monitoring and was architected to scale to additional chemical, environmental, and mechanical sensors across multiple sites.
             </p>
           </div>
 
           <figure class="project-figure">
-            <img src="ithaca_setup_layout.png" alt="Set-up layout with radio sensor, radio receiver, and Raspberry Pi server" class="hero-image" />
+            <img src="ithaca_setup_layout.png" alt="LoRaWAN monitoring system overview" class="hero-image" />
             <figcaption class="project-caption">
-              Set-Up Layout: Industry-grade Radio Sensor, Radio Receiver, Raspberry Pi (as a custom server). Sample Dashboard (personal device friendly).
+              IoT-enabled monitoring systems for industrial fishing and seafood storage developed during the Summer 2025 internship.
             </figcaption>
           </figure>
 
@@ -405,62 +423,142 @@
           <article class="section-block">
             <h2>Ultrasonic Sensor Mounting CAD</h2>
             <p>
-              Alongside the digital infrastructure, I also designed mounting hardware for the NMEA 2000 Ultrasonic TLM100 Sensor. The goal was to make the part vendor-ready, structurally stiff, and straightforward to assemble in practice. 
+              Alongside the digital infrastructure, I designed mounting hardware for the NMEA 2000 Ultrasonic TLM100 Sensor. The goal was a vendor-ready part that was structurally stiff and practical to assemble in the field.
             </p>
           </article>
 
           <article class="section-block">
             <ul>
-              <li>Produced fully annotated 2D CAD drawing packages with GD&amp;T tolerances, vendor-ready title blocks, and BOMs.</li>
+              <li>Produced fully annotated 2D drawings with GD&amp;T tolerances, vendor-ready title blocks, and BOMs.</li>
               <li>Added bosses, alignment features, and wiring clearances to support stable mounting and assembly ease.</li>
               <li>Designed for structural stiffness while minimizing material usage.</li>
             </ul>
           </article>
 
+        <figure class="project-figure">
+            <img src="ithaca_hero.png" alt="CAD for ultrasonic sensor mounting hardware" class="hero-image" />
+            <figcaption class="project-caption">
+              Ultrasonic Sensor Mounting CAD for the NMEA 2000 TLM100 sensor.
+            </figcaption>
+          </figure>
+
           <figure class="project-figure">
             <img src="ultrasonic_mount_cad.png" alt="CAD for ultrasonic sensor mounting hardware" class="hero-image" />
             <figcaption class="project-caption">
-              Ultrasonic Sensor Mounting CAD for the NMEA 2000 TLM100 sensor.
+              Assembly Drawing of Ultrasonic Sensor Mounting for the NMEA 2000 TLM100 sensor.
             </figcaption>
           </figure>
 
           <hr class="section-divider" />
 
           <article class="section-block">
-            <h2>Research and Reports</h2>
+            <h2>Communication Technology Research</h2>
             <p>
-              Beyond implementation, I researched sensor-driven monitoring for industrial fishing and prepared reports on storage-unit IoT architectures. That work compared communication technologies including WiFi, Bluetooth, and LoRa, and supported the recommendation to use LoRaWAN as the most robust solution for the application. These reports helped guide design choices and evaluate how the system could scale across broader seafood logistics use cases. 
+              I prepared reports comparing communication technologies including WiFi, Bluetooth, and LoRa for industrial fishing and seafood storage applications. This analysis supported the recommendation to use LoRaWAN as the most reliable and scalable solution, and helped guide architecture decisions as the system expanded to additional use cases.
+            </p>
+          </article>
+
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+             PROJECT 2: VESSEL MONITORING
+        ════════════════════════════════════════════ -->
+        <div class="chapter-header" style="margin-top: 36px;">
+          <span class="chapter-label">Project 2 — Jan. 2026 – June 2026</span>
+          <div class="chapter-rule"></div>
+        </div>
+
+        <section class="project-sections">
+
+          <article class="section-block">
+            <h2>Coastal Vessel Monitoring in the Bay Area</h2>
+            <p>
+              I led a hardware trade study to design a deployable vessel-monitoring system for an estuary in the Bay Area. The system needed to track vessels at 200–400 m range in a marine environment, integrating LiDAR and camera hardware while staying within a defined budget and installation footprint.
             </p>
           </article>
 
           <hr class="section-divider" />
 
           <article class="section-block">
-            <h2>Key Takeaways</h2>
+            <h2>LiDAR Hardware Selection</h2>
+            <p>
+              Evaluating LiDAR platforms for a coastal marine environment required more than comparing specs. Water introduces specific optical challenges: certain wavelengths are heavily absorbed by water and create noise in returns, which directly affects detection reliability at range. I used this to narrow the platform shortlist before scoring other criteria.
+            </p>
+          </article>
+
+          <article class="section-block">
             <ul>
-              <li>Built a full IoT infrastructure from concept to deployment.</li>
-              <li>Translated client needs such as privacy, reliability, and scalability into engineering requirements.</li>
-              <li>Delivered both digital systems, including the data pipeline and dashboard, and physical solutions through CAD sensor mounts and documentation.</li>
+              <li>Evaluated 5 LiDAR platforms against range, wavelength, IP rating, integration complexity, and cost.</li>
+              <li>Identified wavelength as a primary filter: selected platforms operating at wavelengths with low water absorption to minimize surface noise and false returns in the estuary environment.</li>
+              <li>Scored each platform across coverage, environmental rating, integration risk, and procurement lead time to produce a ranked recommendation.</li>
             </ul>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Camera Selection and Coverage Analysis</h2>
+            <p>
+              I evaluated both fixed and PTZ camera configurations for the 200–400 m tracking range, weighing field of view, resolution at distance, and the tradeoffs between static coverage and active tracking.
+            </p>
+          </article>
+
+          <article class="section-block">
+            <ul>
+              <li>Compared fixed and PTZ options across field of view, resolution at range, power requirements, and mounting flexibility.</li>
+              <li>Assessed integration risk for each configuration, including pan/tilt control overhead and latency considerations for vessel tracking.</li>
+              <li>Combined camera and LiDAR coverage maps to validate that the proposed layout met the 200–400 m detection requirement.</li>
+            </ul>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Supplier Communication and RFQs</h2>
+            <p>
+              Hardware selection fed directly into supplier outreach. I prepared RFQ packages and communicated with vendors and installers to validate lead times, confirm compatibility, and surface procurement risks before the architecture was finalized.
+            </p>
+          </article>
+
+          <article class="section-block">
+            <ul>
+              <li>Built RFQ packages for shortlisted LiDAR and camera hardware, including specification summaries and environmental requirements for vendor review.</li>
+              <li>Communicated with suppliers and installers to confirm mounting options, IP ratings in marine exposure, and delivery timelines.</li>
+              <li>Used supplier feedback to refine the final architecture and flag substitution risks ahead of procurement.</li>
+            </ul>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Physical Constraints and Installation Requirements</h2>
+            <p>
+              Deploying hardware in a coastal marine environment introduced constraints that had to be defined before installation could be scoped. I authored a set of installation requirements covering the physical and environmental conditions the system would face.
+            </p>
+          </article>
+
+          <article class="section-block">
+            <ul>
+              <li>Defined mounting requirements based on site geometry, sensor field-of-view angles, and structural load considerations.</li>
+              <li>Specified corrosion protection, vibration tolerance, and ingress protection standards for hardware exposed to salt air and wave motion.</li>
+              <li>Documented power supply, cable routing, and commissioning procedures to support installation by a third-party team.</li>
+            </ul>
+          </article>
+
+          <hr class="section-divider" />
+
+          <article class="section-block">
+            <h2>Architecture Recommendation</h2>
           </article>
 
           <div class="callout">
             <p>
-              By the end of the internship, I delivered a fully functioning LoRaWAN infrastructure and design documentation that could be handed off for external manufacturing and scaled across multiple sites.
+              The trade study resulted in a recommended field-deployable monitoring architecture in the $50K–$60K range for the City. The recommendation covered sensor configuration, system layout, procurement risk, and a path to installation — giving the client a complete basis for moving into procurement and deployment.
             </p>
           </div>
 
-          <hr class="section-divider" />
-
-          <article class="section-block">
-            <h2>Next Steps</h2>
-            <ul>
-              <li>Increase the number and types of sensors connected to the IoT infrastructure.</li>
-              <li>Build and train a custom ML model hosted locally on a Raspberry Pi to analyze environmental data from multiple commercial fishing sites and ships.</li>
-              <li>Connect more partners to the infrastructure and communicate the value of real-time monitoring for logistics, compliance, work conditions, and safety.</li>
-            </ul>
-          </article>
         </section>
+
       </div>
     </div>
   </main>
