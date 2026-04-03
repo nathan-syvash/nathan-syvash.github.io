@@ -98,6 +98,37 @@
       display: block;
     }
 
+    .section-nav {
+      position: fixed;
+      left: 45px;
+      top: 0;
+      transform: translateY(0);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 1050;
+      will-change: transform;
+    }
+
+    .section-nav-item {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid #cfcfcf;
+      background: #d7d7d7;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .section-nav-item:hover {
+      transform: scale(1.08);
+    }
+
+    .section-nav-item.active {
+      background: #9a9a9a;
+      border-color: #9a9a9a;
+    }
+
     .content-shell {
       width: 100%;
       padding-top: calc(var(--header-height) + 34px);
@@ -112,6 +143,17 @@
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 34px 34px 40px;
+      position: relative;
+    }
+
+    .page-top-anchor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .back-link {
@@ -234,6 +276,7 @@
       line-height: 1.2;
       margin-bottom: 14px;
       font-weight: 700;
+      scroll-margin-top: calc(var(--header-height) + 20px);
     }
 
     .section-block h3 {
@@ -325,6 +368,164 @@
       display: block;
     }
 
+    .nav-target {
+      scroll-margin-top: calc(var(--header-height) + 20px);
+    }
+
+    .footer-wrap {
+      position: relative;
+    }
+
+    .back-to-top {
+      position: absolute;
+      left: 50%;
+      top: -50px;
+      width: 88px;
+      height: 42px;
+      transform: translateX(-50%) translateY(10px);
+      opacity: 0;
+      pointer-events: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1200;
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 0.92;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .back-to-top::before,
+    .back-to-top::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 38px;
+      height: 38px;
+      border-left: 4px solid #ffffff;
+      border-top: 4px solid #ffffff;
+      transform: translateX(-50%) rotate(45deg);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.22));
+    }
+
+    .back-to-top::before {
+      top: 10px;
+    }
+
+    .back-to-top::after {
+      top: 0;
+    }
+
+    .back-to-top.visible.twinkle {
+      animation: topArrowTwinkle 1.9s ease-in-out infinite 1.2s;
+    }
+
+    @keyframes topArrowTwinkle {
+      0%, 100% {
+        opacity: 0.92;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-2px) scale(1.04);
+      }
+    }
+
+    .page-footer {
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      min-height: auto;
+      padding: 36px 0 44px;
+    }
+
+    .footer-inner {
+      width: min(920px, calc(100vw - 56px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) 120px 120px;
+      column-gap: 64px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-name {
+      font-size: 22px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .footer-tagline {
+      max-width: 360px;
+      font-size: 16px;
+      line-height: 1.3;
+      color: #9a9a9a;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .footer-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .footer-icon-link:hover {
+      transform: translateY(-1px);
+      opacity: 0.8;
+    }
+
+    .footer-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-column {
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer-heading {
+      font-size: 17px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      font-size: 16px;
+      line-height: 1.2;
+      color: #9a9a9a;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.72;
+    }
+
     @media (max-width: 1100px) {
       :root {
         --header-right-padding: 100px;
@@ -360,6 +561,10 @@
         font-size: 15px;
       }
 
+      .section-nav {
+        display: none;
+      }
+
       .content-shell {
         padding-top: calc(var(--header-height) + 24px);
         padding-bottom: 40px;
@@ -390,6 +595,39 @@
       .pdf-viewer {
         height: 560px;
       }
+
+      .back-to-top {
+        top: -50px;
+      }
+
+      .page-footer {
+        min-height: auto;
+        padding: 28px 0 36px;
+      }
+
+      .footer-inner {
+        width: calc(100vw - 32px);
+        grid-template-columns: 1fr;
+        row-gap: 26px;
+      }
+
+      .footer-social {
+        margin-top: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .section-nav,
+      .section-nav-item,
+      .footer-icon-link,
+      .footer-links a,
+      .back-to-top {
+        transition: none;
+      }
+
+      .back-to-top.visible.twinkle {
+        animation: none;
+      }
     }
   </style>
 </head>
@@ -405,14 +643,25 @@
         <a href="index.html#projects">Projects</a>
         <a href="index.html#work">Work</a>
         <a href="index.html#contact">Contact me</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/nsyvash/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <img src="linkedin.png" alt="LinkedIn" class="linkedin-icon" />
         </a>
       </nav>
     </header>
 
+    <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
+      <button class="section-nav-item active" data-target="page-top" aria-label="Go to top of page"></button>
+      <button class="section-nav-item" data-target="personal-contribution" aria-label="Go to Personal Contribution section"></button>
+      <button class="section-nav-item" data-target="wheel-validation" aria-label="Go to Wheel Validation section"></button>
+      <button class="section-nav-item" data-target="iterative-outcomes" aria-label="Go to Iterative Design Outcomes section"></button>
+      <button class="section-nav-item" data-target="outcome" aria-label="Go to Outcome section"></button>
+      <button class="section-nav-item" data-target="next-steps" aria-label="Go to Next Steps section"></button>
+    </nav>
+
     <div class="content-shell">
       <div class="project-paper">
+        <div id="page-top" class="page-top-anchor nav-target" aria-hidden="true"></div>
+
         <a href="index.html#projects" class="back-link">← Back to projects</a>
 
         <section class="project-hero">
@@ -451,14 +700,12 @@
 
         <section class="project-sections">
           <div class="intro-split">
-
             <article class="section-block">
-
-                <div class="callout">
-                    <p>
-                        Objective: Design and fabricate a remote-controlled rover capable of navigating complex terrain, collecting objects, and scaling a vertical cliff.
-                    </p>
-                </div>
+              <div class="callout">
+                <p>
+                  Objective: Design and fabricate a remote-controlled rover capable of navigating complex terrain, collecting objects, and scaling a vertical cliff.
+                </p>
+              </div>
 
               <ul>
                 <li>Achieved CSWA certification, demonstrating proficiency in mechanical CAD, assemblies, and GD&amp;T-based drawings.</li>
@@ -478,7 +725,7 @@
 
           <hr class="section-divider" />
 
-          <article class="section-block">
+          <article class="section-block nav-target" id="personal-contribution">
             <h2>Personal Contribution</h2>
             <ul>
               <li>Designed and fabricated large front wheels and a back caster wheel with 3D-printed PLA cores and TPU tires for improved durability and traction.</li>
@@ -493,7 +740,7 @@
 
           <hr class="section-divider" />
 
-          <article class="section-block">
+          <article class="section-block nav-target" id="wheel-validation">
             <h2>Wheel Validation</h2>
           </article>
 
@@ -513,7 +760,7 @@
 
           <hr class="section-divider" />
 
-          <article class="section-block">
+          <article class="section-block nav-target" id="iterative-outcomes">
             <h2>Iterative Design Outcomes</h2>
           </article>
 
@@ -606,7 +853,7 @@
 
           <hr class="section-divider" />
 
-          <article class="section-block">
+          <article class="section-block nav-target" id="outcome">
             <h2>Outcome</h2>
           </article>
 
@@ -638,7 +885,7 @@
 
           <hr class="section-divider" />
 
-          <article class="section-block">
+          <article class="section-block nav-target" id="next-steps">
             <h2>Next Steps</h2>
             <ul>
               <li>Prepare rover parts for injection molding for future mass production.</li>
@@ -647,6 +894,232 @@
         </section>
       </div>
     </div>
+
+    <div class="footer-wrap">
+      <button class="back-to-top" id="backToTop" aria-label="Back to top"></button>
+
+      <footer class="page-footer" id="pageFooter">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <div class="footer-name">Nathan Syvash</div>
+            <div class="footer-tagline">
+              Designing and deploying mechatronic<br>
+              systems and IoT networks
+            </div>
+
+            <div class="footer-social">
+              <a class="footer-icon-link" href="https://www.linkedin.com/in/nsyvash/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <img src="linkedin_grey.png" alt="LinkedIn" class="footer-icon" />
+              </a>
+              <a class="footer-icon-link" href="mailto:nathan.syvash.th@dartmouth.edu" aria-label="Email Nathan">
+                <img src="email.png" alt="Email" class="footer-icon" />
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <div class="footer-heading">Learn more</div>
+            <div class="footer-links">
+              <a href="index.html#home">Home</a>
+              <a href="index.html#projects">Projects</a>
+              <a href="index.html#work">Work</a>
+              <a href="mailto:nathan.syvash.th@dartmouth.edu">Reach Out</a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <div class="footer-heading">Docs</div>
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/nsyvash/" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </main>
+
+  <script>
+    const header = document.querySelector(".site-header");
+    const sectionNav = document.getElementById("sectionNav");
+    const sectionNavItems = document.querySelectorAll(".section-nav-item");
+    const navTargets = document.querySelectorAll(".nav-target");
+    const backToTop = document.getElementById("backToTop");
+    const pageFooter = document.getElementById("pageFooter");
+
+    let topArrowFadeTimer = null;
+    let topArrowTwinkleTimer = null;
+
+    let navCurrentY = 0;
+    let navTargetY = 0;
+    let navAnimating = false;
+
+    function getHeaderOffset() {
+      return header ? header.offsetHeight + 20 : 124;
+    }
+
+    function scrollToTarget(targetId) {
+      if (targetId === "page-top") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+        return;
+      }
+
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const top = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+      window.scrollTo({
+        top,
+        behavior: "smooth"
+      });
+    }
+
+    sectionNavItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        scrollToTarget(item.dataset.target);
+      });
+    });
+
+    function setActiveSectionDot() {
+      const triggerPoint = window.innerHeight * 0.35;
+      let activeId = "page-top";
+
+      navTargets.forEach((target) => {
+        if (target.id === "page-top") return;
+        const rect = target.getBoundingClientRect();
+        if (rect.top <= triggerPoint) {
+          activeId = target.id;
+        }
+      });
+
+      if (window.scrollY < 140) {
+        activeId = "page-top";
+      }
+
+      sectionNavItems.forEach((item) => {
+        item.classList.toggle("active", item.dataset.target === activeId);
+      });
+    }
+
+    function getSectionNavTargetY() {
+      if (!sectionNav || window.innerWidth <= 820) return 0;
+
+      const navHeight = sectionNav.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      const topPadding = 18;
+      const bottomPadding = 18;
+
+      const headerBottom = (header ? header.offsetHeight : 0) + topPadding;
+      const footerRect = pageFooter.getBoundingClientRect();
+
+      const visibleBottom = Math.min(
+        viewportHeight - bottomPadding,
+        footerRect.top - bottomPadding
+      );
+
+      const availableHeight = visibleBottom - headerBottom;
+
+      if (availableHeight <= navHeight) {
+        return headerBottom;
+      }
+
+      return headerBottom + (availableHeight - navHeight) / 2;
+    }
+
+    function animateSectionNav() {
+      if (!sectionNav || window.innerWidth <= 820) {
+        navAnimating = false;
+        return;
+      }
+
+      const diff = navTargetY - navCurrentY;
+
+      if (Math.abs(diff) < 0.2) {
+        navCurrentY = navTargetY;
+        sectionNav.style.transform = `translateY(${navCurrentY}px)`;
+        navAnimating = false;
+        return;
+      }
+
+      navCurrentY += diff * 0.12;
+      sectionNav.style.transform = `translateY(${navCurrentY}px)`;
+
+      requestAnimationFrame(animateSectionNav);
+    }
+
+    function updateSectionNavPosition(immediate = false) {
+      if (!sectionNav || window.innerWidth <= 820) return;
+
+      navTargetY = getSectionNavTargetY();
+
+      if (immediate) {
+        navCurrentY = navTargetY;
+        sectionNav.style.transform = `translateY(${navCurrentY}px)`;
+        navAnimating = false;
+        return;
+      }
+
+      if (!navAnimating) {
+        navAnimating = true;
+        requestAnimationFrame(animateSectionNav);
+      }
+    }
+
+    function clearTopArrowState() {
+      clearTimeout(topArrowFadeTimer);
+      clearTimeout(topArrowTwinkleTimer);
+      topArrowFadeTimer = null;
+      topArrowTwinkleTimer = null;
+      backToTop.classList.remove("visible", "twinkle");
+    }
+
+    function handleTopArrowVisibility() {
+      const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+
+      if (nearBottom) {
+        if (!backToTop.classList.contains("visible") && !topArrowFadeTimer) {
+          topArrowFadeTimer = setTimeout(() => {
+            backToTop.classList.add("visible");
+            topArrowFadeTimer = null;
+
+            topArrowTwinkleTimer = setTimeout(() => {
+              backToTop.classList.add("twinkle");
+              topArrowTwinkleTimer = null;
+            }, 500);
+          }, 350);
+        }
+      } else {
+        clearTopArrowState();
+      }
+    }
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    window.addEventListener("scroll", () => {
+      setActiveSectionDot();
+      updateSectionNavPosition(false);
+      handleTopArrowVisibility();
+    });
+
+    window.addEventListener("load", () => {
+      setActiveSectionDot();
+      updateSectionNavPosition(true);
+      handleTopArrowVisibility();
+    });
+
+    window.addEventListener("resize", () => {
+      setActiveSectionDot();
+      updateSectionNavPosition(true);
+      handleTopArrowVisibility();
+    });
+  </script>
 </body>
 </html>

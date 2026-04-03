@@ -20,6 +20,7 @@
       --content-max-width: 1160px;
       --content-left-offset: 250px;
       --nav-block-width: 470px;
+      --line: #d8d8d8;
     }
 
     html {
@@ -40,6 +41,7 @@
 
     .page {
       width: 100%;
+      background: var(--page-bg);
     }
 
     .section {
@@ -48,6 +50,7 @@
       min-height: 100vh;
       background: var(--page-bg);
       overflow: hidden;
+      scroll-margin-top: calc(var(--header-height) + 20px);
     }
 
     .site-header {
@@ -103,20 +106,21 @@
       display: block;
     }
 
-    .menu {
+    .section-nav {
       position: fixed;
-      top: 50%;
       left: 45px;
-      transform: translateY(-50%);
+      top: 0;
+      transform: translateY(0);
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      z-index: 1000;
+      gap: 14px;
+      z-index: 1050;
+      will-change: transform;
     }
 
-    .menu-item {
-      width: 20px;
-      height: 20px;
+    .section-nav-item {
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       border: 1px solid #cfcfcf;
       background: #d7d7d7;
@@ -124,11 +128,11 @@
       transition: background-color 0.25s ease, transform 0.25s ease;
     }
 
-    .menu-item:hover {
+    .section-nav-item:hover {
       transform: scale(1.08);
     }
 
-    .menu-item.active {
+    .section-nav-item.active {
       background: #9a9a9a;
       border-color: #9a9a9a;
     }
@@ -195,7 +199,7 @@
       line-height: 1.25;
     }
 
-    /* Shared arrow */
+    /* Shared down arrow */
     .scroll-indicator {
       position: absolute;
       left: 50%;
@@ -473,64 +477,6 @@
       color: #333;
     }
 
-    @media (max-width: 1280px) {
-      .timeline-bullets li {
-        font-size: 13px;
-      }
-
-      .timeline-role {
-        font-size: 18px;
-      }
-    }
-
-    @media (max-width: 1100px) {
-      .timeline-bullets li {
-        font-size: 12.5px;
-      }
-    }
-
-    @media (max-width: 820px) {
-      #work,
-      .work-section {
-        height: auto;
-        min-height: 100vh;
-      }
-
-      .work-section {
-        padding-top: calc(var(--header-height) + 16px);
-        padding-bottom: 90px;
-      }
-
-      .work-title {
-        font-size: 34px;
-        margin-bottom: 24px;
-      }
-
-      .work-timeline {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        padding-top: 0;
-      }
-
-      .work-timeline::before {
-        display: none;
-      }
-
-      .work-item {
-        padding-top: 0;
-      }
-
-      .work-point {
-        position: static;
-        transform: none;
-        margin-bottom: 10px;
-      }
-
-      .work-card {
-        min-height: auto;
-      }
-    }
-
     /* Contact */
     #contact {
       min-height: 100vh;
@@ -594,6 +540,162 @@
       word-break: break-word;
     }
 
+    /* Footer and back-to-top */
+    .footer-wrap {
+      position: relative;
+      background: var(--page-bg);
+    }
+
+    .back-to-top {
+      position: absolute;
+      left: 50%;
+      top: -50px;
+      width: 88px;
+      height: 42px;
+      transform: translateX(-50%) translateY(10px);
+      opacity: 0;
+      pointer-events: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1200;
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 0.92;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .back-to-top::before,
+    .back-to-top::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 38px;
+      height: 38px;
+      border-left: 4px solid #ffffff;
+      border-top: 4px solid #ffffff;
+      transform: translateX(-50%) rotate(45deg);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.22));
+    }
+
+    .back-to-top::before {
+      top: 10px;
+    }
+
+    .back-to-top::after {
+      top: 0;
+    }
+
+    .back-to-top.visible.twinkle {
+      animation: topArrowTwinkle 1.9s ease-in-out infinite 1.2s;
+    }
+
+    @keyframes topArrowTwinkle {
+      0%, 100% {
+        opacity: 0.92;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-2px) scale(1.04);
+      }
+    }
+
+    .page-footer {
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      min-height: auto;
+      padding: 36px 0 44px;
+    }
+
+    .footer-inner {
+      width: min(920px, calc(100vw - 56px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) 120px 120px;
+      column-gap: 64px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-name {
+      font-size: 22px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .footer-tagline {
+      max-width: 360px;
+      font-size: 16px;
+      line-height: 1.3;
+      color: #9a9a9a;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .footer-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .footer-icon-link:hover {
+      transform: translateY(-1px);
+      opacity: 0.8;
+    }
+
+    .footer-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-column {
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer-heading {
+      font-size: 17px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      font-size: 16px;
+      line-height: 1.2;
+      color: #9a9a9a;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.72;
+    }
+
     @media (max-width: 1280px) {
       .projects-grid {
         column-gap: 24px;
@@ -615,10 +717,6 @@
         --nav-block-width: 430px;
       }
 
-      .menu {
-        left: 28px;
-      }
-
       .timeline-bullets li {
         font-size: 12.5px;
       }
@@ -633,7 +731,7 @@
         --nav-block-width: auto;
       }
 
-      .menu {
+      .section-nav {
         display: none;
       }
 
@@ -763,14 +861,38 @@
       .scroll-indicator {
         display: none;
       }
+
+      .back-to-top {
+        top: -50px;
+      }
+
+      .page-footer {
+        padding: 28px 0 36px;
+      }
+
+      .footer-inner {
+        width: calc(100vw - 32px);
+        grid-template-columns: 1fr;
+        row-gap: 26px;
+      }
+
+      .footer-social {
+        margin-top: 14px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .scroll-indicator {
+      .scroll-indicator,
+      .section-nav,
+      .section-nav-item,
+      .footer-icon-link,
+      .footer-links a,
+      .back-to-top {
         transition: none;
       }
 
-      .scroll-indicator.visible.twinkle {
+      .scroll-indicator.visible.twinkle,
+      .back-to-top.visible.twinkle {
         animation: none;
       }
     }
@@ -793,15 +915,15 @@
     </nav>
   </header>
 
-  <div class="menu" id="menu">
-    <button class="menu-item active" data-target="home" aria-label="Go to home section"></button>
-    <button class="menu-item" data-target="projects" aria-label="Go to projects section"></button>
-    <button class="menu-item" data-target="work" aria-label="Go to work section"></button>
-    <button class="menu-item" data-target="contact" aria-label="Go to contact section"></button>
-  </div>
+  <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
+    <button class="section-nav-item active" data-target="home" aria-label="Go to home section"></button>
+    <button class="section-nav-item" data-target="projects" aria-label="Go to projects section"></button>
+    <button class="section-nav-item" data-target="work" aria-label="Go to work section"></button>
+    <button class="section-nav-item" data-target="contact" aria-label="Go to contact section"></button>
+  </nav>
 
   <main class="page">
-    <section class="section" id="home">
+    <section class="section nav-target" id="home">
       <div class="content-shell">
         <div class="hero-content">
           <div class="hero-left">
@@ -813,8 +935,8 @@
             <h2>About me</h2>
             <p>
               I'm a mechanical engineer focused on mechatronic systems and IoT infrastructure.
-              My background spans hardware design, firmware, and CAD, so I tend to work across the full stack of a 
-              physical system rather than just one layer. I'm most interested in problems where the mechanical, 
+              My background spans hardware design, firmware, and CAD, so I tend to work across the full stack of a
+              physical system rather than just one layer. I'm most interested in problems where the mechanical,
               electrical, and software sides all have to work together.
             </p>
           </div>
@@ -824,14 +946,13 @@
       <a href="#projects" class="scroll-indicator" aria-label="Scroll to next section"></a>
     </section>
 
-    <section class="section" id="projects">
+    <section class="section nav-target" id="projects">
       <div class="content-shell">
         <div class="projects-section">
           <h2 class="projects-title">Projects</h2>
 
           <div class="projects-grid">
-
-                        <a class="project-card" href="project-lorawan.html">
+            <a class="project-card" href="project-lorawan.html">
               <div class="project-thumb thumb-lorawan"></div>
               <div class="project-meta">
                 <h3 class="project-name">Monitoring System Engineering</h3>
@@ -878,7 +999,6 @@
                 <span class="project-year">2025</span>
               </div>
             </a>
-
           </div>
 
           <hr class="projects-divider" />
@@ -888,7 +1008,7 @@
       <a href="#work" class="scroll-indicator" aria-label="Scroll to next section"></a>
     </section>
 
-    <section class="section" id="work">
+    <section class="section nav-target" id="work">
       <div class="content-shell">
         <div class="work-section">
           <h2 class="work-title">Work</h2>
@@ -926,7 +1046,7 @@
             <article class="work-item">
               <div class="work-point"></div>
               <div class="work-card">
-                <div class="timeline-year">Jan. 2026 – June 2026</div>
+                <div class="timeline-year">Jan. 2026 - June 2026</div>
                 <h3 class="timeline-role">Mechanical Engineer</h3>
                 <div class="timeline-org">Ithaca Clean Energy</div>
                 <ul class="timeline-bullets">
@@ -943,7 +1063,7 @@
       <a href="#contact" class="scroll-indicator" aria-label="Scroll to next section"></a>
     </section>
 
-    <section class="section" id="contact">
+    <section class="section nav-target" id="contact">
       <div class="content-shell">
         <div class="contact-section">
           <div class="contact-layout">
@@ -976,17 +1096,91 @@
     </section>
   </main>
 
+  <div class="footer-wrap">
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"></button>
+
+    <footer class="page-footer" id="pageFooter">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-name">Nathan Syvash</div>
+          <div class="footer-tagline">
+            Designing and deploying mechatronic<br>
+            systems and IoT networks
+          </div>
+
+          <div class="footer-social">
+            <a class="footer-icon-link" href="https://www.linkedin.com/in/nsyvash/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <img src="linkedin_grey.png" alt="LinkedIn" class="footer-icon" />
+            </a>
+            <a class="footer-icon-link" href="mailto:nathan.syvash.th@dartmouth.edu" aria-label="Email Nathan">
+              <img src="email.png" alt="Email" class="footer-icon" />
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <div class="footer-heading">Learn more</div>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Reach Out</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <div class="footer-heading">Docs</div>
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/nsyvash/" target="_blank" rel="noopener noreferrer">Resume</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
   <script>
-    const menuItems = document.querySelectorAll(".menu-item");
-    const sections = document.querySelectorAll(".section");
+    const header = document.querySelector(".site-header");
+    const sectionNav = document.getElementById("sectionNav");
+    const sectionNavItems = document.querySelectorAll(".section-nav-item");
+    const sections = document.querySelectorAll(".nav-target");
     const scrollIndicators = document.querySelectorAll(".scroll-indicator");
+    const backToTop = document.getElementById("backToTop");
+    const pageFooter = document.getElementById("pageFooter");
     const desktopMediaQuery = window.matchMedia("(min-width: 821px)");
 
     let currentSectionId = "";
     let arrowFadeTimer = null;
     let arrowTwinkleTimer = null;
 
-    function clearArrowState() {
+    let topArrowFadeTimer = null;
+    let topArrowTwinkleTimer = null;
+
+    let navCurrentY = 0;
+    let navTargetY = 0;
+    let navAnimating = false;
+
+    function getHeaderOffset() {
+      return header ? header.offsetHeight + 20 : 124;
+    }
+
+    function scrollToTarget(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const top = target.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top,
+        behavior: "smooth"
+      });
+    }
+
+    sectionNavItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        scrollToTarget(item.dataset.target);
+      });
+    });
+
+    function clearSectionArrowState() {
       clearTimeout(arrowFadeTimer);
       clearTimeout(arrowTwinkleTimer);
 
@@ -998,7 +1192,7 @@
     function showArrowForSection(sectionId) {
       if (!desktopMediaQuery.matches) return;
 
-      clearArrowState();
+      clearSectionArrowState();
 
       const section = document.getElementById(sectionId);
       if (!section) return;
@@ -1015,48 +1209,150 @@
       }, 250);
     }
 
-    function setActiveDot() {
-      let activeSectionId = sections[0].id;
-      const triggerPoint = window.innerHeight * 0.45;
+    function setActiveSectionDot() {
+      const triggerPoint = window.innerHeight * 0.35;
+      let activeId = sections.length ? sections[0].id : "";
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
-          activeSectionId = section.id;
+        if (rect.top <= triggerPoint) {
+          activeId = section.id;
         }
       });
 
-      menuItems.forEach((item) => {
-        item.classList.toggle(
-          "active",
-          item.dataset.target === activeSectionId
-        );
+      sectionNavItems.forEach((item) => {
+        item.classList.toggle("active", item.dataset.target === activeId);
       });
 
-      if (activeSectionId !== currentSectionId) {
-        currentSectionId = activeSectionId;
-        showArrowForSection(activeSectionId);
+      if (activeId !== currentSectionId) {
+        currentSectionId = activeId;
+        showArrowForSection(activeId);
       }
     }
 
-    function scrollToTarget(targetId) {
-      const target = document.getElementById(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+    function getSectionNavTargetY() {
+      if (!sectionNav || !pageFooter || window.innerWidth <= 820) return 0;
+
+      const navHeight = sectionNav.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      const topPadding = 18;
+      const bottomPadding = 18;
+
+      const headerBottom = (header ? header.offsetHeight : 0) + topPadding;
+      const footerRect = pageFooter.getBoundingClientRect();
+
+      const visibleBottom = Math.min(
+        viewportHeight - bottomPadding,
+        footerRect.top - bottomPadding
+      );
+
+      const availableHeight = visibleBottom - headerBottom;
+
+      if (availableHeight <= navHeight) {
+        return headerBottom;
+      }
+
+      return headerBottom + (availableHeight - navHeight) / 2;
+    }
+
+    function animateSectionNav() {
+      if (!sectionNav || window.innerWidth <= 820) {
+        navAnimating = false;
+        return;
+      }
+
+      const diff = navTargetY - navCurrentY;
+
+      if (Math.abs(diff) < 0.2) {
+        navCurrentY = navTargetY;
+        sectionNav.style.transform = `translateY(${navCurrentY}px)`;
+        navAnimating = false;
+        return;
+      }
+
+      navCurrentY += diff * 0.12;
+      sectionNav.style.transform = `translateY(${navCurrentY}px)`;
+
+      requestAnimationFrame(animateSectionNav);
+    }
+
+    function updateSectionNavPosition(immediate = false) {
+      if (!sectionNav || window.innerWidth <= 820) return;
+
+      navTargetY = getSectionNavTargetY();
+
+      if (immediate) {
+        navCurrentY = navTargetY;
+        sectionNav.style.transform = `translateY(${navCurrentY}px)`;
+        navAnimating = false;
+        return;
+      }
+
+      if (!navAnimating) {
+        navAnimating = true;
+        requestAnimationFrame(animateSectionNav);
       }
     }
 
-    menuItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        scrollToTarget(item.dataset.target);
+    function clearTopArrowState() {
+      clearTimeout(topArrowFadeTimer);
+      clearTimeout(topArrowTwinkleTimer);
+      topArrowFadeTimer = null;
+      topArrowTwinkleTimer = null;
+      if (backToTop) {
+        backToTop.classList.remove("visible", "twinkle");
+      }
+    }
+
+    function handleTopArrowVisibility() {
+      if (!backToTop) return;
+
+      const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+
+      if (nearBottom) {
+        if (!backToTop.classList.contains("visible") && !topArrowFadeTimer) {
+          topArrowFadeTimer = setTimeout(() => {
+            backToTop.classList.add("visible");
+            topArrowFadeTimer = null;
+
+            topArrowTwinkleTimer = setTimeout(() => {
+              backToTop.classList.add("twinkle");
+              topArrowTwinkleTimer = null;
+            }, 500);
+          }, 350);
+        }
+      } else {
+        clearTopArrowState();
+      }
+    }
+
+    if (backToTop) {
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
       });
+    }
+
+    window.addEventListener("scroll", () => {
+      setActiveSectionDot();
+      updateSectionNavPosition(false);
+      handleTopArrowVisibility();
     });
 
-    window.addEventListener("scroll", setActiveDot);
-    window.addEventListener("load", setActiveDot);
+    window.addEventListener("load", () => {
+      setActiveSectionDot();
+      updateSectionNavPosition(true);
+      handleTopArrowVisibility();
+    });
+
     window.addEventListener("resize", () => {
-      clearArrowState();
-      setActiveDot();
+      clearSectionArrowState();
+      setActiveSectionDot();
+      updateSectionNavPosition(true);
+      handleTopArrowVisibility();
     });
   </script>
 </body>
