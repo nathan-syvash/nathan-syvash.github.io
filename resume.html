@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dentist Office Recording Device | Nathan Syvash</title>
+  <title>Resume | Nathan Syvash</title>
 
   <style>
     * {
@@ -222,6 +222,7 @@
       font-size: 17px;
       line-height: 1.35;
       color: #222;
+      word-break: break-word;
     }
 
     .callout {
@@ -236,53 +237,6 @@
       font-size: 17px;
       line-height: 1.55;
       color: #333;
-    }
-
-    .hero-image {
-      display: block;
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      border-radius: 18px;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .project-figure {
-      margin: 0 0 30px 0;
-      display: grid;
-      gap: 10px;
-      justify-items: start;
-    }
-
-    .project-figure .hero-image {
-      margin-bottom: 0;
-    }
-
-    .project-caption {
-      font-size: 14px;
-      line-height: 1.45;
-      color: #666;
-      text-align: left;
-      max-width: 100%;
-    }
-
-    .validation-image-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      align-items: start;
-      margin: 0 0 30px 0;
-    }
-
-    .validation-image-grid .project-figure {
-      margin: 0;
-      min-width: 0;
-    }
-
-    .validation-image-grid .hero-image {
-      width: 100%;
-      height: auto;
-      max-width: 100%;
     }
 
     .project-sections {
@@ -305,21 +259,50 @@
       max-width: 100%;
     }
 
-    .section-block ul {
-      padding-left: 20px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .section-block li {
-      font-size: 16px;
-      line-height: 1.45;
-      color: #333;
-    }
-
     .section-divider {
       border: none;
       border-top: 1px solid var(--line);
+    }
+
+    .resume-viewer {
+      width: 100%;
+      height: 1200px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .resume-viewer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .resume-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .resume-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      color: #333;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .resume-button:hover {
+      transform: translateY(-1px);
+      opacity: 0.85;
     }
 
     .nav-target {
@@ -485,6 +468,10 @@
         --header-right-padding: 100px;
         --nav-block-width: 430px;
       }
+
+      .resume-viewer {
+        height: 980px;
+      }
     }
 
     @media (max-width: 820px) {
@@ -530,8 +517,8 @@
         font-size: 20px;
       }
 
-      .validation-image-grid {
-        grid-template-columns: 1fr;
+      .resume-viewer {
+        height: 620px;
       }
 
       .back-to-top {
@@ -557,6 +544,7 @@
     @media (prefers-reduced-motion: reduce) {
       .section-nav,
       .section-nav-item,
+      .resume-button,
       .footer-icon-link,
       .footer-links a,
       .back-to-top {
@@ -589,150 +577,72 @@
 
     <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
       <button class="section-nav-item active" data-target="page-top" aria-label="Go to top of page"></button>
-      <button class="section-nav-item" data-target="overview" aria-label="Go to Overview section"></button>
-      <button class="section-nav-item" data-target="contributions" aria-label="Go to My Contributions section"></button>
-      <button class="section-nav-item" data-target="validation" aria-label="Go to Validation section"></button>
-      <button class="section-nav-item" data-target="outcomes" aria-label="Go to Outcomes section"></button>
-      <button class="section-nav-item" data-target="next-steps" aria-label="Go to Next Steps section"></button>
+      <button class="section-nav-item" data-target="resume-overview" aria-label="Go to resume overview"></button>
+      <button class="section-nav-item" data-target="resume-pdf" aria-label="Go to embedded resume"></button>
+      <button class="section-nav-item" data-target="resume-download" aria-label="Go to resume download"></button>
     </nav>
 
     <div class="content-shell">
       <div class="project-paper">
         <div id="page-top" class="page-top-anchor nav-target" aria-hidden="true"></div>
 
-        <a href="index.html#projects" class="back-link">← Back to projects</a>
+        <a href="index.html#home" class="back-link">← Back to home</a>
 
         <section class="project-hero">
           <div class="project-main">
-            <div class="project-year">2025</div>
-            <h1 class="project-title">Dentist Office Recording Device</h1>
+            <div class="project-year">Resume</div>
+            <h1 class="project-title">Nathan Syvash</h1>
             <p class="project-subtitle">
-              Developed a robust, manufacturable enclosure for a dental-office recording device designed to distinguish machine sounds from human speech, supporting HIPAA and FDA compliance while improving clinic scheduling efficiency.
+              Ecosystem Mechanical Engineer - Connected Hardware - Prototyping
             </p>
           </div>
-
-          <aside class="project-meta-card">
-            <div class="meta-row">
-              <div class="meta-label">Role</div>
-              <div class="meta-value">Mechanical Design Lead (Enclosure)</div>
-            </div>
-
-            <div class="meta-row">
-              <div class="meta-label">Focus</div>
-              <div class="meta-value">SolidWorks, GD&amp;T, enclosure design, DVP&amp;R-style validation, IP44 features</div>
-            </div>
-
-            <div class="meta-row">
-              <div class="meta-label">Outcome</div>
-              <div class="meta-value">Delivered a validated, vendor-ready enclosure and a working device prototype handed off for future commercialization.</div>
-            </div>
-          </aside>
         </section>
 
-        <div class="callout">
-          <p>
-            Objective: Develop a robust, manufacturable device enclosure capable of withstanding handling and environmental loads while maintaining ergonomic form and HIPAA/FDA compliance.
-          </p>
-        </div>
-
-        <article class="section-block nav-target" id="overview">
-          <h2>Overview</h2>
-          <p>
-            The device leverages machine audio profiles to distinguish between dental procedure sounds and human voices. This allows compliance with HIPAA and FDA regulations while improving clinic scheduling efficiency by automatically tracking procedure durations.
-          </p>
-        </article>
-
-        <figure class="project-figure">
-          <img src="dentist_device_casing.png" alt="Casing designed for the sound recording device" class="hero-image" />
-          <figcaption class="project-caption">
-            Casing Designed for the Sound Recording Device.
-          </figcaption>
-        </figure>
-
         <section class="project-sections">
-          <article class="section-block nav-target" id="contributions">
-            <h2>My Contributions</h2>
-            <ul>
-              <li>Created a SolidWorks enclosure model with ergonomic features, fastener bosses, alignment details, and IP44 water-resistant features.</li>
-              <li>Produced fully annotated 2D drawings with GD&amp;T tolerances, section views, and a vendor-ready title block.</li>
-              <li>Executed DVP&amp;R-style validation including 3 ft drop tests, static load testing, and waterproofing validation.</li>
-              <li>Adjusted wall thickness and geometry to improve robustness while keeping the design manufacturable.</li>
-            </ul>
+          <article class="section-block nav-target" id="resume-overview">
+            <h2>Overview</h2>
+            <div class="callout">
+                <p>
+                    Ecosystem-focused engineer with hands-on experience building connected hardware systems and turning technical work into clear,
+                    reusable documentation. Built IoT monitoring infrastructure, validation workflows, and bench-scale prototypes across industrial and
+                    research settings. Strong in CAD, testing, and technical communication for manufacturing-facing products and demos.              
+                </p>
+            </div>
           </article>
-
-          <figure class="project-figure">
-            <img src="TP1.png" alt="Device enclosure prototype" class="hero-image" />
-            <figcaption class="project-caption">
-              Device enclosure prototype during design and development.
-            </figcaption>
-          </figure>
 
           <hr class="section-divider" />
 
-          <article class="section-block nav-target" id="validation">
-            <h2>Validation</h2>
-            <p>
-              To ensure the enclosure could withstand operational stresses and environmental handling, I ran a structural validation workflow modeled on DVP&amp;R and DFMEA-style methods.
-            </p>
+          <article class="section-block nav-target" id="resume-pdf">
+            <h2>Embedded Resume</h2>
+            <div class="resume-viewer">
+              <iframe
+                src="Resume_Oleh_Nathan_Syvash_Ecosystem_Mechanical_Engineer_Connected_Hardware_Prototyping.pdf"
+                title="Oleh Nathan Syvash Resume"
+                loading="lazy">
+              </iframe>
+            </div>
           </article>
-
-          <article class="section-block">
-            <ul>
-              <li><strong>Static Load Test:</strong> Simulated distributed loading equivalent to a person sitting on the device. von Mises stress remained well below the ABS yield strength of about 74 MPa.</li>
-              <li><strong>Drop Test Simulation:</strong> Modeled a 3 ft free-fall impact and evaluated displacement fields across the casing. Deformation stayed localized and within safe tolerance levels.</li>
-              <li><strong>Iterative Refinement:</strong> Adjusted rib geometry and wall thickness based on stress concentrations to reduce peak deflection and improve structural reliability.</li>
-              <li><strong>Water Resistance Validation:</strong> Designed for IP44 sealing performance through enclosure geometry and gasket fit, then validated with controlled splash and exposure testing.</li>
-            </ul>
-          </article>
-
-          <div class="validation-image-grid">
-            <figure class="project-figure">
-              <img src="dontsit.png" alt="Static load validation study" class="hero-image" />
-              <figcaption class="project-caption">
-                Static load validation study simulating distributed human seating load on the enclosure.
-              </figcaption>
-            </figure>
-
-            <figure class="project-figure">
-              <img src="dropstudy.png" alt="Drop test simulation of the enclosure" class="hero-image" />
-              <figcaption class="project-caption">
-                Drop test simulation used to verify localized deformation and enclosure integrity after a 3 ft fall.
-              </figcaption>
-            </figure>
-          </div>
 
           <hr class="section-divider" />
 
-          <article class="section-block nav-target" id="outcomes">
-            <h2>Outcomes</h2>
-            <p>
-              I delivered a manufacturable enclosure with full GD&amp;T drawings and vendor-ready documentation, validated through structural and environmental testing. The final prototype demonstrated durability, robustness, and alignment with usability and regulatory requirements.
-            </p>
-          </article>
+          <article class="section-block nav-target" id="resume-download">
+            <h2>Download</h2>
+            <div class="resume-actions">
+              <a
+                class="resume-button"
+                href="Resume_Oleh_Nathan_Syvash_Ecosystem_Mechanical_Engineer_Connected_Hardware_Prototyping.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
+                Open PDF in new tab
+              </a>
 
-          <article class="section-block">
-            <h2>Overall Product Performance</h2>
-            <ul>
-              <li><strong>Signal Performance:</strong> Captured more than 80% of machine noise within the target frequency band while attenuating human speech.</li>
-              <li><strong>Privacy Assurance:</strong> Prevented reconstruction of human voice content while preserving about 90% of machine-sound integrity after filtering.</li>
-              <li><strong>Reliability:</strong> Demonstrated mechanical safety and robustness through environmental and structural testing.</li>
-              <li><strong>User Integration:</strong> Produced a compact, durable, and intuitive device suited for practical use in dentist office settings.</li>
-            </ul>
-          </article>
-
-          <div class="callout">
-            <p>
-              The completed device was successfully delivered to the sponsoring company, which took ownership of the design for future product development and commercialization.
-            </p>
-          </div>
-
-          <hr class="section-divider" />
-
-          <article class="section-block nav-target" id="next-steps">
-            <h2>Next Steps</h2>
-            <ul>
-              <li>Prepare the casing for injection molding once the device is ready for mass production.</li>
-            </ul>
+              <a
+                class="resume-button"
+                href="Resume_Oleh_Nathan_Syvash_Ecosystem_Mechanical_Engineer_Connected_Hardware_Prototyping.pdf"
+                download>
+                Download PDF
+              </a>
+            </div>
           </article>
         </section>
       </div>
@@ -773,7 +683,7 @@
           <div class="footer-column">
             <div class="footer-heading">Docs</div>
             <div class="footer-links">
-              <a href="resume.html" target="_blank" rel="noopener noreferrer">Resume</a>
+              <a href="resume.html">Resume</a>
             </div>
           </div>
         </div>
